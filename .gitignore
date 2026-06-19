@@ -2,6 +2,7 @@
 /vendor/
 
 # Environment configurations
+.env
 .env.*
 
 # Log files and Caches
