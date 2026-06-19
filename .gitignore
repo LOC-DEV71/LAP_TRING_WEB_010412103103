@@ -1,6 +1,25 @@
+# Vendor dependencies (Composer)
 /vendor/
-.env
+
+# Environment configurations
+.env.*
+
+# Log files and Caches
 /storage/logs/*
 /storage/cache/*
 !.gitkeep
 .phpunit.result.cache
+
+# IDE and Editor Files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*~
+
+# Operating System Files
+.DS_Store
+Thumbs.db
