@@ -1,4 +1,13 @@
 <?php
+
+// hàm nhận style
+if (php_sapi_name() === 'cli-server') {
+    $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    if (is_file(__DIR__ . $url)) {
+        return false;
+    }
+}
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -10,12 +19,11 @@ if (file_exists($autoloadPath)) {
     die("Vui lòng chạy lệnh 'composer install' trước khi tiếp tục.");
 }
 
-echo "<h1>Chào mừng đến với dự án GearX!</h1>";
-echo "<p>File index.php đã hoạt động thành công.</p>";
+// Khởi tạo Database và Helpers
+require_once __DIR__ . '/config/database.php';
+require_once __DIR__ . '/core/helpers.php';
 
-// 4. (Tương lai) Khởi tạo ứng dụng và Routing sẽ nằm ở đây
-// Ví dụ:
-// require_once __DIR__ . '/config/database.php';
-// $app = new Core\App();
-// $app->run();
+// Khởi tạo ứng dụng và Routing
+$app = new Core\App();
+$app->run();
 ?>

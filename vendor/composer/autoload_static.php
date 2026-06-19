@@ -6,6 +6,33 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitd751713988987e9331980363e24189ce
 {
+    public static $prefixLengthsPsr4 = array (
+        'M' =>
+        array (
+            'Models\\' => 7,
+        ),
+        'C' =>
+        array (
+            'Core\\' => 5,
+            'Controllers\\' => 12,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Models\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/models',
+        ),
+        'Core\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/core',
+        ),
+        'Controllers\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/controllers',
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -13,6 +40,8 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd751713988987e9331980363e24189ce::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd751713988987e9331980363e24189ce::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitd751713988987e9331980363e24189ce::$classMap;
 
         }, null, ClassLoader::class);
