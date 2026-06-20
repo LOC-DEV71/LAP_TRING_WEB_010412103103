@@ -6,25 +6,42 @@ class App
     protected $controller = 'HomeController';
     protected $action = 'index';
     protected $params = [];
+    protected $namespace = 'Controllers\\Client\\';
 
     public function __construct()
     {
         $url = $this->parseUrl();
 
-        // 1. Tìm Controller
+        // 1. Phân luồng Admin / Client
+        $folder = 'client';
+        if (isset($url[0]) && strtolower($url[0]) === 'admin') {
+            $folder = 'admin';
+            $this->namespace = 'Controllers\\Admin\\';
+            unset($url[0]);
+            $url = array_values($url); // Reset index lại cho admin
+        }
+
+        // 2. Tìm Controller (Ví dụ: /auth/login -> AuthController)
         if (isset($url[0])) {
             $controllerName = ucfirst($url[0]) . 'Controller';
-            if (file_exists('controllers/' . $controllerName . '.php')) {
+            if (file_exists('controllers/' . $folder . '/' . $controllerName . '.php')) {
                 $this->controller = $controllerName;
+            } else {
+                // Nếu URL sai thì về Home mặc định
+                $this->controller = 'HomeController';
             }
             unset($url[0]);
         }
 
         // Khởi tạo Controller
-        $controllerClass = 'Controllers\\' . $this->controller;
-        $this->controller = new $controllerClass;
+        $controllerClass = $this->namespace . $this->controller;
+        if (class_exists($controllerClass)) {
+            $this->controller = new $controllerClass;
+        } else {
+            die("Lỗi 404: Không tìm thấy Controller " . $controllerClass);
+        }
 
-        // 2. Tìm Method (Action)
+        // 3. Tìm Method (Action)
         if (isset($url[1])) {
             if (method_exists($this->controller, $url[1])) {
                 $this->action = $url[1];
@@ -32,13 +49,12 @@ class App
             unset($url[1]);
         }
 
-        // 3. Lấy Params
+        // 4. Gắn các tham số còn lại
         $this->params = $url ? array_values($url) : [];
     }
 
     public function run()
     {
-        // Gọi hàm của controller với các tham số tương ứng
         call_user_func_array([$this->controller, $this->action], $this->params);
     }
 
@@ -46,8 +62,6 @@ class App
     {
         $url = $_SERVER['REQUEST_URI'] ?? '/';
         $url = trim($url, '/');
-        
-        // Cắt bỏ phần query string (ví dụ: ?id=1)
         $url = strtok($url, '?');
 
         if (!empty($url)) {

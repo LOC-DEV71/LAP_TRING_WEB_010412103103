@@ -1,5 +1,5 @@
 <?php
-namespace Controllers;
+namespace Controllers\Client;
 
 use Core\Controller;
 

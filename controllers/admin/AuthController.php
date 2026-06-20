@@ -1,0 +1,67 @@
+<?php
+namespace Controllers\Admin;
+
+use Core\Controller;
+use Core\JwtUtils;
+use Models\User;
+use Validates\Admin\AuthValidate;
+
+class AuthController extends Controller
+{
+    // Xử lý hiển thị form và đăng nhập Admin
+    public function login()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'] ?? '';
+            $password = $_POST['password'] ?? '';
+
+            $errors = AuthValidate::login($_POST);
+
+            if (empty($errors)) {
+                $userModel = new User();
+                $user = $userModel->getByEmail($email);
+
+                // Kiểm tra User có tồn tại và đúng password
+                if ($user && password_verify($password, $user['password'])) {
+                    
+                    // Tùy theo logic phân quyền của anh, anh có thể check role tại đây.
+                    // Ví dụ: if ($user['role'] !== 'admin') { báo lỗi }
+
+                    $payload = [
+                        'user_id' => $user['_id'],
+                        'fullname' => $user['fullname'],
+                        'role' => $user['member']
+                    ];
+                    $token = JwtUtils::encode($payload);
+
+                    // Lưu JWT vào Cookie riêng cho Admin (Tránh xung đột với cookie Client)
+                    setcookie('admin_jwt_token', $token, time() + (86400 * 7), "/", "", false, true);
+                    
+                    header('Location: /admin/dashboard');
+                    exit;
+                } else {
+                    $errors['auth'] = "Tài khoản hoặc mật khẩu Quản trị viên không chính xác.";
+                }
+            }
+
+            return $this->view('pages/admin/auth/login', [
+                'title' => 'Đăng Nhập Quản Trị Viên',
+                'errors' => $errors,
+                'old_email' => $email
+            ]);
+        }
+
+        $this->view('pages/admin/auth/login', [
+            'title' => 'Đăng Nhập Quản Trị Viên',
+            'errors' => []
+        ]);
+    }
+
+    // Xử lý đăng xuất và xóa Token Admin
+    public function logout()
+    {
+        setcookie('admin_jwt_token', '', time() - 3600, "/");
+        header('Location: /admin/login');
+        exit;
+    }
+}
