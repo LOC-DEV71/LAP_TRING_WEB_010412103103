@@ -1,0 +1,64 @@
+/* Bao bọc toàn bộ trang giỏ hàng */
+.cart-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container trạng thái trống */
+.cart-empty-container {
+    text-align: center;
+    max-width: 450px;
+}
+
+/* Icon giỏ hàng */
+.empty-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    color: #cccccc;
+}
+
+.empty-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Tiêu đề */
+.empty-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 12px;
+}
+
+/* Mô tả */
+.empty-desc {
+    font-size: 15px;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+/* Nút bấm thanh lịch */
+.btn-continue {
+    display: inline-block;
+    padding: 12px 32px;
+    background-color: #111111;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: 1px solid #111111;
+}
+
+.btn-continue:hover {
+    background-color: #ffffff;
+    color: #111111;
+}
