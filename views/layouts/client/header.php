@@ -13,11 +13,11 @@
 
         <div class="top-bar">
             <div class="top-item">
-                <img src="/Web_CLOTHES/LAP_TRING_WEB_010412103103/public/assets/images/fast-delivery.png" alt="Delivery">
+                <img src="/public/assets/images/fast-delivery.png" alt="Delivery">
                 <span>Miễn phí vận chuyển cho đơn hàng từ 499.000đ</span>
             </div>
             <div class="top-item">
-                <img src="/Web_CLOTHES/LAP_TRING_WEB_010412103103/public/assets/images/viber.png" alt="Phone">
+                <img src="/public/assets/images/viber.png" alt="Phone">
                 <span>Hỗ trợ khách hàng: 1900 1234 567</span>
             </div>
         </div>
@@ -38,9 +38,9 @@
             </ul>
 
             <div class="actions">
-                <img src="/Web_CLOTHES/LAP_TRING_WEB_010412103103/public/assets/images/search.png" alt="Search">
-                <img src="/Web_CLOTHES/LAP_TRING_WEB_010412103103/public/assets/images/cart.png" alt="Cart">
-                <img src="/Web_CLOTHES/LAP_TRING_WEB_010412103103/public/assets/images/user.png" alt="User">
+                <img src="/public/assets/images/search.png" alt="Search">
+                <img src="/public/assets/images/cart.png" alt="Cart">
+                <img src="/public/assets/images/user.png" alt="User">
             </div>
 
         </div>
