@@ -6,10 +6,6 @@ use Core\Controller;
 class CartController {
     
     public function index() {
-        // In thử dữ liệu Session ra màn hình để test
-        echo '<pre style="margin-top:100px; padding:20px; background:#f4f4f4; border:1px solid #ddd;">';
-        print_r($_SESSION['cart'] ?? 'Giỏ hàng đang trống');
-        echo '</pre>';   
 
         // 1. Header 
         if (file_exists('views/layouts/client/header.php')) {
@@ -48,7 +44,7 @@ class CartController {
                 }
 
                 // Chuyển hướng người dùng về trang giỏ hàng để xem thành quả
-                header('Location: /?controller=cart');
+                header('Location: /cart');
                 exit;
             }
         }
