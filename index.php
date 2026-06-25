@@ -1,4 +1,5 @@
 <?php
+session_start(); // bộ nhớ tạm CART
 
 // hàm nhận style
 if (php_sapi_name() === 'cli-server') {
