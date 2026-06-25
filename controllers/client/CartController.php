@@ -1,4 +1,7 @@
 <?php
+namespace Controllers\Client;
+
+use Core\Controller;
 
 class CartController {
     
