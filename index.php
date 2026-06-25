@@ -25,10 +25,7 @@ require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/core/helpers.php';
 
 // Khởi tạo ứng dụng và Routing
-//$app = new Core\App();
-//$app->run();
+$app = new Core\App();
+$app->run();
 
-require_once 'controllers/client/CartController.php';
-$cart = new CartController();
-$cart->index();
 ?>

@@ -156,4 +156,21 @@
         </div>
 
     </section>
+    <div style="max-width: 1200px; margin: 40px auto; padding: 30px; border: 2px dashed #d70018; background-color: #fff; border-radius: 8px;">
+        <h3 style="color: #d70018; margin-bottom: 15px;">🛠 KHU VỰC TEST LOGIC GIỎ HÀNG</h3>
+        <p style="margin-bottom: 20px; color: #666;">Form này giả lập việc khách hàng bấm Mua sản phẩm từ trang Chi tiết.</p>
+        
+        <form action="/cart/add" method="POST" style="display: flex; gap: 20px; align-items: center;">
+            <input type="hidden" name="product_variant_id" value="var_001">
+            
+            <div>
+                <label style="font-weight: bold; margin-right: 10px;">Áo Polo Đen - Size M | Số lượng:</label>
+                <input type="number" name="quantity" value="1" min="1" style="width: 60px; padding: 8px; text-align: center; border: 1px solid #ccc;">
+            </div>
+            
+            <button type="submit" style="padding: 10px 25px; background: #111; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                THÊM VÀO GIỎ HÀNG
+            </button>
+        </form>
+    </div>
 <?php require_once __DIR__ . '/../../../layouts/client/footer.php'; ?>

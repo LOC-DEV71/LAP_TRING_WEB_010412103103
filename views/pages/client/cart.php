@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="public/css/client/Home/cart.css">
-<link rel="stylesheet" href="public/css/client/Home/home.css">
 <main class="cart-page">
     <div class="cart-container">
         <div class="cart-header">

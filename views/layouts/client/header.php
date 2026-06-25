@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($title ?? 'Fashion Store') ?></title>
-    <link rel="stylesheet" href="/Web_CLOTHES/LAP_TRING_WEB_010412103103/public/css/client/Home/home.css">
+    <link rel="stylesheet" href="/public/css/client/Home/home.css">
 </head>
 <body>
 
