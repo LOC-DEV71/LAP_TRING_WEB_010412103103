@@ -35,24 +35,35 @@ class AuthController extends Controller
                     // Lưu JWT vào Cookie, thiết lập HttpOnly = true để chống XSS
                     setcookie('jwt_token', $token, time() + (86400 * 7), "/", "", false, true);
                     
+                    // Đăng nhập thành công, reset lại số lần nhập sai
+                    unset($_SESSION['login_attempts']);
+                    
                     header('Location: ' . url(''));
                     exit;
                 } else {
+                    // Chống Spam
+                    // Đăng nhập thất bại, tăng số lần nhập sai lên 1
+                    $_SESSION['login_attempts'] = ($_SESSION['login_attempts'] ?? 0) + 1;
                     $errors['auth'] = "Tài khoản hoặc mật khẩu không chính xác.";
                 }
+            } else {
+                // Nếu form có lỗi nhập liệu (như thiếu captcha khi đã kích hoạt)
+                $_SESSION['login_attempts'] = ($_SESSION['login_attempts'] ?? 0) + 1;
             }
 
             return $this->view('pages/client/auth/login', [
                 'title' => 'Đăng Nhập Khách Hàng',
                 'errors' => $errors,
                 'old_login_key' => $loginKey,
-                'active_tab' => 'login'
+                'active_tab' => 'login',
+                'show_captcha' => ($_SESSION['login_attempts'] ?? 0) >= 3
             ]);
         }
 
         $this->view('pages/client/auth/login', [
             'title' => 'Đăng Nhập Khách Hàng',
-            'errors' => []
+            'errors' => [],
+            'show_captcha' => ($_SESSION['login_attempts'] ?? 0) >= 3
         ]);
     }
 
@@ -64,10 +75,7 @@ class AuthController extends Controller
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
 
-            $errors = AuthValidate::register([
-                'email' => $email,
-                'password' => $password
-            ]);
+            $errors = AuthValidate::register($_POST);
 
             if (empty($errors)) {
                 $userModel = new User();
