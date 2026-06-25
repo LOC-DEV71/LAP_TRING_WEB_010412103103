@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Liquid Glass - Đăng nhập &amp; Đăng ký</title>
+    <title>Fashion Login &amp; Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <style>
@@ -346,6 +346,37 @@
             margin-bottom: 16px;
         }
 
+        /* CAPTCHA Styling */
+        .captcha-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .captcha-image-wrapper {
+            flex-shrink: 0;
+            height: 45px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .captcha-image-wrapper:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transform: scale(1.02);
+        }
+
+        .captcha-img {
+            display: block;
+            height: 100%;
+            width: auto;
+        }
+
         /* Toast Notification System */
         .toast-container {
             position: fixed;
@@ -482,6 +513,21 @@
                             <span style="color: #ffdad6; font-size: 0.75rem; display: block; margin-top: 4px;"><?= htmlspecialchars($errors['password']) ?></span>
                         <?php endif; ?>
                     </div>
+                    <!-- Anti-spam CAPTCHA -->
+                    <?php if (!empty($show_captcha)): ?>
+                    <div class="captcha-row">
+                        <div class="input-group" style="margin-bottom: 0; flex-grow: 1;">
+                            <input required type="text" name="captcha" id="login-captcha" placeholder=" " autocomplete="off"/>
+                            <label for="login-captcha">Mã xác thực</label>
+                            <?php if (!empty($errors['captcha']) && ($active_tab ?? 'login') === 'login'): ?>
+                                <span style="color: #ffdad6; font-size: 0.75rem; display: block; margin-top: 4px;"><?= htmlspecialchars($errors['captcha']) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="captcha-image-wrapper" title="Nhấp vào để đổi mã xác thực">
+                            <img src="<?= asset('captcha.php') ?>" alt="CAPTCHA" class="captcha-img" onclick="this.src='<?= asset('captcha.php') ?>?'+Math.random()"/>
+                        </div>
+                    </div>
+                    <?php endif; ?>
                     <div class="options">
                         <label><input type="checkbox" name="remember"/> Nhớ mật khẩu</label>
                         <a href="#" id="forgot-password">Quên mật khẩu?</a>
@@ -511,6 +557,19 @@
                             <span style="color: #ffdad6; font-size: 0.75rem; display: block; margin-top: 4px;"><?= htmlspecialchars($errors['password']) ?></span>
                         <?php endif; ?>
                     </div>
+                    <!-- Anti-spam CAPTCHA -->
+                    <div class="captcha-row">
+                        <div class="input-group" style="margin-bottom: 0; flex-grow: 1;">
+                            <input required type="text" name="captcha" id="register-captcha" placeholder=" " autocomplete="off"/>
+                            <label for="register-captcha">Mã xác thực</label>
+                            <?php if (!empty($errors['captcha']) && ($active_tab ?? 'login') === 'register'): ?>
+                                <span style="color: #ffdad6; font-size: 0.75rem; display: block; margin-top: 4px;"><?= htmlspecialchars($errors['captcha']) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="captcha-image-wrapper" title="Nhấp vào để đổi mã xác thực">
+                            <img src="<?= asset('captcha.php') ?>" alt="CAPTCHA" class="captcha-img" onclick="this.src='<?= asset('captcha.php') ?>?'+Math.random()"/>
+                        </div>
+                    </div>
                     <div class="spacer"></div> <!-- Extra spacing before button -->
                     <button class="btn" type="submit">Đăng ký</button>
                 </form>
@@ -538,6 +597,14 @@
                         e.preventDefault();
                         showToast('Vui lòng nhập Mật khẩu!', 'error');
                         passwordInput.focus();
+                        return;
+                    }
+
+                    const captchaInput = document.getElementById('login-captcha');
+                    if (captchaInput && !captchaInput.value.trim()) {
+                        e.preventDefault();
+                        showToast('Vui lòng nhập mã xác thực CAPTCHA!', 'error');
+                        captchaInput.focus();
                         return;
                     }
                 });
@@ -569,6 +636,14 @@
                         e.preventDefault();
                         showToast('Vui lòng nhập Mật khẩu đăng ký!', 'error');
                         passwordInput.focus();
+                        return;
+                    }
+
+                    const captchaInput = document.getElementById('register-captcha');
+                    if (!captchaInput.value.trim()) {
+                        e.preventDefault();
+                        showToast('Vui lòng nhập mã xác thực CAPTCHA!', 'error');
+                        captchaInput.focus();
                         return;
                     }
                 });
