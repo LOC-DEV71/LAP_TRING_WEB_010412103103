@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($title ?? 'Fashion Store') ?></title>
-    <link rel="stylesheet" href="/public/css/client/Home/home.css">
+    <link rel="stylesheet" href="<?= asset('css/client/Home/home.css') ?>">
 </head>
 <body>
 
@@ -13,11 +13,11 @@
 
         <div class="top-bar">
             <div class="top-item">
-                <img src="/public/assets/images/fast-delivery.png" alt="Delivery">
+                <img src="<?= asset('assets/images/fast-delivery.png') ?>" alt="Delivery">
                 <span>Miễn phí vận chuyển cho đơn hàng từ 499.000đ</span>
             </div>
             <div class="top-item">
-                <img src="/public/assets/images/viber.png" alt="Phone">
+                <img src="<?= asset('assets/images/viber.png') ?>" alt="Phone">
                 <span>Hỗ trợ khách hàng: 1900 1234 567</span>
             </div>
         </div>
@@ -38,9 +38,9 @@
             </ul>
 
             <div class="actions">
-                <img src="/public/assets/images/search.png" alt="Search">
-                <img src="/public/assets/images/cart.png" alt="Cart">
-                <img src="/public/assets/images/user.png" alt="User">
+                <img src="<?= asset('assets/images/search.png') ?>" alt="Search">
+                <img src="<?= asset('assets/images/cart.png') ?>" alt="Cart">
+                <img src="<?= asset('assets/images/user.png') ?>" alt="User">
             </div>
 
         </div>

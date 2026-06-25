@@ -1,0 +1,26 @@
+# Composer dependencies
+/vendor/
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Log files
+*.log
+logs/
+
+# Database / Config backups (if any)
+*.sql
+*.sqlite
+.env

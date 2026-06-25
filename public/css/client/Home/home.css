@@ -238,7 +238,7 @@ body{
     justify-content:flex-start;
     align-items:center;
     gap:50px;
-    background-image:url('/Web_CLOTHES/LAP_TRING_WEB_010412103103/public/assets/images/banner.png');
+    background-image:url('../../../assets/images/banner.png');
     background-repeat:no-repeat;
     background-position:right center;
     background-size:450px auto;
