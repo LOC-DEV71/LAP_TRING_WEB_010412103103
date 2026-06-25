@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Không áp dụng rewrite nếu là tệp tin hoặc thư mục có thực trên ổ đĩa
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Chuyển toàn bộ các yêu cầu còn lại về index.php để router xử lý
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>

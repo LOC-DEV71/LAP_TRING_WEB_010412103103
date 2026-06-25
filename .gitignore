@@ -1,6 +1,10 @@
 # Composer dependencies
 /vendor/
 
+# Node dependencies
+node_modules/
+package-lock.json
+
 # IDE and Editor files
 .idea/
 .vscode/
@@ -24,3 +28,7 @@ logs/
 *.sql
 *.sqlite
 .env
+
+
+# Ready for import code to project
+/_ready_for_project/

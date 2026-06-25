@@ -5,15 +5,13 @@ use Core\ValidationUtils;
 
 class AuthValidate
 {
-    // Xác thực form đăng nhập
+    // Xác thực form đăng nhập (Email, SĐT hoặc Tên đăng nhập)
     public static function login($data)
     {
         $errors = [];
 
-        if (empty($data['email'])) {
-            $errors['email'] = "Email không được để trống.";
-        } elseif (!ValidationUtils::isValidEmail($data['email'])) {
-            $errors['email'] = "Email không đúng định dạng.";
+        if (empty($data['login_key'])) {
+            $errors['login_key'] = "Tài khoản đăng nhập không được để trống.";
         }
 
         if (empty($data['password'])) {
