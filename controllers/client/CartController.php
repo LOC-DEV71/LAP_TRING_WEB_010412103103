@@ -17,6 +17,36 @@ class CartController {
             require_once 'views/layouts/client/footer.php';
         }
     }
+
+    // Hàm xử lý logic Thêm vào giỏ hàng
+    public function add() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Nhận dữ liệu payload từ form gửi lên
+            $variantId = $_POST['product_variant_id'] ?? null;
+            $quantity = (int)($_POST['quantity'] ?? 1);
+
+            if ($variantId && $quantity > 0) {
+                // Khởi tạo mảng giỏ hàng nếu khách chưa có
+                if (!isset($_SESSION['cart'])) {
+                    $_SESSION['cart'] = [];
+                }
+
+                // Kiểm tra xem sản phẩm đã tồn tại trong giỏ chưa
+                if (isset($_SESSION['cart'][$variantId])) {
+                    // Nếu có rồi thì cộng dồn số lượng
+                    $_SESSION['cart'][$variantId] += $quantity;
+                } else {
+                    // Nếu chưa có thì thêm mới
+                    $_SESSION['cart'][$variantId] = $quantity;
+                }
+
+                // Chuyển hướng người dùng về trang giỏ hàng để xem thành quả
+                header('Location: /?controller=cart');
+                exit;
+            }
+        }
+        die("Lỗi: Dữ liệu sản phẩm không hợp lệ.");
+    }
     
 }
 ?>
