@@ -18,27 +18,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="product-img-col">
-                                <img src="public/assets/images/somi-nu.jpg" alt="Sơ Mi Nữ Tay Dài">
-                            </td>
-                            <td class="product-info-col">
-                                <a href="#" class="product-name">Sơ Mi Nữ Tay Dài</a>
-                                <p class="product-variant">Size: M | Màu: Be</p>
-                            </td>
-                            <td class="product-price">329.000đ</td>
-                            <td class="product-quantity">
-                                <div class="qty-wrapper">
-                                    <button class="btn-qty-minus">-</button>
-                                    <input type="number" class="qty-input" value="1" min="1">
-                                    <button class="btn-qty-plus">+</button>
-                                </div>
-                            </td>
-                            <td class="product-subtotal">329.000đ</td>
-                            <td class="product-remove">
-                                <button class="btn-remove">Xóa</button>
-                            </td>
-                        </tr>
+                        <?php if (!empty($cartData)): ?>
+                            <?php foreach ($cartData as $item): ?>
+                            <tr>
+                                <td class="product-img-col">
+                                    <img src="/public/assets/images/<?= $item['thumbnail'] ?>" alt="<?= $item['title'] ?>">
+                                </td>
+                                <td class="product-info-col">
+                                    <a href="#" class="product-name"><?= $item['title'] ?></a>
+                                    <p class="product-variant">Size: <?= $item['size'] ?> | Màu: <?= $item['color'] ?></p>
+                                </td>
+                                <td class="product-price"><?= number_format($item['price'], 0, ',', '.') ?>đ</td>
+                                <td class="product-quantity">
+                                    <div class="qty-wrapper">
+                                        <button class="btn-qty-minus">-</button>
+                                        <input type="number" class="qty-input" value="<?= $item['quantity'] ?>" min="1">
+                                        <button class="btn-qty-plus">+</button>
+                                    </div>
+                                </td>
+                                <td class="product-subtotal"><?= number_format($item['subtotal'], 0, ',', '.') ?>đ</td>
+                                <td class="product-remove">
+                                    <button class="btn-remove">Xóa</button>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 50px 0;">Giỏ hàng của bạn đang trống!</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -57,7 +65,7 @@
                     <hr class="summary-divider">
                     <div class="summary-row total-row">
                         <span>Tổng cộng:</span>
-                        <span class="total-price">329.000đ</span>
+                        <span class="total-price"><?= isset($totalPrice) ? number_format($totalPrice, 0, ',', '.') : '0' ?>đ</span>
                     </div>
                     <button class="btn-checkout">MUA NGAY</button>
                     <a href="index.php" class="btn-continue-shopping">Tiếp tục mua sắm</a>

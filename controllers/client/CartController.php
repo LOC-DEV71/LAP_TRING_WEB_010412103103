@@ -8,7 +8,36 @@ use Core\Controller;
 class CartController {
     
     public function index() {
+        $cartData = [];
+        $totalPrice = 0;
 
+        //check item in cart
+        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            $variantModel = new ProductVariant();
+            $productModel = new Product();
+
+            foreach ($_SESSION['cart'] as $variantId => $quantity) {
+                $variant = $variantModel->getById($variantId);
+                if ($variant) {
+                    $product = $productModel->getById($variant['product_id']);
+                    if ($product) {
+                        $subtotal = $product['price'] * $quantity;
+                        $totalPrice += $subtotal;
+
+                        $cartData[] = [
+                            'variant_id' => $variantId,
+                            'title' => $product['title'],
+                            'color' => $variant['color'],
+                            'size' => $variant['size'],
+                            'price' => $product['price'],
+                            'thumbnail' => $product['thumbnail'],
+                            'quantity' => $quantity,
+                            'subtotal' => $subtotal
+                        ];
+                    }
+                }
+            }
+        }
         // 1. Header 
         if (file_exists('views/layouts/client/header.php')) {
             require_once 'views/layouts/client/header.php';
