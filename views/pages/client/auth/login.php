@@ -4,14 +4,14 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Fashion Login &amp; Register</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Rubik', sans-serif;
         }
 
         body {
@@ -133,15 +133,16 @@
         .tabs label {
             width: 50%;
             text-align: center;
-            font-size: 1.1rem;
-            font-weight: 400;
+            font-size: 1rem;
+            font-weight: 500;
             color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 1;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             padding: 12px 0; 
             display: block;  
+            text-transform: uppercase;
         }
 
         /* Tab highlights using Indigo */
@@ -330,6 +331,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2);
             position: relative;
             z-index: 2;
+            text-transform: uppercase;
         }
 
         .btn:hover {
