@@ -429,11 +429,62 @@
             flex-shrink: 0;
         }
 
+        @media (max-width: 768px) {
+            .brand-corner-top,
+            .brand-corner-bottom {
+                display: none;
+            }
+        }
+
         @media (max-width: 480px) {
+            body {
+                overflow-y: auto;
+            }
+            .wrapper {
+                height: auto;
+                min-height: 100vh;
+                padding: 40px 0;
+                align-items: flex-start;
+                display: flex;
+            }
             .glass-panel {
-                width: 90%;
-                padding: 40px 24px;
-                border-radius: 32px;
+                width: 92%;
+                padding: 32px 20px;
+                border-radius: 24px;
+                margin: auto;
+            }
+            .tabs label {
+                font-size: 0.95rem;
+                padding: 10px 0;
+            }
+            .input-group input {
+                font-size: 0.9rem;
+                padding: 20px 8px 6px 8px;
+            }
+            .input-group label {
+                font-size: 0.9rem;
+                top: 14px;
+                left: 8px;
+            }
+            .input-group input:focus ~ label,
+            .input-group input:not(:placeholder-shown) ~ label,
+            .input-group input:valid ~ label {
+                font-size: 0.7rem;
+                top: 4px;
+                left: 8px;
+            }
+            .input-group input:-webkit-autofill ~ label {
+                font-size: 0.7rem !important;
+                top: 4px !important;
+                left: 8px !important;
+            }
+            .options {
+                font-size: 0.78rem;
+                margin-bottom: 24px;
+            }
+            .btn {
+                font-size: 0.9rem;
+                padding: 14px;
             }
             .toast-container {
                 right: 16px;
@@ -530,7 +581,7 @@
                     <?php endif; ?>
                     <div class="options">
                         <label><input type="checkbox" name="remember"/> Nhớ mật khẩu</label>
-                        <a href="#" id="forgot-password">Quên mật khẩu?</a>
+                        <a href="<?= url('auth/forgotPassword') ?>" id="forgot-password">Quên mật khẩu?</a>
                     </div>
                     <button class="btn" type="submit">Đăng nhập</button>
                 </form>
@@ -649,22 +700,7 @@
                 });
             }
 
-            // 3. Xử lý click Quên mật khẩu
-            const forgotPasswordBtn = document.getElementById('forgot-password');
-            if (forgotPasswordBtn) {
-                forgotPasswordBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const loginKeyInput = document.getElementById('login-key');
-                    const loginKeyValue = loginKeyInput.value.trim();
 
-                    if (loginKeyValue) {
-                        showToast('Đã gửi thông báo khôi phục mật khẩu đến địa chỉ email hoặc số điện thoại của bạn!', 'success');
-                    } else {
-                        showToast('Vui lòng điền tài khoản vào ô đăng nhập trước để nhận liên kết khôi phục!', 'error');
-                        loginKeyInput.focus();
-                    }
-                });
-            }
 
             // 4. Tự động kích hoạt Toast khi có lỗi từ PHP Back-end trả về
             <?php if (!empty($errors)): ?>
