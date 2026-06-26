@@ -81,8 +81,8 @@
             <?php if (!empty($products)): ?>
                 <?php foreach ($products as $product): ?>
                     <div class="product-card">
-                        <img src="<?= strpos($product['image'] ?? '', 'http') === 0 ? htmlspecialchars($product['image']) : asset(htmlspecialchars($product['image'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
-                        <h3><?= htmlspecialchars($product['name']) ?></h3>
+                        <img src="<?= strpos($product['thumbnail'] ?? '', 'http') === 0 ? htmlspecialchars($product['thumbnail']) : asset('assets/images/'.htmlspecialchars($product['thumbnail'])) ?>" alt="<?= htmlspecialchars($product['title'] ?? '') ?>">
+                        <h3><?= htmlspecialchars($product['title']) ?></h3>
                         <p class="price"><?= number_format($product['price'] ?? 0, 0, ',', '.') ?>đ</p>
                         <button>MUA NGAY</button>
                     </div>
