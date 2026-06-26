@@ -43,28 +43,21 @@ class AuthController extends Controller
                     exit;
                 } else {
                     // Chống Spam
-                    // Đăng nhập thất bại, tăng số lần nhập sai lên 1
-                    $_SESSION['login_attempts'] = ($_SESSION['login_attempts'] ?? 0) + 1;
                     $errors['auth'] = "Tài khoản hoặc mật khẩu không chính xác.";
                 }
-            } else {
-                // Nếu form có lỗi nhập liệu (như thiếu captcha khi đã kích hoạt)
-                $_SESSION['login_attempts'] = ($_SESSION['login_attempts'] ?? 0) + 1;
             }
 
             return $this->view('pages/client/auth/login', [
                 'title' => 'Đăng Nhập Khách Hàng',
                 'errors' => $errors,
                 'old_login_key' => $loginKey,
-                'active_tab' => 'login',
-                'show_captcha' => ($_SESSION['login_attempts'] ?? 0) >= 3
+                'active_tab' => 'login'
             ]);
         }
 
         $this->view('pages/client/auth/login', [
             'title' => 'Đăng Nhập Khách Hàng',
-            'errors' => [],
-            'show_captcha' => ($_SESSION['login_attempts'] ?? 0) >= 3
+            'errors' => []
         ]);
     }
 

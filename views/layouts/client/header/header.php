@@ -31,31 +31,22 @@
                         <span class="menu-text">Trang chủ</span>
                     </a>
                 </li>
-                <li>
-                    <a href="<?= url('product') ?>" class="menu-btn">
-                        <span class="menu-text">Nam</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= url('product') ?>" class="menu-btn">
-                        <span class="menu-text">Nữ</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= url('product') ?>" class="menu-btn">
-                        <span class="menu-text">Phụ kiện</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= url('product') ?>" class="menu-btn">
-                        <span class="menu-text">Bộ sưu tập</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= url('product') ?>" class="menu-btn">
-                        <span class="menu-text">Sale</span>
-                    </a>
-                </li>
+                <?php if (isset($categories) && is_array($categories)): ?>
+                    <?php foreach ($categories as $cat): ?>
+                        <li>
+                            <a href="<?= url('products?category=' . $cat['slug']) ?>" class="menu-btn">
+                                <span class="menu-text"><?= htmlspecialchars(mb_convert_case($cat['title'], MB_CASE_UPPER, 'UTF-8')) ?></span>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <!-- Fallback if categories are not passed -->
+                    <li><a href="<?= url('product') ?>" class="menu-btn"><span class="menu-text">NAM</span></a></li>
+                    <li><a href="<?= url('product') ?>" class="menu-btn"><span class="menu-text">NỮ</span></a></li>
+                    <li><a href="<?= url('product') ?>" class="menu-btn"><span class="menu-text">PHỤ KIỆN</span></a></li>
+                    <li><a href="<?= url('product') ?>" class="menu-btn"><span class="menu-text">BỘ SƯU TẬP</span></a></li>
+                    <li><a href="<?= url('product') ?>" class="menu-btn"><span class="menu-text">SALE</span></a></li>
+                <?php endif; ?>
                 <li>
                     <a href="#" class="menu-btn">
                         <span class="menu-text">Blog</span>
@@ -95,11 +86,17 @@
             </div>
             <ul class="drawer-menu">
                 <li><a href="<?= url('') ?>" class="drawer-link">Trang chủ</a></li>
-                <li><a href="<?= url('product') ?>" class="drawer-link">Nam</a></li>
-                <li><a href="<?= url('product') ?>" class="drawer-link">Nữ</a></li>
-                <li><a href="<?= url('product') ?>" class="drawer-link">Phụ kiện</a></li>
-                <li><a href="<?= url('product') ?>" class="drawer-link">Bộ sưu tập</a></li>
-                <li><a href="<?= url('product') ?>" class="drawer-link">Sale</a></li>
+                <?php if (isset($categories) && is_array($categories)): ?>
+                    <?php foreach ($categories as $cat): ?>
+                        <li><a href="<?= url('products?category=' . $cat['slug']) ?>" class="drawer-link"><?= htmlspecialchars(mb_convert_case($cat['title'], MB_CASE_TITLE, 'UTF-8')) ?></a></li>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <li><a href="<?= url('product') ?>" class="drawer-link">Nam</a></li>
+                    <li><a href="<?= url('product') ?>" class="drawer-link">Nữ</a></li>
+                    <li><a href="<?= url('product') ?>" class="drawer-link">Phụ kiện</a></li>
+                    <li><a href="<?= url('product') ?>" class="drawer-link">Bộ sưu tập</a></li>
+                    <li><a href="<?= url('product') ?>" class="drawer-link">Sale</a></li>
+                <?php endif; ?>
                 <li><a href="#" class="drawer-link">Blog</a></li>
                 <li><a href="#" class="drawer-link">Liên hệ</a></li>
             </ul>
@@ -129,3 +126,4 @@
             }
         });
     </script>
+

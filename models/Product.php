@@ -71,4 +71,21 @@ class Product extends Model
             return [];
         }
     }
+
+    // Lấy sản phẩm theo category slug
+    public function getByCategorySlug($slug)
+    {
+        try {
+            // Join với bảng product_categories qua product_category_id
+            $sql = "SELECT p.* FROM {$this->table} p
+                    JOIN product_categories c ON p.product_category_id = c._id
+                    WHERE c.slug = :slug AND p.status = 'active' AND p.deleted = FALSE";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([':slug' => $slug]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            error_log("Lỗi lấy sản phẩm theo danh mục: " . $e->getMessage());
+            return [];
+        }
+    }
 }

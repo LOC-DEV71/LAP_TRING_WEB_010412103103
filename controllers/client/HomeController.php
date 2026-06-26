@@ -3,22 +3,26 @@ namespace Controllers\Client;
 
 use Core\Controller;
 use Models\Product;
+use Models\ProductCategory;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // Khởi tạo model và lấy tất cả sản phẩm đang hoạt động từ cơ sở dữ liệu
+        // Khởi tạo model Product
         $productModel = new Product();
-        $products = $productModel->getAllActive();
+        $categoryModel = new ProductCategory();
         
-        // Lấy 4 sản phẩm đầu tiên làm sản phẩm nổi bật trên trang chủ
-        $featuredProducts = array_slice($products, 0, 4);
+        // Truy vấn danh sách Sản phẩm nổi bật (Featured Products)
+        $featuredProducts = $productModel->getFeatured();
+        $categories = $categoryModel->getAllActive();
 
-        // Gọi view 'pages/client/home/index.php'
+        
+        // Gọi view 'pages/client/home/index.php' và truyền dữ liệu ra
         $this->view('pages/client/home/index', [
             'title' => 'Trang chủ - FASHION',
-            'products' => $featuredProducts
+            'products' => $featuredProducts,
+            'categories' => $categories
         ]);
     }
 }

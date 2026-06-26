@@ -146,16 +146,16 @@ if (!function_exists('getProductColors')) {
             <?php if (!empty($products)): ?>
                 <?php foreach ($products as $product): ?>
                     <div class="product-card" 
-                         data-category="<?= getProductCategorySlug($product['name']) ?>" 
+                         data-category="<?= getProductCategorySlug($product['title'] ?? '') ?>" 
                          data-price="<?= (int)($product['price'] ?? 0) ?>" 
-                         data-sizes="<?= getProductSizes($product['name']) ?>" 
-                         data-colors="<?= getProductColors($product['name']) ?>">
+                         data-sizes="<?= getProductSizes($product['title'] ?? '') ?>" 
+                         data-colors="<?= getProductColors($product['title'] ?? '') ?>">
                         <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
 
-                        <img src="<?= strpos($product['image'] ?? '', 'http') === 0 ? htmlspecialchars($product['image']) : asset(htmlspecialchars($product['image'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                        <img src="<?= strpos($product['thumbnail'] ?? '', 'http') === 0 ? htmlspecialchars($product['thumbnail']) : asset(htmlspecialchars($product['thumbnail'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($product['title'] ?? '') ?>">
 
                         <div class="product-info">
-                            <h3><?= htmlspecialchars($product['name']) ?></h3>
+                            <h3><?= htmlspecialchars($product['title'] ?? '') ?></h3>
                             <p class="price"><?= number_format($product['price'] ?? 0, 0, ',', '.') ?>đ</p>
 
                             <div class="product-colors">
@@ -166,160 +166,6 @@ if (!function_exists('getProductColors')) {
                         </div>
                     </div>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <!-- Mock Fallback Products -->
-                <div class="product-card" data-category="ao-thun" data-price="299000" data-colors="black,white,gray" data-sizes="S,M,L">
-                    <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
-
-                    <img src="<?= asset('assets/images/polo-basic.jpg') ?>" alt="">
-
-                    <div class="product-info">
-                        <h3>Áo Polo Basic</h3>
-                        <p class="price">299.000đ</p>
-
-                        <div class="product-colors">
-                            <span class="black"></span>
-                            <span class="white"></span>
-                            <span class="gray"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card" data-category="ao-thun" data-price="269000" data-colors="black,gray,white" data-sizes="M,L,XL">
-                    <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
-
-                    <img src="<?= asset('assets/images/thun-nam.jpg') ?>" alt="">
-
-                    <div class="product-info">
-                        <h3>Áo Thun Nam Basic</h3>
-                        <p class="price">269.000đ</p>
-
-                        <div class="product-colors">
-                            <span class="black"></span>
-                            <span class="gray"></span>
-                            <span class="white"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card" data-category="ao-so-mi" data-price="329000" data-colors="white,blue,gray" data-sizes="M,L,XL">
-                    <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
-
-                    <img src="<?= asset('assets/images/polo-basic.jpg') ?>" alt="">
-
-                    <div class="product-info">
-                        <h3>Áo Sơ Mi Nam Regular</h3>
-                        <p class="price">329.000đ</p>
-
-                        <div class="product-colors">
-                            <span class="white"></span>
-                            <span class="blue"></span>
-                            <span class="gray"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card" data-category="ao-so-mi" data-price="299000" data-colors="white,beige,gray" data-sizes="S,M,L">
-                    <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
-
-                    <img src="<?= asset('assets/images/thun-nam.jpg') ?>" alt="">
-
-                    <div class="product-info">
-                        <h3>Áo Sơ Mi Ngắn Tay</h3>
-                        <p class="price">299.000đ</p>
-
-                        <div class="product-colors">
-                            <span class="white"></span>
-                            <span class="beige"></span>
-                            <span class="gray"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card" data-category="ao-khoac" data-price="599000" data-colors="green,black,gray" data-sizes="L,XL,XXL">
-                    <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
-
-                    <img src="<?= asset('assets/images/banner1.jpg') ?>" alt="">
-
-                    <div class="product-info">
-                        <h3>Áo Khoác Bomber</h3>
-                        <p class="price">599.000đ</p>
-
-                        <div class="product-colors">
-                            <span class="green"></span>
-                            <span class="black"></span>
-                            <span class="gray"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card" data-category="quan" data-price="349000" data-colors="beige,black,gray" data-sizes="M,L,XL">
-                    <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
-
-                    <img src="<?= asset('assets/images/banner1.jpg') ?>" alt="">
-
-                    <div class="product-info">
-                        <h3>Quần Kaki Ống Suông</h3>
-                        <p class="price">349.000đ</p>
-
-                        <div class="product-colors">
-                            <span class="beige"></span>
-                            <span class="black"></span>
-                            <span class="gray"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card" data-category="quan-short" data-price="199000" data-colors="blue,gray,white" data-sizes="S,M,L">
-                    <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
-
-                    <img src="<?= asset('assets/images/thun-nam.jpg') ?>" alt="">
-
-                    <div class="product-info">
-                        <h3>Quần Short Basic</h3>
-                        <p class="price">199.000đ</p>
-
-                        <div class="product-colors">
-                            <span class="blue"></span>
-                            <span class="gray"></span>
-                            <span class="white"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card" data-category="quan" data-price="499000" data-colors="blue,black,gray" data-sizes="M,L,XL">
-                    <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
-
-                    <img src="<?= asset('assets/images/polo-basic.jpg') ?>" alt="">
-
-                    <div class="product-info">
-                        <h3>Quần Jeans Slim Fit</h3>
-                        <p class="price">499.000đ</p>
-
-                        <div class="product-colors">
-                            <span class="blue"></span>
-                            <span class="black"></span>
-                            <span class="gray"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card" data-category="quan" data-price="339000" data-colors="green,black,gray" data-sizes="M,L,XL,XXL">
-                    <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
-
-                    <img src="<?= asset('assets/images/thun-nam.jpg') ?>" alt="">
-
-                    <div class="product-info">
-                        <h3>Quần Jogger Nam</h3>
-                        <p class="price">339.000đ</p>
-
-                        <div class="product-colors">
-                            <span class="green"></span>
-                            <span class="black"></span>
-                            <span class="gray"></span>
-                        </div>
-                    </div>
-                </div>
             <?php endif; ?>
         </div>
 
