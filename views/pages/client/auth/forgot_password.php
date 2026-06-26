@@ -53,7 +53,7 @@
                 <p>Nhập địa chỉ Email của bạn để nhận liên kết khôi phục mật khẩu tài khoản</p>
             </div>
 
-            <div class="form-container">
+            <div class="form-container" style="display: flex;">
                 <form action="<?= url('auth/forgotPassword') ?>" method="POST" novalidate>
                     <div class="input-group">
                         <input required type="email" name="email" id="forgot-email" placeholder=" " value="<?= htmlspecialchars($old_email ?? '') ?>"/>

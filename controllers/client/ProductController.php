@@ -16,7 +16,7 @@ class ProductController extends Controller
         $this->view('pages/client/products/index', [
             'title' => 'Thời trang Nam - FASHION',
             'products' => $products,
-            'categoryName' => 'Nam',
+                        'categoryName' => 'Nam',
             'bannerTitle' => 'THỜI TRANG NAM',
             'bannerDesc' => 'Khám phá các thiết kế mới nhất dành cho phái mạnh'
         ]);

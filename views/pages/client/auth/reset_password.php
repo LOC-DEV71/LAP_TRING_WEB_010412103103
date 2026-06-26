@@ -53,7 +53,7 @@
                 <p>Nhập mật khẩu mới bảo mật cho tài khoản của bạn</p>
             </div>
 
-            <div class="form-container">
+            <div class="form-container" style="display: flex;">
                 <form action="<?= url('auth/resetPassword/' . $token) ?>" method="POST" novalidate>
                     <div class="input-group">
                         <input required type="password" name="password" id="reset-password" placeholder=" "/>
