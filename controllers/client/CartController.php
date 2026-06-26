@@ -94,5 +94,28 @@ class CartController {
         header('Location: /cart');
         exit;
     }
+
+    // Hàm xử lý Tăng số lượng
+    public function increase($variantId = null) {
+        if ($variantId && isset($_SESSION['cart'][$variantId])) {
+            $_SESSION['cart'][$variantId]++; // Cộng thêm 1
+        }
+        header('Location: /cart');
+        exit;
+    }
+
+    // Hàm xử lý Giảm số lượng
+    public function decrease($variantId = null) {
+        if ($variantId && isset($_SESSION['cart'][$variantId])) {
+            if ($_SESSION['cart'][$variantId] > 1) {
+                $_SESSION['cart'][$variantId]--; // Trừ đi 1
+            } else {
+                // Nếu số lượng đang là 1 mà khách bấm nút trừ, thì xóa luôn món đó
+                unset($_SESSION['cart'][$variantId]);
+            }
+        }
+        header('Location: /cart');
+        exit;
+    }
 }
 ?>

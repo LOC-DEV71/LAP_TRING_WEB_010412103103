@@ -31,9 +31,9 @@
                                 <td class="product-price"><?= number_format($item['price'], 0, ',', '.') ?>đ</td>
                                 <td class="product-quantity">
                                     <div class="qty-wrapper">
-                                        <button class="btn-qty-minus">-</button>
-                                        <input type="number" class="qty-input" value="<?= $item['quantity'] ?>" min="1">
-                                        <button class="btn-qty-plus">+</button>
+                                        <a href="/cart/decrease/<?= $item['variant_id'] ?>" class="btn-qty-minus" style="text-decoration:none; display:flex; align-items:center; justify-content:center; color:black;">-</a>
+                                        <input type="number" class="qty-input" value="<?= $item['quantity'] ?>" readonly>
+                                        <a href="/cart/increase/<?= $item['variant_id'] ?>" class="btn-qty-plus" style="text-decoration:none; display:flex; align-items:center; justify-content:center; color:black;">+</a>
                                     </div>
                                 </td>
                                 <td class="product-subtotal"><?= number_format($item['subtotal'], 0, ',', '.') ?>đ</td>
@@ -56,7 +56,7 @@
                     <h2>TỔNG ĐƠN HÀNG</h2>
                     <div class="summary-row">
                         <span>Tạm tính:</span>
-                        <span>329.000đ</span>
+                        <span><?= isset($totalPrice) ? number_format($totalPrice, 0, ',', '.') : '0' ?>đ</span>
                     </div>
                     <div class="summary-row">
                         <span>Phí vận chuyển:</span>
