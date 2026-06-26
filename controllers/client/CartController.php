@@ -1,6 +1,8 @@
 <?php
 namespace Controllers\Client;
 
+use Models\ProductVariant;
+use Models\Product;
 use Core\Controller;
 
 class CartController {
