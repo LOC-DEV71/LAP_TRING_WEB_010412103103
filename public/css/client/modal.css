@@ -1,0 +1,175 @@
+/* Glassmorphism Add-to-Cart Modal */
+.cart-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.cart-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    display: flex;
+    gap: 24px;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.cart-modal-overlay.active .cart-modal-content {
+    transform: translateY(0);
+}
+
+.cart-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    padding: 4px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.cart-modal-close:hover {
+    background: rgba(0,0,0,0.1);
+}
+
+.cart-modal-body {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+}
+
+.cart-modal-img {
+    flex: 0 0 200px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.cart-modal-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.cart-modal-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-product-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #111;
+}
+
+#modal-product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #d70018;
+    margin-bottom: 20px;
+}
+
+.modal-section {
+    margin-bottom: 16px;
+}
+
+.modal-section h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.modal-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.modal-opt-btn {
+    padding: 6px 12px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.5);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.modal-opt-btn:hover {
+    background: rgba(255,255,255,0.9);
+}
+
+.modal-opt-btn.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+.modal-actions {
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.btn-modal-confirm {
+    width: 100%;
+    padding: 12px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-modal-confirm:hover {
+    background: #333;
+}
+
+@media (max-width: 768px) {
+    .cart-modal-body {
+        flex-direction: column;
+    }
+    .cart-modal-img {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+}

@@ -14,5 +14,4 @@ try {
     die("Lỗi: " . $e->getMessage());
 }
 
-echo "<script>console.log('Kết nối cơ sở dữ liệu thành công!');</script>";
 ?>

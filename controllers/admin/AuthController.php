@@ -3,7 +3,7 @@ namespace Controllers\Admin;
 
 use Core\Controller;
 use Core\JwtUtils;
-use Models\User;
+use Models\Account;
 use Validates\Admin\AuthValidate;
 
 class AuthController extends Controller
@@ -18,30 +18,32 @@ class AuthController extends Controller
             $errors = AuthValidate::login($_POST);
 
             if (empty($errors)) {
-                $userModel = new User();
-                $user = $userModel->getByEmail($email);
+                $accountModel = new Account();
+                $user = $accountModel->getByEmail($email);
 
-                // Kiểm tra User có tồn tại và đúng password
+                // Kiểm tra Account có tồn tại và đúng password
                 if ($user && password_verify($password, $user['password'])) {
                     
-                    // Tùy theo logic phân quyền của anh, anh có thể check role tại đây.
-                    // Ví dụ: if ($user['role'] !== 'admin') { báo lỗi }
+                    // Kiểm tra status nếu cần
+                    if ($user['status'] === 'inactive') {
+                        $errors['auth'] = "Tài khoản của bạn đã bị khóa.";
+                    } else {
+                        $payload = [
+                            'account_id' => $user['_id'],
+                            'fullname' => $user['fullname'],
+                            'role_slug' => $user['role_slug']
+                        ];
+                        $token = JwtUtils::encode($payload);
 
-                    $payload = [
-                        'user_id' => $user['_id'],
-                        'fullname' => $user['fullname'],
-                        'role' => $user['member']
-                    ];
-                    $token = JwtUtils::encode($payload);
-
-                    // Lưu JWT vào Cookie riêng cho Admin (Tránh xung đột với cookie Client)
-                    setcookie('admin_jwt_token', $token, time() + (86400 * 7), "/", "", false, true);
-                    
-                    // Reset lại số lần nhập sai khi đăng nhập thành công
-                    unset($_SESSION['admin_login_attempts']);
-                    
-                    header('Location: ' . url('admin/dashboard'));
-                    exit;
+                        // Lưu JWT vào Cookie riêng cho Admin (Tránh xung đột với cookie Client)
+                        setcookie('admin_jwt_token', $token, time() + (86400 * 7), "/", "", false, true);
+                        
+                        // Reset lại số lần nhập sai khi đăng nhập thành công
+                        unset($_SESSION['admin_login_attempts']);
+                        
+                        header('Location: ' . url('admin/dashboard'));
+                        exit;
+                    }
                 } else {
                     $errors['auth'] = "Tài khoản hoặc mật khẩu Quản trị viên không chính xác.";
                 }

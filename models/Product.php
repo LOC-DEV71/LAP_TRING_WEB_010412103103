@@ -58,6 +58,22 @@ class Product extends Model
         }
     }
 
+    // Lấy nhiều sản phẩm theo mảng ID
+    public function getByIds(array $ids)
+    {
+        if (empty($ids)) return [];
+        try {
+            $placeholders = str_repeat('?,', count($ids) - 1) . '?';
+            $sql = "SELECT * FROM {$this->table} WHERE _id IN ($placeholders) AND deleted = FALSE";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute($ids);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            error_log("Lỗi lấy danh sách sản phẩm theo IDs: " . $e->getMessage());
+            return [];
+        }
+    }
+
     // Lấy sản phẩm nổi bật
     public function getFeatured()
     {

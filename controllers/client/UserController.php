@@ -38,11 +38,22 @@ class UserController extends Controller
         $orderModel = new \Models\Order();
         $orders = $orderModel->getAllByUserId($user['_id']);
 
-        // 4. Hiển thị trang cá nhân cùng với dữ liệu người dùng và đơn hàng
+        // 4. Lấy danh sách sản phẩm yêu thích
+        $likeModel = new \Models\Like();
+        $likedProductIds = $likeModel->getLikedProductsByClient($user['_id']);
+        
+        $likedProducts = [];
+        if (!empty($likedProductIds)) {
+            $productModel = new \Models\Product();
+            $likedProducts = $productModel->getByIds($likedProductIds);
+        }
+
+        // 5. Hiển thị trang cá nhân cùng với dữ liệu người dùng, đơn hàng và sản phẩm yêu thích
         $this->view('pages/client/user/profile', [
             'title' => 'Trang cá nhân - ' . $user['fullname'],
             'user' => $user,
-            'orders' => $orders
+            'orders' => $orders,
+            'likedProducts' => $likedProducts
         ]);
     }
 

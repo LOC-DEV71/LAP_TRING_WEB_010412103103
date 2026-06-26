@@ -7,40 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Raleway:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <link href="<?= asset('css/client/auth.css') ?>" rel="stylesheet"/>
-    <script>
-        function showToast(message, type = 'error') {
-            let container = document.querySelector('.toast-container');
-            if (!container) {
-                container = document.createElement('div');
-                container.className = 'toast-container';
-                document.body.appendChild(container);
-            }
-
-            const maxToasts = 5;
-            const currentToasts = container.querySelectorAll('.toast');
-            if (currentToasts.length >= maxToasts) {
-                currentToasts[0].remove();
-            }
-
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            
-            const iconName = type === 'success' ? 'check_circle' : 'error';
-            toast.innerHTML = `
-                <span class="material-symbols-outlined toast-icon">${iconName}</span>
-                <span style="font-weight: 400; line-height: 1.4;">${message}</span>
-            `;
-
-            container.appendChild(toast);
-
-            setTimeout(() => toast.classList.add('show'), 10);
-
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 400);
-            }, 4000);
-        }
-    </script>
+    <link rel="stylesheet" href="<?= asset('css/toast.css') ?>">
+    <script src="<?= asset('js/toast.js') ?>"></script>
 </head>
 <body>
     <div class="brand-corner-top">FASHION</div>

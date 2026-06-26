@@ -29,38 +29,17 @@
 
     <!--danh mục-->
     <section class="categories">
-        <div class="category-card">
-            <img src="<?= asset('assets/images/cat-nam.jpg') ?>" alt="">
-            <div>
-                <h3>Nam</h3>
-                <span>Xem ngay</span>
-            </div>
-        </div>
-
-        <div class="category-card">
-            <img src="<?= asset('assets/images/cat-nu.jpg') ?>" alt="">
-            <div>
-                <h3>Nữ</h3>
-                <span>Xem ngay</span>
-            </div>
-        </div>
-
-        <div class="category-card">
-            <img src="<?= asset('assets/images/cat-phukien.jpg') ?>" alt="">
-            <div>
-                <h3>Phụ kiện</h3>
-                <span>Xem ngay</span>
-            </div>
-        </div>
-
-        <div class="category-card">
-            <img src="<?= asset('assets/images/cat-sale.jpg') ?>" alt="">
-            <div>
-                <h3>Sale</h3>
-                <span>Xem ngay</span>
-            </div>
-        </div>
-
+        <?php if (!empty($categories)): ?>
+            <?php foreach ($categories as $category): ?>
+                <a href="<?= url('products?category=' . $category['slug']) ?>" class="category-card" style="text-decoration: none; color: inherit;">
+                    <img src="<?= strpos($category['thumbnail'] ?? '', 'http') === 0 ? htmlspecialchars($category['thumbnail']) : asset(htmlspecialchars($category['thumbnail'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($category['title'] ?? '') ?>">
+                    <div>
+                        <h3><?= mb_convert_case(htmlspecialchars($category['title'] ?? ''), MB_CASE_TITLE, 'UTF-8') ?></h3>
+                        <span>Xem ngay</span>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </section>
 
     <!--sale banner-->
@@ -82,10 +61,17 @@
             <?php if (!empty($products)): ?>
                 <?php foreach ($products as $product): ?>
                     <div class="product-card">
+                        <?php $isLiked = in_array($product['_id'], $likedProducts ?? []); ?>
+                        <button class="wishlist <?= $isLiked ? 'liked' : '' ?>" data-id="<?= $product['_id'] ?>">
+                            <span class="material-symbols-outlined" style="<?= $isLiked ? "font-variation-settings: 'FILL' 1;" : "" ?>">favorite</span>
+                        </button>
                         <img src="<?= strpos($product['thumbnail'] ?? '', 'http') === 0 ? htmlspecialchars($product['thumbnail']) : asset(htmlspecialchars($product['thumbnail'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($product['title'] ?? '') ?>">
                         <h3><?= htmlspecialchars($product['title'] ?? '') ?></h3>
                         <p class="price"><?= number_format($product['price'] ?? 0, 0, ',', '.') ?>đ</p>
-                        <button>MUA NGAY</button>
+                        <div class="product-actions">
+                            <button class="btn-buy-now" data-id="<?= $product['_id'] ?>">MUA NGAY</button>
+                            <button class="btn-add-cart" data-id="<?= $product['_id'] ?>"><span class="material-symbols-outlined">shopping_cart</span></button>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -155,4 +141,75 @@
             </button>
         </form>
     </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const wishlistButtons = document.querySelectorAll('.wishlist');
+    wishlistButtons.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const productId = btn.getAttribute('data-id');
+            const icon = btn.querySelector('.material-symbols-outlined');
+
+            try {
+                const apiUrl = '<?= url("products/toggleLike") ?>';
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ product_id: productId })
+                });
+
+                if (response.status === 401) {
+                    if (typeof showToast === 'function') showToast("Vui lòng đăng nhập để yêu thích sản phẩm.", 'error');
+                    setTimeout(() => { window.location.href = '<?= url("auth/login") ?>'; }, 1500);
+                    return;
+                }
+
+                const textResponse = await response.text();
+                let result;
+                try {
+                    result = JSON.parse(textResponse);
+                } catch (e) {
+                    console.error("Non-JSON response:", textResponse);
+                    if (typeof showToast === 'function') showToast("Vui lòng đăng nhập để thao tác.", 'error');
+                    setTimeout(() => { window.location.href = '<?= url("auth/login") ?>'; }, 1500);
+                    return;
+                }
+
+                if (result.success) {
+                    if (result.liked) {
+                        btn.classList.add('liked');
+                        icon.style.fontVariationSettings = "'FILL' 1";
+                    } else {
+                        btn.classList.remove('liked');
+                        icon.style.fontVariationSettings = "'FILL' 0";
+                    }
+                    if (typeof showToast === 'function') showToast(result.message, 'success');
+                } else {
+                    if (typeof showToast === 'function') showToast(result.message || "Đã có lỗi xảy ra", 'error');
+                }
+            } catch (err) {
+                console.error('Error toggling like:', err);
+                if (typeof showToast === 'function') showToast("Vui lòng đăng nhập để yêu thích sản phẩm.", 'error');
+                setTimeout(() => { window.location.href = '<?= url("auth/login") ?>'; }, 1500);
+            }
+        });
+    });
+
+    // Add to cart API Integration -> Now opens Modal
+    const addToCartButtons = document.querySelectorAll('.btn-add-cart');
+    addToCartButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const productId = btn.getAttribute('data-id');
+            if (typeof window.openCartModal === 'function') {
+                window.openCartModal(productId);
+            }
+        });
+    });
+
+});
+</script>
+
+<?php require_once __DIR__ . '/../../../components/client/cart_modal.php'; ?>
+
 <?php require_once __DIR__ . '/../../../layouts/client/footer.php'; ?>

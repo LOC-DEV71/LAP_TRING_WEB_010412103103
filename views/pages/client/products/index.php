@@ -150,18 +150,25 @@ if (!function_exists('getProductColors')) {
                          data-price="<?= (int)($product['price'] ?? 0) ?>" 
                          data-sizes="<?= getProductSizes($product['title'] ?? '') ?>" 
                          data-colors="<?= getProductColors($product['title'] ?? '') ?>">
-                        <button class="wishlist"><span class="material-symbols-outlined">favorite</span></button>
-
+                        <?php $isLiked = in_array($product['_id'], $likedProducts ?? []); ?>
+                        <button class="wishlist <?= $isLiked ? 'liked' : '' ?>" data-id="<?= $product['_id'] ?>">
+                            <span class="material-symbols-outlined" style="<?= $isLiked ? "font-variation-settings: 'FILL' 1;" : "" ?>">favorite</span>
+                        </button>
                         <img src="<?= strpos($product['thumbnail'] ?? '', 'http') === 0 ? htmlspecialchars($product['thumbnail']) : asset(htmlspecialchars($product['thumbnail'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($product['title'] ?? '') ?>">
 
                         <div class="product-info">
                             <h3><?= htmlspecialchars($product['title'] ?? '') ?></h3>
                             <p class="price"><?= number_format($product['price'] ?? 0, 0, ',', '.') ?>đ</p>
 
-                            <div class="product-colors">
+                            <div class="product-colors" style="margin-bottom: 10px;">
                                 <span class="black"></span>
                                 <span class="white"></span>
                                 <span class="gray"></span>
+                            </div>
+
+                            <div class="product-actions" style="margin: 0;">
+                                <button class="btn-buy-now" data-id="<?= $product['_id'] ?>">MUA NGAY</button>
+                                <button class="btn-add-cart" data-id="<?= $product['_id'] ?>"><span class="material-symbols-outlined">shopping_cart</span></button>
                             </div>
                         </div>
                     </div>
@@ -181,6 +188,8 @@ if (!function_exists('getProductColors')) {
     </div>
 
 </section>
+
+
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -418,7 +427,83 @@ document.addEventListener('DOMContentLoaded', () => {
             applyFilters();
         });
     }
+
+    // 7. Toggle Like (Wishlist) API Integration
+    const wishlistButtons = document.querySelectorAll('.wishlist');
+    wishlistButtons.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const productId = btn.getAttribute('data-id');
+            const icon = btn.querySelector('.material-symbols-outlined');
+
+            try {
+                // Sử dụng hàm url() của PHP để lấy đúng đường dẫn tuyệt đối
+                const apiUrl = '<?= url("products/toggleLike") ?>';
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ product_id: productId })
+                });
+
+                // Kiểm tra mã trạng thái HTTP trước khi ép kiểu JSON
+                if (response.status === 401) {
+                    showToast("Vui lòng đăng nhập để yêu thích sản phẩm.", 'error');
+                    setTimeout(() => {
+                        window.location.href = '<?= url("auth/login") ?>';
+                    }, 1500);
+                    return;
+                }
+
+                const textResponse = await response.text();
+                let result;
+                try {
+                    result = JSON.parse(textResponse);
+                } catch (e) {
+                    // Nếu không phải JSON (do lỗi server in ra HTML), ép buộc báo lỗi yêu cầu đăng nhập
+                    console.error("Non-JSON response:", textResponse);
+                    showToast("Vui lòng đăng nhập để thao tác.", 'error');
+                    setTimeout(() => { window.location.href = '<?= url("auth/login") ?>'; }, 1500);
+                    return;
+                }
+
+                if (result.success) {
+                    if (result.liked) {
+                        btn.classList.add('liked');
+                        icon.style.fontVariationSettings = "'FILL' 1";
+                    } else {
+                        btn.classList.remove('liked');
+                        icon.style.fontVariationSettings = "'FILL' 0";
+                    }
+                    showToast(result.message, 'success');
+                } else {
+                    showToast(result.message || "Đã có lỗi xảy ra", 'error');
+                }
+            } catch (err) {
+                console.error('Error toggling like:', err);
+                showToast("Vui lòng đăng nhập để yêu thích sản phẩm.", 'error');
+                setTimeout(() => { window.location.href = '<?= url("auth/login") ?>'; }, 1500);
+            }
+        });
+    });
+
+    // 8. Add to cart API Integration -> Now opens Modal
+    const addToCartButtons = document.querySelectorAll('.btn-add-cart');
+    addToCartButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const productId = btn.getAttribute('data-id');
+            if (typeof window.openCartModal === 'function') {
+                window.openCartModal(productId);
+            }
+        });
+    });
+
 });
 </script>
+
+<?php require_once __DIR__ . '/../../../components/client/cart_modal.php'; ?>
 
 <?php require_once __DIR__ . '/../../../layouts/client/footer.php'; ?>

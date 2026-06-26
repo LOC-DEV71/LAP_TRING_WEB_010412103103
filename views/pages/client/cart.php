@@ -23,7 +23,7 @@
                             <?php foreach ($cartData as $item): ?>
                             <tr>
                                 <td class="product-img-col">
-                                    <img src="/public/assets/images/<?= $item['thumbnail'] ?>" alt="<?= $item['title'] ?>">
+                                    <img src="<?= strpos($item['thumbnail'] ?? '', 'http') === 0 ? htmlspecialchars($item['thumbnail']) : asset(htmlspecialchars($item['thumbnail'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($item['title'] ?? '') ?>">
                                 </td>
                                 <td class="product-info-col">
                                     <a href="#" class="product-name"><?= $item['title'] ?></a>
@@ -32,9 +32,9 @@
                                 <td class="product-price"><?= number_format($item['price'], 0, ',', '.') ?>đ</td>
                                 <td class="product-quantity">
                                     <div class="qty-wrapper">
-                                        <button class="btn-qty-minus">-</button>
-                                        <input type="number" class="qty-input" value="<?= $item['quantity'] ?>" min="1">
-                                        <button class="btn-qty-plus">+</button>
+                                        <a href="<?= url('cart/decrease/' . $item['variant_id']) ?>" class="btn-qty-minus" style="text-decoration:none; display:flex; align-items:center;">-</a>
+                                        <input type="number" class="qty-input" value="<?= $item['quantity'] ?>" min="1" readonly>
+                                        <a href="<?= url('cart/increase/' . $item['variant_id']) ?>" class="btn-qty-plus" style="text-decoration:none; display:flex; align-items:center;">+</a>
                                     </div>
                                 </td>
                                 <td class="product-subtotal"><?= number_format($item['subtotal'], 0, ',', '.') ?>đ</td>

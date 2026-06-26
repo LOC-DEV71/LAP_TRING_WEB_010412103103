@@ -117,5 +117,51 @@ class CartController {
         header('Location: /cart');
         exit;
     }
+
+    // Hàm API để xử lý nút thêm vào giỏ hàng (bằng AJAX)
+    public function apiAdd() {
+        header('Content-Type: application/json');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+            $productId = $data['product_id'] ?? null;
+            $variantId = $data['variant_id'] ?? null;
+            $quantity = (int)($data['quantity'] ?? 1);
+
+            if (!$variantId) {
+                if (!$productId) {
+                    echo json_encode(['success' => false, 'message' => 'Thiếu thông tin sản phẩm']);
+                    exit;
+                }
+
+                // Fallback: Lấy variant đầu tiên của sản phẩm
+                $variantModel = new \Models\ProductVariant();
+                $variants = $variantModel->getByProductId($productId);
+
+                if (empty($variants)) {
+                    echo json_encode(['success' => false, 'message' => 'Sản phẩm không có phân loại']);
+                    exit;
+                }
+                $variantId = $variants[0]['_id'];
+            }
+
+            if (!isset($_SESSION['cart'])) {
+                $_SESSION['cart'] = [];
+            }
+
+            if (isset($_SESSION['cart'][$variantId])) {
+                $_SESSION['cart'][$variantId] += $quantity;
+            } else {
+                $_SESSION['cart'][$variantId] = $quantity;
+            }
+
+            $cartCount = array_sum($_SESSION['cart']);
+            echo json_encode(['success' => true, 'message' => 'Đã thêm vào giỏ hàng', 'cart_count' => $cartCount]);
+            exit;
+        }
+
+        echo json_encode(['success' => false, 'message' => 'Phương thức không hợp lệ']);
+        exit;
+    }
 }
 ?>

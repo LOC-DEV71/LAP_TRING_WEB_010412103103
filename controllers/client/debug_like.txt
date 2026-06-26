@@ -1,0 +1,680 @@
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzRkODNiMWUzYzM4MCIsImZ1bGxuYW1lIjoiTGFtIENoaSBMb2MiLCJyb2xlIjoiYnJvbnplIiwiZXhwIjoxNzgzMDY4NjQ1fQ.E7xxm5zpTgtzki81V3smUKUplz21D_RDeccDMa94lp4
+Payload: Array
+(
+    [user_id] => usr_4d83b1e3c380
+    [fullname] => Lam Chi Loc
+    [role] => bronze
+    [exp] => 1783068645
+)
+
+Cookies: Array
+(
+    [g_state] => {"i_l":0,"i_ll":1782035783628,"i_e":{"enable_itp_optimization":24},"i_et":1782035783628,"i_b":"Z/CvUKbiYDXUKSM4nBG+draHOjFUbIXK6iCj7wl/V9E"}
+    [PHPSESSID] => qo338lclor93o7i51c69t5uoc0
+)
+
+Token selected: 
+Payload: 

@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
     <link rel="stylesheet" href="<?= asset('css/client/layouts/header.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/client/Home/home.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/toast.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/client/modal.css') ?>">
+    <script src="<?= asset('js/toast.js') ?>"></script>
 </head>
 <body>
 
@@ -41,11 +44,11 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <!-- Fallback if categories are not passed -->
-                    <li><a href="<?= url('product') ?>" class="menu-btn"><span class="menu-text">NAM</span></a></li>
-                    <li><a href="<?= url('product') ?>" class="menu-btn"><span class="menu-text">NỮ</span></a></li>
-                    <li><a href="<?= url('product') ?>" class="menu-btn"><span class="menu-text">PHỤ KIỆN</span></a></li>
-                    <li><a href="<?= url('product') ?>" class="menu-btn"><span class="menu-text">BỘ SƯU TẬP</span></a></li>
-                    <li><a href="<?= url('product') ?>" class="menu-btn"><span class="menu-text">SALE</span></a></li>
+                    <li><a href="<?= url('products?category=nam') ?>" class="menu-btn"><span class="menu-text">NAM</span></a></li>
+                    <li><a href="<?= url('products?category=nu') ?>" class="menu-btn"><span class="menu-text">NỮ</span></a></li>
+                    <li><a href="<?= url('products?category=phu-kien') ?>" class="menu-btn"><span class="menu-text">PHỤ KIỆN</span></a></li>
+                    <li><a href="<?= url('products?category=bo-suu-tap') ?>" class="menu-btn"><span class="menu-text">BỘ SƯU TẬP</span></a></li>
+                    <li><a href="<?= url('products?category=sale') ?>" class="menu-btn"><span class="menu-text">SALE</span></a></li>
                 <?php endif; ?>
                 <li>
                     <a href="#" class="menu-btn">
@@ -91,11 +94,11 @@
                         <li><a href="<?= url('products?category=' . $cat['slug']) ?>" class="drawer-link"><?= htmlspecialchars(mb_convert_case($cat['title'], MB_CASE_TITLE, 'UTF-8')) ?></a></li>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <li><a href="<?= url('product') ?>" class="drawer-link">Nam</a></li>
-                    <li><a href="<?= url('product') ?>" class="drawer-link">Nữ</a></li>
-                    <li><a href="<?= url('product') ?>" class="drawer-link">Phụ kiện</a></li>
-                    <li><a href="<?= url('product') ?>" class="drawer-link">Bộ sưu tập</a></li>
-                    <li><a href="<?= url('product') ?>" class="drawer-link">Sale</a></li>
+                    <li><a href="<?= url('products?category=nam') ?>" class="drawer-link">Nam</a></li>
+                    <li><a href="<?= url('products?category=nu') ?>" class="drawer-link">Nữ</a></li>
+                    <li><a href="<?= url('products?category=phu-kien') ?>" class="drawer-link">Phụ kiện</a></li>
+                    <li><a href="<?= url('products?category=bo-suu-tap') ?>" class="drawer-link">Bộ sưu tập</a></li>
+                    <li><a href="<?= url('products?category=sale') ?>" class="drawer-link">Sale</a></li>
                 <?php endif; ?>
                 <li><a href="#" class="drawer-link">Blog</a></li>
                 <li><a href="#" class="drawer-link">Liên hệ</a></li>

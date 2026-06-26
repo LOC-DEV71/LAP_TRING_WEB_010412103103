@@ -66,7 +66,7 @@
                 </div>
                 <div>
                     <p class="stat-label-title">Yêu thích</p>
-                    <p class="stat-numeric-value">2</p>
+                    <p class="stat-numeric-value" id="favorite-count"><?= count($likedProducts ?? []) ?></p>
                 </div>
             </div>
             <div class="glass-panel stat-box">
@@ -146,28 +146,24 @@
                 </button>
             </div>
             <div class="favorites-row-grid">
-                <!-- Product 1 -->
-                <div class="product-item-card">
-                    <div class="product-img-wrapper">
-                        <img alt="Silk Evening Blazer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb_K8V2C2tj8UJrSJHoiuj5_qb3Su6zNZghJDxu2JXwpjfXRGS79-bBob5IH1TzSFY4L8fSo0zEnXzm3yes8i6LdJY4qbKX4DMF31fuJVFPbuWydwKywAe5uzyGjvVkZW4TNczpU-YNZx-OVDrY7387ffD2L9DJpbVG0kEIjM4nszx9lloAVYgUSwRFd2mzkE5nUWXcJeA_mrRsFwMHoEtCnpstGwSCdvFXNdHM8AkZ48MjSi8-48mOsWS8VH2zDaJlGu1vg5GsTvG"/>
-                        <button class="btn-heart-remove">
-                            <span class="material-symbols-outlined">favorite</span>
-                        </button>
-                    </div>
-                    <h3 class="product-card-title">Silk Evening Blazer</h3>
-                    <p class="product-card-price">4.250.000đ</p>
-                </div>
-                <!-- Product 2 -->
-                <div class="product-item-card">
-                    <div class="product-img-wrapper">
-                        <img alt="Cashmere Essential" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByZILhUr2_IJzhlL6_jK721_F06TBMxl3Bayn0wx_88kgoTxaVWal3bURRKcf8cR96yEukm5Ptf6IDv4HN89ChfEjZ6-VA51OTPHvBDkCVWw272l2klnbmuKFTnAOK-rrbX55AgGhok54TsfxX5Xtvx6oeS1BlqcmEEZU3umL1If-81STLPcrpz6WsHOcfR_3SBszBM9KavmErV_LIUMAGK2d-1OLf1yXRPmTWpErrjIbzznMAbphSNn59JZacudM_xXjlJsswkLJ6"/>
-                        <button class="btn-heart-remove">
-                            <span class="material-symbols-outlined">favorite</span>
-                        </button>
-                    </div>
-                    <h3 class="product-card-title">Cashmere Essential</h3>
-                    <p class="product-card-price">3.100.000đ</p>
-                </div>
+                <?php if (!empty($likedProducts)): ?>
+                    <?php foreach ($likedProducts as $product): ?>
+                        <div class="product-item-card">
+                            <div class="product-img-wrapper">
+                                <a href="<?= url('products/detail/' . ($product['slug'] ?? '')) ?>">
+                                    <img alt="<?= htmlspecialchars($product['title'] ?? $product['name'] ?? '') ?>" src="<?= strpos($product['thumbnail'] ?? $product['image'] ?? '', 'http') === 0 ? htmlspecialchars($product['thumbnail'] ?? $product['image'] ?? '') : asset(htmlspecialchars($product['thumbnail'] ?? $product['image'] ?? 'assets/images/placeholder.jpg')) ?>"/>
+                                </a>
+                                <button class="btn-heart-remove wishlist liked" data-id="<?= $product['_id'] ?>">
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; color: #d70018;">favorite</span>
+                                </button>
+                            </div>
+                            <h3 class="product-card-title"><?= htmlspecialchars($product['title'] ?? $product['name'] ?? '') ?></h3>
+                            <p class="product-card-price"><?= number_format($product['price'] ?? 0, 0, ',', '.') ?>đ</p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p style="grid-column: 1 / -1; text-align: center; color: #666; padding: 40px 20px;">Bạn chưa có sản phẩm yêu thích nào.</p>
+                <?php endif; ?>
             </div>
         </section>
     </main>
@@ -219,43 +215,6 @@
     </div>
 
     <script>
-        function showToast(message, type = 'success') {
-            let container = document.querySelector('.toast-container');
-            if (!container) {
-                container = document.createElement('div');
-                container.className = 'toast-container';
-                document.body.appendChild(container);
-            }
-
-            const maxToasts = 5;
-            const currentToasts = container.querySelectorAll('.toast');
-            if (currentToasts.length >= maxToasts) {
-                currentToasts[0].remove();
-            }
-
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            
-            const iconName = type === 'success' ? 'check_circle' : 'error';
-            toast.innerHTML = `
-                <span class="material-symbols-outlined toast-icon">${iconName}</span>
-                <span class="toast-message">${message}</span>
-                <button class="btn-toast-close" onclick="this.parentElement.remove()">
-                    <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
-                </button>
-            `;
-
-            container.appendChild(toast);
-
-            // Trigger animation
-            setTimeout(() => toast.classList.add('show'), 10);
-
-            // Remove after 4 seconds
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 400);
-            }, 4000);
-        }
 
         document.addEventListener('DOMContentLoaded', function() {
             const editBtn = document.getElementById('btn-edit-profile');
@@ -290,6 +249,53 @@
                 showToast("<?= addslashes($_SESSION['profile_error']) ?>", 'error');
                 <?php unset($_SESSION['profile_error']); ?>
             <?php endif; ?>
+
+            // Handle unliking from profile page
+            const wishlistButtons = document.querySelectorAll('.wishlist');
+            wishlistButtons.forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    const productId = btn.getAttribute('data-id');
+                    
+                    try {
+                        const apiUrl = '<?= url("products/toggleLike") ?>';
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ product_id: productId })
+                        });
+
+                        if (response.status === 401) {
+                            showToast("Vui lòng đăng nhập để thao tác.", 'error');
+                            return;
+                        }
+
+                        const textResponse = await response.text();
+                        let result;
+                        try { result = JSON.parse(textResponse); } catch (e) { return; }
+
+                        if (result.success) {
+                            if (!result.liked) {
+                                // Xóa thẻ sản phẩm khỏi giao diện
+                                const card = btn.closest('.product-item-card');
+                                if (card) card.remove();
+                                
+                                // Cập nhật số lượng
+                                const countEl = document.getElementById('favorite-count');
+                                if (countEl) {
+                                    countEl.textContent = Math.max(0, parseInt(countEl.textContent) - 1);
+                                }
+                                showToast("Đã xóa khỏi danh sách yêu thích.", 'success');
+                            }
+                        } else {
+                            showToast(result.message || "Lỗi xử lý", 'error');
+                        }
+                    } catch (err) {
+                        console.error(err);
+                        showToast("Có lỗi xảy ra", 'error');
+                    }
+                });
+            });
         });
     </script>
 </div>
