@@ -82,5 +82,17 @@ class CartController {
         die("Lỗi: Dữ liệu sản phẩm không hợp lệ.");
     }
     
+    // Hàm xử lý Xóa 1 sản phẩm khỏi giỏ
+    public function remove($variantId = null) {
+        // Kiểm tra xem mã sản phẩm có được gửi lên và có tồn tại trong giỏ không
+        if ($variantId && isset($_SESSION['cart'][$variantId])) {
+            // Rút sản phẩm đó khỏi bộ nhớ Session
+            unset($_SESSION['cart'][$variantId]);
+        }
+        
+        // Xóa xong thì điều hướng quay lại đúng trang Giỏ hàng
+        header('Location: /cart');
+        exit;
+    }
 }
 ?>

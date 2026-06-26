@@ -38,7 +38,7 @@
                                 </td>
                                 <td class="product-subtotal"><?= number_format($item['subtotal'], 0, ',', '.') ?>đ</td>
                                 <td class="product-remove">
-                                    <button class="btn-remove">Xóa</button>
+                                    <a href="/cart/remove/<?= $item['variant_id'] ?>" class="btn-remove" style="display:inline-block; text-decoration:none;">Xóa</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
