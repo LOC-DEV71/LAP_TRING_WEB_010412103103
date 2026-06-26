@@ -1,11 +1,11 @@
 <?php
 return [
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'host' => env('MAIL_HOST'),
     'auth' => true,
-    'username' => env('MAIL_USER', 'trantrungnamm3@gmail.com'),
-    'password' => env('MAIL_PASS', 'your_app_password'),
-    'secure' => env('MAIL_SECURE', 'ssl'),
-    'port' => env('MAIL_PORT', 465),
-    'from_email' => env('MAIL_FROM_EMAIL', 'trantrungnamm3@gmail.com'),
-    'from_name' => env('MAIL_FROM_NAME', 'Fashion Store Support')
+    'username' => env('MAIL_USER'),
+    'password' => env('MAIL_PASS'),
+    'secure' => env('MAIL_SECURE'),
+    'port' => env('MAIL_PORT'),
+    'from_email' => env('MAIL_FROM_EMAIL'),
+    'from_name' => env('MAIL_FROM_NAME')
 ];
