@@ -9,6 +9,7 @@
     <link href="<?= asset('css/client/auth.css') ?>" rel="stylesheet"/>
     <link rel="stylesheet" href="<?= asset('css/toast.css') ?>">
     <script src="<?= asset('js/toast.js') ?>"></script>
+    <script src="<?= asset('js/auth.js') ?>"></script>
 </head>
 <body>
     <div class="brand-corner-top">FASHION</div>
@@ -43,28 +44,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    const emailInput = document.getElementById('forgot-email');
-
-                    if (!emailInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng nhập địa chỉ Email!', 'error');
-                        emailInput.focus();
-                        return;
-                    }
-
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(emailInput.value.trim())) {
-                        e.preventDefault();
-                        showToast('Định dạng Email không hợp lệ!', 'error');
-                        emailInput.focus();
-                        return;
-                    }
-                });
-            }
-
             // Tự động kích hoạt Toast khi có lỗi từ PHP Back-end trả về
             <?php if (!empty($errors)): ?>
                 <?php foreach ($errors as $field => $msg): ?>

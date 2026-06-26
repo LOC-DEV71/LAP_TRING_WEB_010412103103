@@ -9,6 +9,7 @@
     <link href="<?= asset('css/client/auth.css') ?>" rel="stylesheet"/>
     <link rel="stylesheet" href="<?= asset('css/toast.css') ?>">
     <script src="<?= asset('js/toast.js') ?>"></script>
+    <script src="<?= asset('js/auth.js') ?>"></script>
 </head>
 <body>
     <div class="brand-corner-top">FASHION</div>
@@ -41,35 +42,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    const passwordInput = document.getElementById('reset-password');
-                    const confirmInput = document.getElementById('confirm-password');
-
-                    if (!passwordInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng nhập mật khẩu mới!', 'error');
-                        passwordInput.focus();
-                        return;
-                    }
-
-                    if (passwordInput.value.length < 6) {
-                        e.preventDefault();
-                        showToast('Mật khẩu phải có độ dài tối thiểu từ 6 ký tự!', 'error');
-                        passwordInput.focus();
-                        return;
-                    }
-
-                    if (passwordInput.value !== confirmInput.value) {
-                        e.preventDefault();
-                        showToast('Xác nhận mật khẩu mới không khớp!', 'error');
-                        confirmInput.focus();
-                        return;
-                    }
-                });
-            }
-
             // Tự động kích hoạt Toast khi có lỗi từ PHP Back-end trả về
             <?php if (!empty($errors)): ?>
                 <?php foreach ($errors as $field => $msg): ?>

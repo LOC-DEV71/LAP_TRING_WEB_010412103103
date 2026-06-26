@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <link rel="stylesheet" href="<?= asset('css/toast.css') ?>">
     <script src="<?= asset('js/toast.js') ?>"></script>
+    <script src="<?= asset('js/auth.js') ?>"></script>
     <style>
         * {
             margin: 0;
@@ -480,38 +481,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    const emailInput = document.getElementById('admin-email');
-                    const passwordInput = document.getElementById('admin-password');
-
-                    if (!emailInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng điền Email Quản trị viên!', 'error');
-                        emailInput.focus();
-                        return;
-                    }
-
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(emailInput.value.trim())) {
-                        e.preventDefault();
-                        showToast('Định dạng Email Quản trị viên không hợp lệ!', 'error');
-                        emailInput.focus();
-                        return;
-                    }
-
-                    if (!passwordInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng nhập Mật khẩu!', 'error');
-                        passwordInput.focus();
-                        return;
-                    }
-
-
-                });
-            }
-
             // Tự động kích hoạt Toast khi có lỗi từ PHP Back-end trả về
             <?php if (!empty($errors)): ?>
                 <?php foreach ($errors as $field => $msg): ?>

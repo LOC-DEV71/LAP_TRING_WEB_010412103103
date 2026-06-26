@@ -9,6 +9,7 @@
     <link href="<?= asset('css/client/auth.css') ?>" rel="stylesheet"/>
     <link rel="stylesheet" href="<?= asset('css/toast.css') ?>">
     <script src="<?= asset('js/toast.js') ?>"></script>
+    <script src="<?= asset('js/auth.js') ?>"></script>
 </head>
 <body>
     <div class="brand-corner-top">FASHION</div>
@@ -81,74 +82,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. Kiểm tra Form Đăng Nhập trên trình duyệt
-            const loginForm = document.querySelector('.login-form form');
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(e) {
-                    const loginKeyInput = document.getElementById('login-key');
-                    const passwordInput = document.getElementById('login-password');
-
-                    if (!loginKeyInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng điền Email, Số điện thoại hoặc Tên đăng nhập!', 'error');
-                        loginKeyInput.focus();
-                        return;
-                    }
-
-                    if (!passwordInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng nhập Mật khẩu!', 'error');
-                        passwordInput.focus();
-                        return;
-                    }
-
-
-                });
-            }
-
-            // 2. Kiểm tra Form Đăng Ký trên trình duyệt
-            const registerForm = document.querySelector('.register-form form');
-            if (registerForm) {
-                registerForm.addEventListener('submit', function(e) {
-                    const usernameInput = document.getElementById('register-username');
-                    const emailInput = document.getElementById('register-email');
-                    const passwordInput = document.getElementById('register-password');
-
-                    if (!usernameInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Tên người dùng không được để trống!', 'error');
-                        usernameInput.focus();
-                        return;
-                    }
-
-                    if (!emailInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng điền địa chỉ Email đăng ký!', 'error');
-                        emailInput.focus();
-                        return;
-                    }
-
-                    if (!passwordInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng nhập Mật khẩu đăng ký!', 'error');
-                        passwordInput.focus();
-                        return;
-                    }
-
-                    
-                });
-            }
-
-
-
-            // 4. Tự động kích hoạt Toast khi có lỗi từ PHP Back-end trả về
+            // Tự động kích hoạt Toast khi có lỗi từ PHP Back-end trả về
             <?php if (!empty($errors)): ?>
                 <?php foreach ($errors as $field => $msg): ?>
                     showToast("<?= addslashes($msg) ?>", 'error');
                 <?php endforeach; ?>
             <?php endif; ?>
 
-            // 5. Tự động kích hoạt Toast khi đăng ký tài khoản thành công
+            // Tự động kích hoạt Toast khi đăng ký tài khoản thành công
             <?php if (isset($_SESSION['register_success'])): ?>
                 showToast("<?= addslashes($_SESSION['register_success']) ?>", 'success');
                 <?php unset($_SESSION['register_success']); ?>
