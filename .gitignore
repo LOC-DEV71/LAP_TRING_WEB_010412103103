@@ -2,6 +2,7 @@
 /vendor/
 
 # Node dependencies
+# Just for Prettier
 node_modules/
 package-lock.json
 
@@ -32,3 +33,4 @@ logs/
 
 # Ready for import code to project
 /_ready_for_project/
+/_Stitch_Google/

@@ -57,4 +57,35 @@ class User extends Model
         
         return $stmt->execute();
     }
+
+    // Cập nhật reset token và thời gian hết hạn
+    public function updateResetToken($email, $token, $expiresAt)
+    {
+        $sql = "UPDATE {$this->table} SET reset_token = :token, reset_token_expires = :expires WHERE email = :email AND deleted = FALSE";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':token', $token);
+        $stmt->bindParam(':expires', $expiresAt);
+        $stmt->bindParam(':email', $email);
+        return $stmt->execute();
+    }
+
+    // Tìm kiếm tài khoản hoạt động theo token khôi phục
+    public function getByResetToken($token)
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE reset_token = :token AND deleted = FALSE";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':token', $token);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Cập nhật mật khẩu mới và xóa sạch token khôi phục
+    public function updatePasswordAndClearToken($userId, $hashedPassword)
+    {
+        $sql = "UPDATE {$this->table} SET password = :password, reset_token = NULL, reset_token_expires = NULL WHERE _id = :id AND deleted = FALSE";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':password', $hashedPassword);
+        $stmt->bindParam(':id', $userId);
+        return $stmt->execute();
+    }
 }
