@@ -61,8 +61,8 @@
                     </div>
                     
                     <div class="options">
-                        <a href="<?= url('auth/login') ?>">
-                            <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_back</span>
+                        <a href="<?= url('auth/login') ?>" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none;">
+                            <span class="material-symbols-outlined" style="font-size: 1.1rem; display: inline-block; line-height: 1;">arrow_back</span>
                             Quay lại Đăng nhập
                         </a>
                     </div>
