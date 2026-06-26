@@ -67,14 +67,14 @@
                         <input required type="text" name="login_key" id="login-key" placeholder=" " value="<?= htmlspecialchars($old_login_key ?? '') ?>"/>
                         <label for="login-key">Email, Số điện thoại hoặc Tên đăng nhập</label>
                         <?php if (!empty($errors['login_key']) && ($active_tab ?? 'login') === 'login'): ?>
-                            <span style="color: #ffdad6; font-size: 0.75rem; display: block; margin-top: 4px;"><?= htmlspecialchars($errors['login_key']) ?></span>
+                            <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['login_key']) ?></span>
                         <?php endif; ?>
                     </div>
                     <div class="input-group">
                         <input required type="password" name="password" id="login-password" placeholder=" "/>
                         <label for="login-password">Mật khẩu</label>
                         <?php if (!empty($errors['password']) && ($active_tab ?? 'login') === 'login'): ?>
-                            <span style="color: #ffdad6; font-size: 0.75rem; display: block; margin-top: 4px;"><?= htmlspecialchars($errors['password']) ?></span>
+                            <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['password']) ?></span>
                         <?php endif; ?>
                     </div>
                     <!-- Anti-spam CAPTCHA -->
@@ -84,7 +84,7 @@
                             <input required type="text" name="captcha" id="login-captcha" placeholder=" " autocomplete="off"/>
                             <label for="login-captcha">Mã xác thực</label>
                             <?php if (!empty($errors['captcha']) && ($active_tab ?? 'login') === 'login'): ?>
-                                <span style="color: #ffdad6; font-size: 0.75rem; display: block; margin-top: 4px;"><?= htmlspecialchars($errors['captcha']) ?></span>
+                                <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['captcha']) ?></span>
                             <?php endif; ?>
                         </div>
                         <div class="captcha-image-wrapper" title="Nhấp vào để đổi mã xác thực">
@@ -111,14 +111,14 @@
                         <input required type="email" name="email" id="register-email" placeholder=" " value="<?= htmlspecialchars($old_email ?? '') ?>"/>
                         <label for="register-email">Email</label>
                         <?php if (!empty($errors['email']) && ($active_tab ?? 'login') === 'register'): ?>
-                            <span style="color: #ffdad6; font-size: 0.75rem; display: block; margin-top: 4px;"><?= htmlspecialchars($errors['email']) ?></span>
+                            <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['email']) ?></span>
                         <?php endif; ?>
                     </div>
                     <div class="input-group">
                         <input required type="password" name="password" id="register-password" placeholder=" "/>
                         <label for="register-password">Mật khẩu</label>
                         <?php if (!empty($errors['password']) && ($active_tab ?? 'login') === 'register'): ?>
-                            <span style="color: #ffdad6; font-size: 0.75rem; display: block; margin-top: 4px;"><?= htmlspecialchars($errors['password']) ?></span>
+                            <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['password']) ?></span>
                         <?php endif; ?>
                     </div>
                     <!-- Anti-spam CAPTCHA -->
@@ -127,7 +127,7 @@
                             <input required type="text" name="captcha" id="register-captcha" placeholder=" " autocomplete="off"/>
                             <label for="register-captcha">Mã xác thực</label>
                             <?php if (!empty($errors['captcha']) && ($active_tab ?? 'login') === 'register'): ?>
-                                <span style="color: #ffdad6; font-size: 0.75rem; display: block; margin-top: 4px;"><?= htmlspecialchars($errors['captcha']) ?></span>
+                                <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['captcha']) ?></span>
                             <?php endif; ?>
                         </div>
                         <div class="captcha-image-wrapper" title="Nhấp vào để đổi mã xác thực">

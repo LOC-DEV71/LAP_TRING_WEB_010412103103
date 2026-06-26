@@ -18,6 +18,10 @@
         <?php endif; ?>
 
         <div class="navbar">
+            <button class="hamburger-btn" id="btn-hamburger">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+
             <div class="logo">
                 <a href="<?= url('') ?>" style="color: inherit; text-decoration: none;">FASHION</a>
             </div>
@@ -64,9 +68,10 @@
                 </li>
             </ul>
 
+
             <div class="actions">
                 <span class="material-symbols-outlined action-btn">search</span>
-                <a href="<?= url('cart') ?>" style="color: inherit; text-decoration: none;">
+                <a href="<?= url('/cart') ?>" style="color: inherit; text-decoration: none;">
                     <span class="material-symbols-outlined action-btn">shopping_cart</span>
                 </a>
                 <a href="<?= url('user/profile') ?>" style="color: inherit; text-decoration: none;">
@@ -77,3 +82,50 @@
         </div>
 
     </header>
+
+    <!-- Mobile Sidebar Drawer -->
+    <div class="sidebar-drawer" id="mobile-drawer">
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <div class="drawer-logo">FASHION</div>
+                <button class="btn-close-drawer" id="btn-close-drawer">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <ul class="drawer-menu">
+                <li><a href="<?= url('') ?>" class="drawer-link">Trang chủ</a></li>
+                <li><a href="<?= url('product') ?>" class="drawer-link">Nam</a></li>
+                <li><a href="<?= url('product') ?>" class="drawer-link">Nữ</a></li>
+                <li><a href="<?= url('product') ?>" class="drawer-link">Phụ kiện</a></li>
+                <li><a href="<?= url('product') ?>" class="drawer-link">Bộ sưu tập</a></li>
+                <li><a href="<?= url('product') ?>" class="drawer-link">Sale</a></li>
+                <li><a href="#" class="drawer-link">Blog</a></li>
+                <li><a href="#" class="drawer-link">Liên hệ</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerBtn = document.getElementById('btn-hamburger');
+            const closeBtn = document.getElementById('btn-close-drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            const drawer = document.getElementById('mobile-drawer');
+
+            if (hamburgerBtn && drawer) {
+                hamburgerBtn.addEventListener('click', function() {
+                    drawer.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                const closeDrawer = function() {
+                    drawer.classList.remove('active');
+                    document.body.style.overflow = '';
+                };
+
+                if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+                if (overlay) overlay.addEventListener('click', closeDrawer);
+            }
+        });
+    </script>

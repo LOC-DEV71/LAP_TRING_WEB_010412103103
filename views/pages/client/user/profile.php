@@ -11,6 +11,7 @@
 
     <!-- Main Container -->
     <main class="main-content">
+
         <!-- Profile Header -->
         <section class="glass-panel profile-header-section">
             <div class="avatar-wrapper">
@@ -37,7 +38,7 @@
                 </div>
             </div>
             <div class="action-button-group">
-                <button class="btn-action btn-primary">
+                <button class="btn-action btn-primary" id="btn-edit-profile">
                     <span class="material-symbols-outlined">edit</span>
                     Sửa hồ sơ
                 </button>
@@ -186,5 +187,110 @@
             <span class="nav-text">Tôi</span>
         </a>
     </nav>
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal-wrapper" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="glass-panel modal-container">
+            <div class="modal-header">
+                <h3>Chỉnh sửa hồ sơ</h3>
+                <button class="btn-close-modal">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form action="<?= url('user/update') ?>" method="POST" class="modal-form">
+                <div class="form-group">
+                    <label for="fullname">Họ và tên</label>
+                    <input type="text" id="fullname" name="fullname" value="<?= htmlspecialchars($user['fullname']) ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="text" id="phone" name="phone" value="<?= htmlspecialchars($user['phone'] ?? '') ?>">
+                </div>
+                <div class="form-group">
+                    <label for="address">Địa chỉ</label>
+                    <textarea id="address" name="address" rows="3"><?= htmlspecialchars($user['address'] ?? '') ?></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-outline btn-cancel">Hủy</button>
+                    <button type="submit" class="btn-action btn-primary">Lưu thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showToast(message, type = 'success') {
+            let container = document.querySelector('.toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.className = 'toast-container';
+                document.body.appendChild(container);
+            }
+
+            const maxToasts = 5;
+            const currentToasts = container.querySelectorAll('.toast');
+            if (currentToasts.length >= maxToasts) {
+                currentToasts[0].remove();
+            }
+
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const iconName = type === 'success' ? 'check_circle' : 'error';
+            toast.innerHTML = `
+                <span class="material-symbols-outlined toast-icon">${iconName}</span>
+                <span class="toast-message">${message}</span>
+                <button class="btn-toast-close" onclick="this.parentElement.remove()">
+                    <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
+                </button>
+            `;
+
+            container.appendChild(toast);
+
+            // Trigger animation
+            setTimeout(() => toast.classList.add('show'), 10);
+
+            // Remove after 4 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const editBtn = document.getElementById('btn-edit-profile');
+            const modal = document.getElementById('edit-profile-modal');
+            const closeBtns = modal ? modal.querySelectorAll('.btn-close-modal, .btn-cancel') : [];
+            const overlay = modal ? modal.querySelector('.modal-overlay') : null;
+
+            if (editBtn && modal) {
+                editBtn.addEventListener('click', function() {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+
+                const closeModal = function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                };
+
+                closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+                if (overlay) {
+                    overlay.addEventListener('click', closeModal);
+                }
+            }
+
+            // Trigger toasts from PHP Session
+            <?php if (isset($_SESSION['profile_success'])): ?>
+                showToast("<?= addslashes($_SESSION['profile_success']) ?>", 'success');
+                <?php unset($_SESSION['profile_success']); ?>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['profile_error'])): ?>
+                showToast("<?= addslashes($_SESSION['profile_error']) ?>", 'error');
+                <?php unset($_SESSION['profile_error']); ?>
+            <?php endif; ?>
+        });
+    </script>
 </div>
 <?php require_once __DIR__ . '/../../../layouts/client/footer.php'; ?>

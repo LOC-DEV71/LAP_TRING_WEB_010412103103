@@ -46,6 +46,52 @@ class UserController extends Controller
         ]);
     }
 
+    public function update()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: ' . url('user/profile'));
+            exit;
+        }
+
+        // 1. Kiểm tra JWT Token
+        $token = $_COOKIE['jwt_token'] ?? '';
+        $payload = null;
+        if (!empty($token)) {
+            $payload = JwtUtils::decode($token);
+        }
+
+        if (!$payload) {
+            $_SESSION['login_error'] = "Vui lòng đăng nhập.";
+            header('Location: ' . url('auth/login'));
+            exit;
+        }
+
+        // 2. Nhận dữ liệu POST
+        $fullname = trim($_POST['fullname'] ?? '');
+        $phone = trim($_POST['phone'] ?? '');
+        $address = trim($_POST['address'] ?? '');
+
+        // 3. Validation
+        if (empty($fullname)) {
+            $_SESSION['profile_error'] = "Họ tên không được để trống.";
+            header('Location: ' . url('user/profile'));
+            exit;
+        }
+
+        // 4. Cập nhật vào DB
+        $userModel = new User();
+        $success = $userModel->updateProfile($payload['user_id'], $fullname, $phone, $address);
+
+        if ($success) {
+            $_SESSION['profile_success'] = "Cập nhật thông tin cá nhân thành công.";
+        } else {
+            $_SESSION['profile_error'] = "Không thể cập nhật thông tin. Vui lòng thử lại.";
+        }
+
+        header('Location: ' . url('user/profile'));
+        exit;
+    }
+
     // Mặc định chuyển hướng về trang cá nhân
     public function index()
     {

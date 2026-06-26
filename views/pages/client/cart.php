@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="public/css/client/Home/cart.css">
+<?php require_once __DIR__ . '/../../layouts/client/header/header.php'; ?>
+<link rel="stylesheet" href="<?= asset('css/client/Home/cart.css') ?>">
 <main class="cart-page">
     <div class="cart-container">
         <div class="cart-header">
@@ -20,7 +21,7 @@
                     <tbody>
                         <tr>
                             <td class="product-img-col">
-                                <img src="<?= asset('assets/images/somi-nu.jpg') ?>" alt="Sơ Mi Nữ Tay Dài">
+                                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=1974&auto=format&fit=crop" alt="Sơ Mi Nữ Tay Dài">
                             </td>
                             <td class="product-info-col">
                                 <a href="#" class="product-name">Sơ Mi Nữ Tay Dài</a>
@@ -60,9 +61,10 @@
                         <span class="total-price">329.000đ</span>
                     </div>
                     <button class="btn-checkout">MUA NGAY</button>
-                    <a href="index.php" class="btn-continue-shopping">Tiếp tục mua sắm</a>
+                    <a href="<?= url('') ?>" class="btn-continue-shopping">Tiếp tục mua sắm</a>
                 </div>
             </div>
         </div>
     </div>
 </main>
+<?php require_once __DIR__ . '/../../layouts/client/footer.php'; ?>
