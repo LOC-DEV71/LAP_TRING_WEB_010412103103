@@ -1,5 +1,4 @@
 <?php
-echo "<script>console.log('Nạp cấu hình Email thành công!');</script>";
 return [
     'host' => env('MAIL_HOST', 'smtp.gmail.com'),
     'auth' => true,
