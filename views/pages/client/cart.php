@@ -58,7 +58,7 @@
                     <hr class="summary-divider">
                     <div class="summary-row total-row">
                         <span>Tổng cộng:</span>
-                        <span class="total-price">329.000đ</span>
+                        <span class="total-price"><?= isset($totalPrice) ? number_format($totalPrice, 0, ',', '.') : '0' ?>đ</span>
                     </div>
                     <button class="btn-checkout">MUA NGAY</button>
                     <a href="<?= url('') ?>" class="btn-continue-shopping">Tiếp tục mua sắm</a>
