@@ -78,35 +78,44 @@
         </div>
 
         <div class="product-grid">
+            <?php if (!empty($products)): ?>
+                <?php foreach ($products as $product): ?>
+                    <div class="product-card">
+                        <img src="<?= strpos($product['image'] ?? '', 'http') === 0 ? htmlspecialchars($product['image']) : asset(htmlspecialchars($product['image'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                        <h3><?= htmlspecialchars($product['name']) ?></h3>
+                        <p class="price"><?= number_format($product['price'] ?? 0, 0, ',', '.') ?>đ</p>
+                        <button>MUA NGAY</button>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="product-card">
+                    <img src="<?= asset('assets/images/polo-basic.jpg') ?>" alt="">
+                    <h3>Áo Polo Basic</h3>
+                    <p class="price">299.000đ</p>
+                    <button>MUA NGAY</button>
+                </div>
 
-            <div class="product-card">
-                <img src="<?= asset('assets/images/polo-basic.jpg') ?>" alt="">
-                <h3>Áo Polo Basic</h3>
-                <p class="price">299.000đ</p>
-                <button>MUA NGAY</button>
-            </div>
+                <div class="product-card">
+                    <img src="<?= asset('assets/images/thun-oversize.jpg') ?>" alt="">
+                    <h3>Áo Thun Nữ Oversize</h3>
+                    <p class="price">259.000đ</p>
+                    <button>MUA NGAY</button>
+                </div>
 
-            <div class="product-card">
-                <img src="<?= asset('assets/images/thun-oversize.jpg') ?>" alt="">
-                <h3>Áo Thun Nữ Oversize</h3>
-                <p class="price">259.000đ</p>
-                <button>MUA NGAY</button>
-            </div>
+                <div class="product-card">
+                    <img src="<?= asset('assets/images/thun-nam.jpg') ?>" alt="">
+                    <h3>Áo Thun Nam Basic</h3>
+                    <p class="price">269.000đ</p>
+                    <button>MUA NGAY</button>
+                </div>
 
-            <div class="product-card">
-                <img src="<?= asset('assets/images/thun-nam.jpg') ?>" alt="">
-                <h3>Áo Thun Nam Basic</h3>
-                <p class="price">269.000đ</p>
-                <button>MUA NGAY</button>
-            </div>
-
-            <div class="product-card">
-                <img src="<?= asset('assets/images/somi-nu.jpg') ?>" alt="">
-                <h3>Sơ Mi Nữ Tay Dài</h3>
-                <p class="price">329.000đ</p>
-                <button>MUA NGAY</button>
-            </div>
-
+                <div class="product-card">
+                    <img src="<?= asset('assets/images/somi-nu.jpg') ?>" alt="">
+                    <h3>Sơ Mi Nữ Tay Dài</h3>
+                    <p class="price">329.000đ</p>
+                    <button>MUA NGAY</button>
+                </div>
+            <?php endif; ?>
         </div>
 
     </section>

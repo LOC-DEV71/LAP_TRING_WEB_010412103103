@@ -8,14 +8,42 @@ class Order extends Model
 {
     protected $table = 'orders';
 
+    public function __construct()
+    {
+        parent::__construct();
+        try {
+            // Tự động tạo bảng orders nếu chưa tồn tại trong cơ sở dữ liệu
+            $sql = "CREATE TABLE IF NOT EXISTS {$this->table} (
+                _id VARCHAR(255) PRIMARY KEY,
+                user_id VARCHAR(255) NOT NULL,
+                total_price DECIMAL(15, 2) NOT NULL,
+                payment_method VARCHAR(255) NOT NULL,
+                shipping_address TEXT NOT NULL,
+                phone VARCHAR(50) NOT NULL,
+                note TEXT DEFAULT NULL,
+                status VARCHAR(50) DEFAULT 'pending',
+                createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )";
+            $this->db->exec($sql);
+        } catch (\Exception $e) {
+            // Ghi nhận lỗi nhưng không làm sập ứng dụng
+            error_log("Lỗi khởi tạo bảng orders: " . $e->getMessage());
+        }
+    }
+
     // Lấy toàn bộ lịch sử đơn hàng của một khách hàng (Mới nhất xếp trên)
     public function getAllByUserId($userId)
     {
-        $sql = "SELECT * FROM {$this->table} WHERE user_id = :user_id ORDER BY createdAt DESC";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':user_id', $userId);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $sql = "SELECT * FROM {$this->table} WHERE user_id = :user_id ORDER BY createdAt DESC";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':user_id', $userId);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            error_log("Lỗi lấy đơn hàng của user {$userId}: " . $e->getMessage());
+            return [];
+        }
     }
 
     // Lấy thông tin chi tiết một đơn hàng theo ID

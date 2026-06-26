@@ -20,7 +20,7 @@
                     <tbody>
                         <tr>
                             <td class="product-img-col">
-                                <img src="public/assets/images/somi-nu.jpg" alt="Sơ Mi Nữ Tay Dài">
+                                <img src="<?= asset('assets/images/somi-nu.jpg') ?>" alt="Sơ Mi Nữ Tay Dài">
                             </td>
                             <td class="product-info-col">
                                 <a href="#" class="product-name">Sơ Mi Nữ Tay Dài</a>
