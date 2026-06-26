@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/../../../layouts/client/header.php'; ?>
+<?php require_once __DIR__ . '/../../../layouts/client/header/header.php'; ?>
     <!--hero-->
     <section class="hero">
         <div class="hero-left">
