@@ -88,4 +88,16 @@ class User extends Model
         $stmt->bindParam(':id', $userId);
         return $stmt->execute();
     }
+
+    // Cập nhật thông tin cá nhân
+    public function updateProfile($id, $fullname, $phone, $address)
+    {
+        $sql = "UPDATE {$this->table} SET fullname = :fullname, phone = :phone, address = :address WHERE _id = :id AND deleted = FALSE";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':fullname', $fullname);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':address', $address);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
 }

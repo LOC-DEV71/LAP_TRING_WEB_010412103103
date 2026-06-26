@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . '/../../../layouts/client/header.php'; 
+require_once __DIR__ . '/../../../layouts/client/header/header.php'; 
 
 // Helper function to map product names to category slugs for JS filtering
 if (!function_exists('getProductCategorySlug')) {
@@ -358,7 +358,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create No Products Found message
     const noProductsMsg = document.createElement('div');
     noProductsMsg.className = 'no-products-message hidden';
-    noProductsMsg.innerHTML = `
+    noProductsMsg.innerHTML = 
+    `
         <h3>Không tìm thấy sản phẩm nào</h3>
         <p>Vui lòng thử điều chỉnh hoặc xóa bộ lọc để tìm kiếm các sản phẩm khác.</p>
     `;

@@ -18,82 +18,7 @@ body {
   background: #f5f3f1;
 }
 
-/*header*/
 
-.header {
-  background: #fff;
-}
-.top-bar {
-  background: var(--border);
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-around;
-}
-.navbar {
-  width: 1200px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 90px;
-}
-.logo {
-  font-size: 48px;
-  font-weight: 700;
-}
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 35px;
-}
-.menu a {
-  text-decoration: none;
-  color: #111827;
-  font-size: 15px;
-  font-weight: 500;
-  padding-bottom: 8px;
-}
-.menu a:hover {
-  color: #8b5e3c;
-}
-.menu li:first-child a {
-  border-bottom: 2px solid #8b5e3c;
-}
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.actions img,
-.actions svg,
-.actions .material-symbols-outlined {
-  width: 30px;
-  height: 30px;
-  font-size: 28px;
-  line-height: 30px;
-  text-align: center;
-  object-fit: contain;
-  cursor: pointer;
-  transition: 0.3s;
-  display: block;
-  color: #111827;
-}
-.actions img:hover,
-.actions svg:hover,
-.actions .material-symbols-outlined:hover {
-  transform: scale(1.1);
-  color: #8b5e3c;
-}
-.top-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.top-item img {
-  width: 19px;
-  height: 19px;
-  object-fit: contain;
-}
 
 /*hero*/
 
@@ -409,7 +334,6 @@ body {
   :root {
     --container: 95%;
   }
-  .navbar,
   .collection,
   .footer-grid {
     width: 95%;
@@ -423,21 +347,7 @@ body {
 }
 /* 768px - 1023px */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 20px 0;
-    gap: 15px;
-    width: 95%;
-  }
-  .menu {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-  }
-  .actions {
-    justify-content: center;
-  }
+
   .hero {
     grid-template-columns: 40% 60%;
     min-height: 420px;
@@ -498,41 +408,7 @@ body {
 }
 /* <768px */
 @media (max-width: 767px) {
-  .top-bar {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-    padding: 10px;
-  }
-  .top-item {
-    flex-direction: column;
-    gap: 4px;
-  }
-  .top-item span {
-    font-size: 13px;
-  }
-  .navbar {
-    flex-direction: column;
-    width: 95%;
-    height: auto;
-    padding: 20px 0;
-    gap: 15px;
-  }
-  .logo {
-    font-size: 32px;
-  }
-  .menu {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-  .menu a {
-    font-size: 14px;
-  }
-  .actions {
-    justify-content: center;
-    gap: 15px;
-  }
+
   .hero {
     grid-template-columns: 1fr;
     height: auto;

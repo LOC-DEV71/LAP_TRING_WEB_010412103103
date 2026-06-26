@@ -1,693 +1,7 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title><?= htmlspecialchars($title ?? 'Trang cá nhân') ?></title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Raleway:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-    <style>
-        /* CSS Reset & Variable Tokens */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Raleway', sans-serif;
-        }
+<?php require_once __DIR__ . '/../../../layouts/client/header/header.php'; ?>
+<link rel="stylesheet" href="<?= asset('css/client/User/profile.css') ?>">
 
-        :root {
-            --primary: #000000;
-            --background: #fdf8f8;
-            --on-background: #1c1b1b;
-            --on-surface-variant: #444748;
-            --secondary-fixed: #e1e0ff;
-            --on-secondary-fixed: #06006c;
-            --success-indigo: #4648d4;
-            --error-red: #ba1a1a;
-            --error-container: #ffdad6;
-            --glass-surface: rgba(255, 255, 255, 0.35);
-            --glass-border-light: rgba(255, 255, 255, 0.5);
-            --glass-border-dark: rgba(0, 0, 0, 0.05);
-        }
-
-        body {
-            background-color: var(--background);
-            color: var(--on-background);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(70, 72, 212, 0.05) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(186, 26, 26, 0.02) 0px, transparent 50%);
-            background-attachment: fixed;
-            min-height: 100vh;
-            position: relative;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        /* Fixed Navigation Header */
-        .header-nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-bottom: 1px solid var(--glass-border-dark);
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .nav-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            height: 64px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 24px;
-        }
-
-        .brand-logo {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-        }
-
-        .brand-logo a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: var(--on-surface-variant);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Ethereal Banner Strip */
-        .banner-strip {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 600px;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .banner-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            brightness: 0.9;
-            opacity: 0.7;
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0.6) 85%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0.6) 85%, rgba(0,0,0,0) 100%);
-        }
-
-        .banner-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent, rgba(253, 248, 248, 0.2) 60%, rgba(253, 248, 248, 0.9) 100%);
-        }
-
-        /* Main Content Grid Wrapper */
-        .main-content {
-            padding-top: 112px;
-            padding-left: 16px;
-            padding-right: 16px;
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        /* Premium Glass Panel */
-        .glass-panel {
-            background: var(--glass-surface);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border-light);
-            border-bottom: 1px solid var(--glass-border-dark);
-            border-right: 1px solid var(--glass-border-dark);
-            border-radius: 24px;
-            box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.6);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .glass-panel:hover {
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.12), inset 1px 1px 0px rgba(255, 255, 255, 0.6);
-        }
-
-        /* Profile Header Card Layout */
-        .profile-header-section {
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 32px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.08), inset 1px 1px 0px rgba(255, 255, 255, 0.6);
-        }
-
-        .avatar-wrapper {
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .avatar-circle {
-            width: 128px;
-            height: 128px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid #ffffff;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .avatar-circle span {
-            font-size: 72px;
-            color: #d1d5db;
-        }
-
-        .badge-verified {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            background: var(--primary);
-            color: #ffffff;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #ffffff;
-        }
-
-        .badge-verified span {
-            font-size: 18px;
-            font-variation-settings: 'FILL' 1;
-        }
-
-        .profile-info {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        .profile-fullname {
-            font-family: 'Inter', sans-serif;
-            font-size: 32px;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 4px;
-        }
-
-        .badge-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .badge-membership {
-            background-color: var(--secondary-fixed);
-            color: var(--on-secondary-fixed);
-            padding: 4px 12px;
-            border-radius: 9999px;
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .badge-membership span {
-            font-size: 14px;
-            font-variation-settings: 'FILL' 1;
-        }
-
-        .registration-date {
-            color: var(--on-surface-variant);
-            font-size: 16px;
-            font-weight: 400;
-        }
-
-        /* Profile Details Grid */
-        .profile-details-grid {
-            margin-top: 16px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px;
-            text-align: left;
-            border-top: 1px solid var(--glass-border-dark);
-            padding-top: 16px;
-            font-size: 14px;
-            color: var(--on-surface-variant);
-        }
-
-        .profile-details-grid p strong {
-            color: var(--on-background);
-            font-weight: 600;
-        }
-
-        .action-button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            width: 100%;
-        }
-
-        .btn-action {
-            width: 100%;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.8;
-        }
-
-        .btn-outline-danger {
-            background: var(--glass-surface);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border-dark);
-            color: var(--error-red);
-        }
-
-        .btn-outline-danger:hover {
-            background-color: rgba(186, 26, 26, 0.1);
-        }
-
-        /* Stats Grid Layout */
-        .dashboard-stats {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        .stat-box {
-            padding: 24px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.08), inset 1px 1px 0px rgba(255, 255, 255, 0.6);
-        }
-
-        .stat-box:hover {
-            transform: scale(1.02);
-        }
-
-        .stat-icon-wrapper {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background-color: rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-        }
-
-        .stat-icon-wrapper span {
-            font-size: 24px;
-        }
-
-        .stat-label-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            color: var(--on-surface-variant);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 4px;
-        }
-
-        .stat-numeric-value {
-            font-family: 'Inter', sans-serif;
-            font-size: 24px;
-            font-weight: 500;
-            color: var(--primary);
-            line-height: 1;
-        }
-
-        /* Section Typography & Links */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .section-heading-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 24px;
-            font-weight: 500;
-            color: var(--primary);
-        }
-
-        .link-discover {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            outline: none;
-            color: var(--on-surface-variant);
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            transition: color 0.3s;
-        }
-
-        .link-discover:hover {
-            color: var(--primary);
-        }
-
-        .link-discover span {
-            font-size: 16px;
-        }
-
-        /* Table Design */
-        .orders-table-wrapper {
-            overflow-x: auto;
-            border-radius: 24px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.08), inset 1px 1px 0px rgba(255, 255, 255, 0.6);
-        }
-
-        .orders-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        .orders-table th {
-            padding: 20px;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--on-surface-variant);
-            border-bottom: 1px solid var(--glass-border-dark);
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .orders-table td {
-            padding: 20px;
-            font-size: 16px;
-            font-weight: 300;
-            border-bottom: 1px solid var(--glass-border-dark);
-        }
-
-        .orders-table tr {
-            transition: background-color 0.3s;
-        }
-
-        .orders-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .orders-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .order-id-cell {
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--primary);
-        }
-
-        .order-status-badge {
-            padding: 4px 12px;
-            border-radius: 9999px;
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            display: inline-block;
-        }
-
-        .status-shipping {
-            background-color: rgba(70, 72, 212, 0.1);
-            color: var(--success-indigo);
-        }
-
-        .status-completed {
-            background-color: rgba(0, 0, 0, 0.05);
-            color: var(--primary);
-        }
-
-        .order-total-price {
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            text-align: right;
-            color: var(--primary);
-        }
-
-        .empty-orders {
-            padding: 40px;
-            text-align: center;
-            color: var(--on-surface-variant);
-            font-weight: 300;
-        }
-
-        /* Favorites Grid System */
-        .favorites-row-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .product-item-card {
-            cursor: pointer;
-        }
-
-        .product-img-wrapper {
-            position: relative;
-            aspect-ratio: 3/4;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 12px;
-            box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.6);
-        }
-
-        .product-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .product-item-card:hover .product-img-wrapper img {
-            transform: scale(1.1);
-        }
-
-        .btn-heart-remove {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--error-red);
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .btn-heart-remove:hover {
-            transform: scale(1.1);
-        }
-
-        .btn-heart-remove span {
-            font-size: 20px;
-            font-variation-settings: 'FILL' 1;
-        }
-
-        .product-card-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--primary);
-            margin-bottom: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .product-card-price {
-            font-size: 12px;
-            color: var(--on-surface-variant);
-        }
-
-        /* Mobile Responsive Bottom Nav */
-        .bottom-nav-mobile {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 440px;
-            z-index: 50;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            height: 72px;
-            background: var(--glass-surface);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            border-top: 1px solid var(--glass-border-light);
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
-        }
-
-        .bottom-nav-mobile a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--on-surface-variant);
-            padding-top: 8px;
-            transition: color 0.2s;
-        }
-
-        .bottom-nav-mobile a:hover,
-        .bottom-nav-mobile a.active {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .bottom-nav-mobile a.active {
-            border-top: 2px solid var(--primary);
-        }
-
-        .bottom-nav-mobile span {
-            font-size: 24px;
-        }
-
-        .bottom-nav-mobile .nav-text {
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            margin-top: 2px;
-        }
-
-        /* Media Queries for Desktop layout changes */
-        @media (min-width: 640px) {
-            .profile-header-section {
-                flex-direction: row;
-                padding: 48px;
-            }
-
-            .profile-info {
-                text-align: left;
-            }
-
-            .badge-container {
-                justify-content: flex-start;
-            }
-
-            .profile-details-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px 24px;
-            }
-
-            .action-button-group {
-                width: auto;
-            }
-
-            .dashboard-stats {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .favorites-row-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (min-width: 768px) {
-            .avatar-circle {
-                width: 160px;
-                height: 160px;
-            }
-
-            .bottom-nav-mobile {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body class="pb-24">
-    <!-- TopNavBar -->
-    <header class="header-nav">
-        <div class="nav-container">
-            <div class="brand-logo">
-                <a href="<?= url('') ?>">FASHION</a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="<?= url('') ?>">Trang chủ</a></li>
-                <li><a href="<?= url('cart') ?>">Giỏ hàng</a></li>
-                <li><a href="<?= url('user/profile') ?>" class="active">Tôi</a></li>
-            </ul>
-        </div>
-    </header>
+<div class="profile-page-wrapper" style="position: relative; min-height: 100vh; overflow: hidden;">
 
     <!-- Banner Strip Background -->
     <div class="banner-strip">
@@ -697,6 +11,7 @@
 
     <!-- Main Container -->
     <main class="main-content">
+
         <!-- Profile Header -->
         <section class="glass-panel profile-header-section">
             <div class="avatar-wrapper">
@@ -723,7 +38,7 @@
                 </div>
             </div>
             <div class="action-button-group">
-                <button class="btn-action btn-primary">
+                <button class="btn-action btn-primary" id="btn-edit-profile">
                     <span class="material-symbols-outlined">edit</span>
                     Sửa hồ sơ
                 </button>
@@ -872,5 +187,110 @@
             <span class="nav-text">Tôi</span>
         </a>
     </nav>
-</body>
-</html>
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal-wrapper" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="glass-panel modal-container">
+            <div class="modal-header">
+                <h3>Chỉnh sửa hồ sơ</h3>
+                <button class="btn-close-modal">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form action="<?= url('user/update') ?>" method="POST" class="modal-form">
+                <div class="form-group">
+                    <label for="fullname">Họ và tên</label>
+                    <input type="text" id="fullname" name="fullname" value="<?= htmlspecialchars($user['fullname']) ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="text" id="phone" name="phone" value="<?= htmlspecialchars($user['phone'] ?? '') ?>">
+                </div>
+                <div class="form-group">
+                    <label for="address">Địa chỉ</label>
+                    <textarea id="address" name="address" rows="3"><?= htmlspecialchars($user['address'] ?? '') ?></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-outline btn-cancel">Hủy</button>
+                    <button type="submit" class="btn-action btn-primary">Lưu thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showToast(message, type = 'success') {
+            let container = document.querySelector('.toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.className = 'toast-container';
+                document.body.appendChild(container);
+            }
+
+            const maxToasts = 5;
+            const currentToasts = container.querySelectorAll('.toast');
+            if (currentToasts.length >= maxToasts) {
+                currentToasts[0].remove();
+            }
+
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const iconName = type === 'success' ? 'check_circle' : 'error';
+            toast.innerHTML = `
+                <span class="material-symbols-outlined toast-icon">${iconName}</span>
+                <span class="toast-message">${message}</span>
+                <button class="btn-toast-close" onclick="this.parentElement.remove()">
+                    <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
+                </button>
+            `;
+
+            container.appendChild(toast);
+
+            // Trigger animation
+            setTimeout(() => toast.classList.add('show'), 10);
+
+            // Remove after 4 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const editBtn = document.getElementById('btn-edit-profile');
+            const modal = document.getElementById('edit-profile-modal');
+            const closeBtns = modal ? modal.querySelectorAll('.btn-close-modal, .btn-cancel') : [];
+            const overlay = modal ? modal.querySelector('.modal-overlay') : null;
+
+            if (editBtn && modal) {
+                editBtn.addEventListener('click', function() {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+
+                const closeModal = function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                };
+
+                closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+                if (overlay) {
+                    overlay.addEventListener('click', closeModal);
+                }
+            }
+
+            // Trigger toasts from PHP Session
+            <?php if (isset($_SESSION['profile_success'])): ?>
+                showToast("<?= addslashes($_SESSION['profile_success']) ?>", 'success');
+                <?php unset($_SESSION['profile_success']); ?>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['profile_error'])): ?>
+                showToast("<?= addslashes($_SESSION['profile_error']) ?>", 'error');
+                <?php unset($_SESSION['profile_error']); ?>
+            <?php endif; ?>
+        });
+    </script>
+</div>
+<?php require_once __DIR__ . '/../../../layouts/client/footer.php'; ?>
