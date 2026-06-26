@@ -6,5 +6,8 @@
             "Models\\": "models/",
             "Validates\\": "validates/"
         }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^7.1"
     }
 }

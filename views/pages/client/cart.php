@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="public/css/client/Home/cart.css">
+<?php require_once __DIR__ . '/../../layouts/client/header/header.php'; ?>
+<link rel="stylesheet" href="<?= asset('css/client/Home/cart.css') ?>">
 <main class="cart-page">
     <div class="cart-container">
         <div class="cart-header">
@@ -31,9 +32,9 @@
                                 <td class="product-price"><?= number_format($item['price'], 0, ',', '.') ?>đ</td>
                                 <td class="product-quantity">
                                     <div class="qty-wrapper">
-                                        <a href="/cart/decrease/<?= $item['variant_id'] ?>" class="btn-qty-minus" style="text-decoration:none; display:flex; align-items:center; justify-content:center; color:black;">-</a>
-                                        <input type="number" class="qty-input" value="<?= $item['quantity'] ?>" readonly>
-                                        <a href="/cart/increase/<?= $item['variant_id'] ?>" class="btn-qty-plus" style="text-decoration:none; display:flex; align-items:center; justify-content:center; color:black;">+</a>
+                                        <button class="btn-qty-minus">-</button>
+                                        <input type="number" class="qty-input" value="<?= $item['quantity'] ?>" min="1">
+                                        <button class="btn-qty-plus">+</button>
                                     </div>
                                 </td>
                                 <td class="product-subtotal"><?= number_format($item['subtotal'], 0, ',', '.') ?>đ</td>
@@ -68,9 +69,10 @@
                         <span class="total-price"><?= isset($totalPrice) ? number_format($totalPrice, 0, ',', '.') : '0' ?>đ</span>
                     </div>
                     <button class="btn-checkout">MUA NGAY</button>
-                    <a href="index.php" class="btn-continue-shopping">Tiếp tục mua sắm</a>
+                    <a href="<?= url('') ?>" class="btn-continue-shopping">Tiếp tục mua sắm</a>
                 </div>
             </div>
         </div>
     </div>
 </main>
+<?php require_once __DIR__ . '/../../layouts/client/footer.php'; ?>

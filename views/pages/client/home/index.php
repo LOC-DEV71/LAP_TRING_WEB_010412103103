@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/../../../layouts/client/header.php'; ?>
+<?php require_once __DIR__ . '/../../../layouts/client/header/header.php'; ?>
     <!--hero-->
     <section class="hero">
         <div class="hero-left">
@@ -21,7 +21,7 @@
 
         </div>
         <div class="hero-right">
-            <img src="/public/assets/images/banner1.jpg" alt="Banner mùa hè">
+            <img src="<?= asset('assets/images/banner1.jpg') ?>" alt="Banner mùa hè">
 
         </div>
 
@@ -30,7 +30,7 @@
     <!--danh mục-->
     <section class="categories">
         <div class="category-card">
-            <img src="/public/assets/images/cat-nam.jpg" alt="">
+            <img src="<?= asset('assets/images/cat-nam.jpg') ?>" alt="">
             <div>
                 <h3>Nam</h3>
                 <span>Xem ngay</span>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="category-card">
-            <img src="/public/assets/images/cat-nu.jpg" alt="">
+            <img src="<?= asset('assets/images/cat-nu.jpg') ?>" alt="">
             <div>
                 <h3>Nữ</h3>
                 <span>Xem ngay</span>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="category-card">
-            <img src="/public/assets/images/cat-phukien.jpg" alt="">
+            <img src="<?= asset('assets/images/cat-phukien.jpg') ?>" alt="">
             <div>
                 <h3>Phụ kiện</h3>
                 <span>Xem ngay</span>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="category-card">
-            <img src="/public/assets/images/cat-sale.jpg" alt="">
+            <img src="<?= asset('assets/images/cat-sale.jpg') ?>" alt="">
             <div>
                 <h3>Sale</h3>
                 <span>Xem ngay</span>
@@ -78,35 +78,44 @@
         </div>
 
         <div class="product-grid">
+            <?php if (!empty($products)): ?>
+                <?php foreach ($products as $product): ?>
+                    <div class="product-card">
+                        <img src="<?= strpos($product['image'] ?? '', 'http') === 0 ? htmlspecialchars($product['image']) : asset(htmlspecialchars($product['image'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($product['name']) ?>">
+                        <h3><?= htmlspecialchars($product['name']) ?></h3>
+                        <p class="price"><?= number_format($product['price'] ?? 0, 0, ',', '.') ?>đ</p>
+                        <button>MUA NGAY</button>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="product-card">
+                    <img src="<?= asset('assets/images/polo-basic.jpg') ?>" alt="">
+                    <h3>Áo Polo Basic</h3>
+                    <p class="price">299.000đ</p>
+                    <button>MUA NGAY</button>
+                </div>
 
-            <div class="product-card">
-                <img src="/public/assets/images/polo-basic.jpg" alt="">
-                <h3>Áo Polo Basic</h3>
-                <p class="price">299.000đ</p>
-                <button>MUA NGAY</button>
-            </div>
+                <div class="product-card">
+                    <img src="<?= asset('assets/images/thun-oversize.jpg') ?>" alt="">
+                    <h3>Áo Thun Nữ Oversize</h3>
+                    <p class="price">259.000đ</p>
+                    <button>MUA NGAY</button>
+                </div>
 
-            <div class="product-card">
-                <img src="/public/assets/images/thun-oversize.jpg" alt="">
-                <h3>Áo Thun Nữ Oversize</h3>
-                <p class="price">259.000đ</p>
-                <button>MUA NGAY</button>
-            </div>
+                <div class="product-card">
+                    <img src="<?= asset('assets/images/thun-nam.jpg') ?>" alt="">
+                    <h3>Áo Thun Nam Basic</h3>
+                    <p class="price">269.000đ</p>
+                    <button>MUA NGAY</button>
+                </div>
 
-            <div class="product-card">
-                <img src="/public/assets/images/thun-nam.jpg" alt="">
-                <h3>Áo Thun Nam Basic</h3>
-                <p class="price">269.000đ</p>
-                <button>MUA NGAY</button>
-            </div>
-
-            <div class="product-card">
-                <img src="/public/assets/images/somi-nu.jpg" alt="">
-                <h3>Sơ Mi Nữ Tay Dài</h3>
-                <p class="price">329.000đ</p>
-                <button>MUA NGAY</button>
-            </div>
-
+                <div class="product-card">
+                    <img src="<?= asset('assets/images/somi-nu.jpg') ?>" alt="">
+                    <h3>Sơ Mi Nữ Tay Dài</h3>
+                    <p class="price">329.000đ</p>
+                    <button>MUA NGAY</button>
+                </div>
+            <?php endif; ?>
         </div>
 
     </section>
@@ -114,7 +123,7 @@
     <!--bộ sưu tập-->
     <section class="collection">
         <div class="collection-left">
-            <img src="/public/assets/images/summer-collection.jpg" alt="">
+            <img src="<?= asset('assets/images/summer-collection.jpg') ?>" alt="">
             <div class="collection-text">
                 <span>SUMMER</span>
                 <h2>COLLECTION<br>2026</h2>
@@ -130,7 +139,7 @@
                     <p class="mini-desc">Trẻ trung, cá tính</p>
                     <span class="mini-link">Khám phá</span>
                 </div>
-                <img src="/public/assets/images/nang-dong.jpg" alt="">
+                <img src="<?= asset('assets/images/nang-dong.jpg') ?>" alt="">
 
             </div>
             <div class="mini-card">
@@ -139,7 +148,7 @@
                     <p class="mini-desc">Lịch lãm, hiện đại</p>
                     <span class="mini-link">Khám phá</span>
                 </div>
-                <img src="/public/assets/images/phongcach.jpg" alt="">
+                <img src="<?= asset('assets/images/phongcach.jpg') ?>" alt="">
 
             </div>
 
@@ -149,7 +158,7 @@
                     <p class="mini-desc">Hoàn thiện phong cách</p>
                     <span class="mini-link">Khám phá</span>
                 </div>
-                <img src="/public/assets/images/phukien.jpg" alt="">
+                <img src="<?= asset('assets/images/phukien.jpg') ?>" alt="">
 
             </div>
 
