@@ -1,0 +1,36 @@
+# Composer dependencies
+/vendor/
+
+# Node dependencies
+# Just for Prettier
+node_modules/
+package-lock.json
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Log files
+*.log
+logs/
+
+# Database / Config backups (if any)
+*.sql
+*.sqlite
+.env
+
+
+# Ready for import code to project
+/_ready_for_project/
+/_Stitch_Google/

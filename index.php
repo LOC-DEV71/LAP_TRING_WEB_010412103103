@@ -20,9 +20,12 @@ if (file_exists($autoloadPath)) {
     die("Vui lòng chạy lệnh 'composer install' trước khi tiếp tục.");
 }
 
-// Khởi tạo Database và Helpers
-require_once __DIR__ . '/config/database.php';
+// Khởi tạo Helpers và tải tệp .env
 require_once __DIR__ . '/core/helpers.php';
+loadEnv(__DIR__ . '/.env');
+
+// Khởi tạo Database
+require_once __DIR__ . '/config/database.php';
 
 // Khởi tạo ứng dụng và Routing
 $app = new Core\App();

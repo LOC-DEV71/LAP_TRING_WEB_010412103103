@@ -60,8 +60,24 @@ class App
 
     protected function parseUrl()
     {
-        $url = $_SERVER['REQUEST_URI'] ?? '/';
-        $url = trim($url, '/');
+        $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
+        $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
+
+        // Lấy thư mục cơ sở (ví dụ: /LAP_TRING_WEB_010412103103)
+        $baseDir = str_replace('\\', '/', dirname($scriptName));
+        $baseDir = rtrim($baseDir, '/');
+
+        // Loại bỏ baseDir khỏi requestUri nếu requestUri bắt đầu bằng baseDir
+        if (!empty($baseDir) && strpos($requestUri, $baseDir) === 0) {
+            $requestUri = substr($requestUri, strlen($baseDir));
+        }
+
+        // Loại bỏ index.php khỏi requestUri nếu có
+        if (strpos($requestUri, '/index.php') === 0) {
+            $requestUri = substr($requestUri, 10);
+        }
+
+        $url = trim($requestUri, '/');
         $url = strtok($url, '?');
 
         if (!empty($url)) {

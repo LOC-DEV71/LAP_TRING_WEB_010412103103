@@ -37,23 +37,33 @@ class AuthController extends Controller
                     // Lưu JWT vào Cookie riêng cho Admin (Tránh xung đột với cookie Client)
                     setcookie('admin_jwt_token', $token, time() + (86400 * 7), "/", "", false, true);
                     
-                    header('Location: /admin/dashboard');
+                    // Reset lại số lần nhập sai khi đăng nhập thành công
+                    unset($_SESSION['admin_login_attempts']);
+                    
+                    header('Location: ' . url('admin/dashboard'));
                     exit;
                 } else {
+                    // Đăng nhập thất bại, tăng số lần nhập sai lên 1
+                    $_SESSION['admin_login_attempts'] = ($_SESSION['admin_login_attempts'] ?? 0) + 1;
                     $errors['auth'] = "Tài khoản hoặc mật khẩu Quản trị viên không chính xác.";
                 }
+            } else {
+                // Nếu form có lỗi nhập liệu (như thiếu captcha khi đã kích hoạt)
+                $_SESSION['admin_login_attempts'] = ($_SESSION['admin_login_attempts'] ?? 0) + 1;
             }
 
             return $this->view('pages/admin/auth/login', [
                 'title' => 'Đăng Nhập Quản Trị Viên',
                 'errors' => $errors,
-                'old_email' => $email
+                'old_email' => $email,
+                'show_captcha' => ($_SESSION['admin_login_attempts'] ?? 0) >= 3
             ]);
         }
 
         $this->view('pages/admin/auth/login', [
             'title' => 'Đăng Nhập Quản Trị Viên',
-            'errors' => []
+            'errors' => [],
+            'show_captcha' => ($_SESSION['admin_login_attempts'] ?? 0) >= 3
         ]);
     }
 
@@ -61,7 +71,7 @@ class AuthController extends Controller
     public function logout()
     {
         setcookie('admin_jwt_token', '', time() - 3600, "/");
-        header('Location: /admin/login');
+        header('Location: ' . url('admin/auth/login'));
         exit;
     }
 }
