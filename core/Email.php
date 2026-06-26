@@ -16,28 +16,21 @@ class Email
      */
     public static function send($to, $subject, $body)
     {
-        $configPath = 'config/email.php';
-        if (!file_exists($configPath)) {
-            error_log("PHPMailer Error: Config file config/email.php not found.");
-            return false;
-        }
-
-        $config = require $configPath;
         $mail = new PHPMailer(true);
 
         try {
             // Cấu hình Server SMTP
             $mail->isSMTP();
-            $mail->Host       = $config['host'];
-            $mail->SMTPAuth   = $config['auth'];
-            $mail->Username   = $config['username'];
-            $mail->Password   = $config['password'];
-            $mail->SMTPSecure = $config['secure'];
-            $mail->Port       = $config['port'];
+            $mail->Host       = env('MAIL_HOST', 'smtp.gmail.com');
+            $mail->SMTPAuth   = true;
+            $mail->Username   = env('MAIL_USER', 'trantrungnamm3@gmail.com');
+            $mail->Password   = env('MAIL_PASS', 'your_app_password');
+            $mail->SMTPSecure = env('MAIL_SECURE', 'ssl');
+            $mail->Port       = env('MAIL_PORT', 465);
             $mail->CharSet    = 'UTF-8';
 
             // Thiết lập người gửi và người nhận
-            $mail->setFrom($config['from_email'], $config['from_name']);
+            $mail->setFrom(env('MAIL_FROM_EMAIL', 'trantrungnamm3@gmail.com'), env('MAIL_FROM_NAME', 'Fashion Store Support'));
             $mail->addAddress($to);
 
             // Cấu hình Nội dung Email
