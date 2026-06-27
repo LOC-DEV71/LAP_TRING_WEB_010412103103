@@ -22,13 +22,14 @@
     animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 .toast-item.toast-error {
-    background: rgba(215, 0, 24, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(215, 0, 24, 0.1);
+    border: 1px solid rgba(215, 0, 24, 0.2);
     color: #d70018;
 }
 .toast-item.toast-success {
-    background: rgba(46, 204, 113, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    color: #2e7d32;
 }
 .toast-item .toast-icon {
     font-size: 20px;
