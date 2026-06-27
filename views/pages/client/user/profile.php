@@ -23,7 +23,12 @@
                 </div>
             </div>
             <div class="profile-info">
-                <h1 class="profile-fullname"><?= htmlspecialchars($user['fullname']) ?></h1>
+                <h1 class="profile-fullname">
+                    <?= htmlspecialchars($user['fullname']) ?>
+                    <button class="btn-edit-icon" id="btn-edit-profile" title="Sửa hồ sơ">
+                        <span class="material-symbols-outlined">edit</span>
+                    </button>
+                </h1>
                 <div class="badge-container">
                     <span class="badge-membership">
                         <span class="material-symbols-outlined">workspace_premium</span>
@@ -36,16 +41,6 @@
                     <p><strong>Số điện thoại:</strong> <?= htmlspecialchars(!empty($user['phone']) ? $user['phone'] : 'Chưa cập nhật') ?></p>
                     <p style="grid-column: span 2;"><strong>Địa chỉ:</strong> <?= htmlspecialchars(!empty($user['address']) ? $user['address'] : 'Chưa cập nhật') ?></p>
                 </div>
-            </div>
-            <div class="action-button-group">
-                <button class="btn-action btn-primary" id="btn-edit-profile">
-                    <span class="material-symbols-outlined">edit</span>
-                    Sửa hồ sơ
-                </button>
-                <a href="<?= url('auth/logout') ?>" class="btn-action btn-outline-danger">
-                    <span class="material-symbols-outlined">logout</span>
-                    Đăng xuất
-                </a>
             </div>
         </section>
 

@@ -89,8 +89,15 @@ class UserController extends Controller
             exit;
         }
 
-        // 4. Cập nhật vào DB
         $userModel = new User();
+        $existingUser = $userModel->getByUsername($fullname);
+        if ($existingUser && $existingUser['_id'] !== $payload['user_id']) {
+            $_SESSION['profile_error'] = "Tên người dùng này đã được sử dụng bởi một tài khoản khác.";
+            header('Location: ' . url('user/profile'));
+            exit;
+        }
+
+        // 4. Cập nhật vào DB
         $success = $userModel->updateProfile($payload['user_id'], $fullname, $phone, $address);
 
         if ($success) {

@@ -823,3 +823,34 @@
   }
 }
 
+/* Edit Profile Icon Button */
+.btn-edit-icon {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  cursor: pointer;
+  color: #4b5563;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+  vertical-align: middle;
+}
+
+.btn-edit-icon:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #111827;
+  transform: scale(1.08);
+}
+
+.btn-edit-icon:active {
+  transform: scale(0.95);
+}
+
+.btn-edit-icon span {
+  font-size: 20px !important;
+}
+
