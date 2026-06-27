@@ -87,8 +87,19 @@ class AuthController extends Controller
                     ];
 
                     if ($userModel->create($userData)) {
-                        $_SESSION['register_success'] = "Đăng ký tài khoản thành công! Vui lòng đăng nhập.";
-                        header('Location: ' . url('auth/login'));
+                        // Tự động đăng nhập sau khi đăng ký thành công
+                        $payload = [
+                            'user_id' => $userData['_id'],
+                            'fullname' => $userData['fullname'],
+                            'role' => 'user'
+                        ];
+                        $token = JwtUtils::encode($payload);
+
+                        // Lưu JWT vào Cookie, thiết lập HttpOnly = true để bảo mật
+                        setcookie('jwt_token', $token, time() + (86400 * 7), "/", "", false, true);
+
+                        $_SESSION['register_success'] = "Đăng ký tài khoản và đăng nhập thành công!";
+                        header('Location: ' . url(''));
                         exit;
                     } else {
                         $errors['auth'] = "Đăng ký thất bại, vui lòng thử lại.";
