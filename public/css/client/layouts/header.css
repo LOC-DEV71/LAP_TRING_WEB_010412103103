@@ -340,15 +340,26 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out, visibility 0s linear 0.2s;
   z-index: 9999;
   padding: 12px 8px;
+}
+
+.profile-dropdown .dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background: transparent;
 }
 
 .profile-dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  transition-delay: 0s;
 }
 
 .profile-dropdown .dropdown-header {
