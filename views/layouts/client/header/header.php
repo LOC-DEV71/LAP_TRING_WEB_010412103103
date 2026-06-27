@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= asset('css/client/Home/home.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/toast.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/client/modal.css') ?>">
+    <script src="<?= asset('js/toast.js') ?>"></script>
     <script src="<?= asset('js/header.js') ?>"></script>
 </head>
 <body>
