@@ -1,3 +1,5 @@
+# Composer dependencies
+/vendor/
 
 # Node dependencies
 # Just for Prettier
