@@ -823,34 +823,35 @@
   }
 }
 
-/* Edit Profile Icon Button */
-.btn-edit-icon {
-  background: rgba(0, 0, 0, 0.05);
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+/* Edit Profile Compact Button */
+.btn-edit-profile-compact {
+  background: rgba(17, 24, 39, 0.05);
+  color: #111827;
+  border: 1px solid rgba(17, 24, 39, 0.15);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  margin-left: 12px;
+  gap: 4px;
   cursor: pointer;
-  color: #4b5563;
-  transition: background-color 0.2s, color 0.2s, transform 0.2s;
-  vertical-align: middle;
+  transition: all 0.2s ease;
+  font-family: inherit;
 }
 
-.btn-edit-icon:hover {
-  background: rgba(0, 0, 0, 0.1);
-  color: #111827;
-  transform: scale(1.08);
+.btn-edit-profile-compact:hover {
+  background: #111827;
+  color: #ffffff;
+  border-color: #111827;
+  transform: translateY(-1px);
 }
 
-.btn-edit-icon:active {
-  transform: scale(0.95);
+.btn-edit-profile-compact:active {
+  transform: translateY(0);
 }
 
-.btn-edit-icon span {
-  font-size: 20px !important;
+.btn-edit-profile-compact span {
+  font-size: 14px !important;
 }
 
