@@ -21,19 +21,21 @@
                 <div class="badge-verified">
                     <span class="material-symbols-outlined">verified</span>
                 </div>
+                <!-- Thêm tính năng xác thực của php mail -->
             </div>
             <div class="profile-info">
-                <h1 class="profile-fullname"><?= htmlspecialchars($user['fullname']) ?></h1>
+                <h1 class="profile-fullname">
+                    <?= htmlspecialchars($user['fullname']) ?>
+                    <button class="btn-edit-icon" id="btn-edit-profile" title="Sửa hồ sơ">
+                        <span class="material-symbols-outlined">edit</span>
+                    </button>
+                </h1>
                 <div class="badge-container">
                     <span class="badge-membership">
                         <span class="material-symbols-outlined">workspace_premium</span>
                         Thành viên Bạc
                     </span>
-                    <span class="registration-date">Tài khoản hoạt động</span>
-                    <button class="btn-edit-profile-compact" id="btn-edit-profile" title="Sửa hồ sơ">
-                        <span class="material-symbols-outlined">edit</span>
-                        Sửa hồ sơ
-                    </button>
+
                 </div>
                 <div class="profile-details-grid">
                     <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?></p>
