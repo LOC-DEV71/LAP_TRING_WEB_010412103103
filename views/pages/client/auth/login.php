@@ -38,6 +38,7 @@
                     <div class="input-group">
                         <input required type="password" name="password" id="login-password" placeholder=" "/>
                         <label for="login-password">Mật khẩu</label>
+                        <span class="material-symbols-outlined toggle-password-icon">visibility_off</span>
                         <?php if (!empty($errors['password']) && ($active_tab ?? 'login') === 'login'): ?>
                             <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['password']) ?></span>
                         <?php endif; ?>
@@ -68,6 +69,7 @@
                     <div class="input-group">
                         <input required type="password" name="password" id="register-password" placeholder=" "/>
                         <label for="register-password">Mật khẩu</label>
+                        <span class="material-symbols-outlined toggle-password-icon">visibility_off</span>
                         <?php if (!empty($errors['password']) && ($active_tab ?? 'login') === 'register'): ?>
                             <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['password']) ?></span>
                         <?php endif; ?>

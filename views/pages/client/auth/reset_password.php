@@ -27,11 +27,13 @@
                     <div class="input-group">
                         <input required type="password" name="password" id="reset-password" placeholder=" "/>
                         <label for="reset-password">Mật khẩu mới</label>
+                        <span class="material-symbols-outlined toggle-password-icon">visibility_off</span>
                     </div>
                     
                     <div class="input-group">
                         <input required type="password" name="confirm_password" id="confirm-password" placeholder=" "/>
                         <label for="confirm-password">Xác nhận mật khẩu mới</label>
+                        <span class="material-symbols-outlined toggle-password-icon">visibility_off</span>
                     </div>
                     
                     <button class="btn" type="submit">Đặt lại mật khẩu</button>

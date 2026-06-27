@@ -223,6 +223,32 @@ input[type="radio"] {
   font-weight: 300;
 }
 
+.input-group input[type="password"] {
+  padding-right: 44px;
+}
+
+.input-group .toggle-password-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-20%);
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 20px;
+  transition: color 0.3s, transform 0.2s;
+  z-index: 10;
+  user-select: none;
+}
+
+.input-group .toggle-password-icon:hover {
+  color: #ffffff;
+  transform: translateY(-20%) scale(1.1);
+}
+
+.input-group .toggle-password-icon:active {
+  transform: translateY(-20%) scale(0.9);
+}
+
 .input-group input:focus {
   background: rgba(255, 255, 255, 0.08);
   border-bottom-color: #ffffff;

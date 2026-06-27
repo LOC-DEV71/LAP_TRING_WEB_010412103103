@@ -139,4 +139,23 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // 6. Toggle Password Visibility
+    const togglePasswordIcons = document.querySelectorAll('.toggle-password-icon');
+    togglePasswordIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+            const input = this.parentElement.querySelector('input');
+            if (input) {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    this.textContent = 'visibility';
+                    this.classList.add('visible');
+                } else {
+                    input.type = 'password';
+                    this.textContent = 'visibility_off';
+                    this.classList.remove('visible');
+                }
+            }
+        });
+    });
 });
