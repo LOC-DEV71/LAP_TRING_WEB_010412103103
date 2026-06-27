@@ -28,6 +28,16 @@ class User extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Lấy thông tin tài khoản hoạt động theo Tên người dùng (fullname)
+    public function getByUsername($username)
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE fullname = :username AND deleted = FALSE";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Lấy thông tin tài khoản hoạt động theo Email, Số điện thoại hoặc Tên đăng nhập
     public function getByLoginKey($key)
     {

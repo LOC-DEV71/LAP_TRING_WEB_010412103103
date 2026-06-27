@@ -81,6 +81,8 @@ class AuthController extends Controller
                 $userModel = new User();
                 if ($userModel->getByEmail($email)) {
                     $errors['email'] = "Email này đã được sử dụng.";
+                } elseif ($userModel->getByUsername($username)) {
+                    $errors['username'] = "Tên người dùng này đã được sử dụng.";
                 } else {
                     $newId = 'usr_' . bin2hex(random_bytes(6));
                     $userData = [

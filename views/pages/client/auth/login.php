@@ -58,6 +58,9 @@
                     <div class="input-group">
                         <input required type="text" name="username" id="register-username" placeholder=" " value="<?= htmlspecialchars($old_username ?? '') ?>"/>
                         <label for="register-username">Tên người dùng</label>
+                        <?php if (!empty($errors['username']) && ($active_tab ?? 'login') === 'register'): ?>
+                            <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['username']) ?></span>
+                        <?php endif; ?>
                     </div>
                     <div class="input-group">
                         <input required type="email" name="email" id="register-email" placeholder=" " value="<?= htmlspecialchars($old_email ?? '') ?>"/>
