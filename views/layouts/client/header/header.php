@@ -1,3 +1,13 @@
+<?php
+$clientUser = null;
+$token = $_COOKIE['jwt_token'] ?? '';
+if (!empty($token)) {
+    $payload = \Core\JwtUtils::decode($token);
+    if (is_array($payload) && isset($payload['user_id'])) {
+        $clientUser = $payload;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -68,9 +78,37 @@
                 <a href="<?= url('/cart') ?>" style="color: inherit; text-decoration: none;">
                     <span class="material-symbols-outlined action-btn">shopping_cart</span>
                 </a>
-                <a href="<?= url('user/profile') ?>" style="color: inherit; text-decoration: none;">
-                    <span class="material-symbols-outlined action-btn">person</span>
-                </a>
+                <div class="profile-dropdown">
+                    <a href="<?= $clientUser ? url('user/profile') : url('auth/login') ?>" class="profile-btn" style="color: inherit; text-decoration: none;">
+                        <span class="material-symbols-outlined action-btn">person</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <?php if ($clientUser): ?>
+                            <div class="dropdown-header">
+                                <span>Xin chào,</span>
+                                <strong><?= htmlspecialchars($clientUser['fullname'] ?? 'Khách') ?></strong>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="<?= url('user/profile') ?>" class="dropdown-item">
+                                <span class="material-symbols-outlined">account_circle</span>
+                                Trang cá nhân
+                            </a>
+                            <a href="<?= url('auth/logout') ?>" class="dropdown-item logout">
+                                <span class="material-symbols-outlined">logout</span>
+                                Đăng xuất
+                            </a>
+                        <?php else: ?>
+                            <a href="<?= url('auth/login') ?>" class="dropdown-item">
+                                <span class="material-symbols-outlined">login</span>
+                                Đăng nhập
+                            </a>
+                            <a href="<?= url('auth/login?tab=register') ?>" class="dropdown-item">
+                                <span class="material-symbols-outlined">person_add</span>
+                                Đăng ký
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -102,6 +140,14 @@
                 <?php endif; ?>
                 <li><a href="#" class="drawer-link">Blog</a></li>
                 <li><a href="#" class="drawer-link">Liên hệ</a></li>
+                <li class="drawer-divider"></li>
+                <?php if ($clientUser): ?>
+                    <li><a href="<?= url('user/profile') ?>" class="drawer-link drawer-profile-link"><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">person</span><?= htmlspecialchars($clientUser['fullname']) ?></a></li>
+                    <li><a href="<?= url('auth/logout') ?>" class="drawer-link logout-link"><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">logout</span>Đăng xuất</a></li>
+                <?php else: ?>
+                    <li><a href="<?= url('auth/login') ?>" class="drawer-link"><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">login</span>Đăng nhập</a></li>
+                    <li><a href="<?= url('auth/login?tab=register') ?>" class="drawer-link"><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">person_add</span>Đăng ký</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

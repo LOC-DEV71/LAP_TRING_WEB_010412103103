@@ -55,9 +55,15 @@ class AuthController extends Controller
             ]);
         }
 
+        $activeTab = $_GET['tab'] ?? 'login';
+        if ($activeTab !== 'register') {
+            $activeTab = 'login';
+        }
+
         $this->view('pages/client/auth/login', [
-            'title' => 'Đăng Nhập Khách Hàng',
-            'errors' => []
+            'title' => $activeTab === 'register' ? 'Đăng Ký Khách Hàng' : 'Đăng Nhập Khách Hàng',
+            'errors' => [],
+            'active_tab' => $activeTab
         ]);
     }
 

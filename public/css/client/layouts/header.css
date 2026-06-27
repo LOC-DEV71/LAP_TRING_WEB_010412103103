@@ -318,3 +318,123 @@
     font-size: 24px !important;
   }
 }
+
+/* Profile Dropdown Menu */
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 12px;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.12), inset 1px 1px 0px rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  z-index: 9999;
+  padding: 12px 8px;
+}
+
+.profile-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.profile-dropdown .dropdown-header {
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  color: #1f2937;
+  font-family: "Google Sans Flex", sans-serif;
+}
+
+.profile-dropdown .dropdown-header span {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-dropdown .dropdown-header strong {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-dropdown .dropdown-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  margin: 8px 12px;
+}
+
+.profile-dropdown .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: background-color 0.2s, color 0.2s;
+  font-family: "Google Sans Flex", sans-serif;
+}
+
+.profile-dropdown .dropdown-item .material-symbols-outlined {
+  font-size: 18px !important;
+  color: #6b7280;
+}
+
+.profile-dropdown .dropdown-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: #111827;
+}
+
+.profile-dropdown .dropdown-item:hover .material-symbols-outlined {
+  color: #111827;
+}
+
+.profile-dropdown .dropdown-item.logout:hover {
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+}
+
+.profile-dropdown .dropdown-item.logout:hover .material-symbols-outlined {
+  color: #ef4444;
+}
+
+/* Mobile Drawer divider & updates */
+.sidebar-drawer .drawer-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  margin: 16px 20px;
+  list-style: none;
+}
+
+.sidebar-drawer .drawer-profile-link {
+  font-weight: 600 !important;
+  color: #111827 !important;
+}
+
+.sidebar-drawer .logout-link {
+  color: #ef4444 !important;
+}
+
+.sidebar-drawer .drawer-link .material-symbols-outlined {
+  font-size: 20px !important;
+}
