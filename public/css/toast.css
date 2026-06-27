@@ -24,13 +24,11 @@
 .toast-item.toast-error {
     background: rgba(215, 0, 24, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-left: 4px solid #d70018;
     color: #d70018;
 }
 .toast-item.toast-success {
     background: rgba(46, 204, 113, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-left: 4px solid #2ecc71;
 }
 .toast-item .toast-icon {
     font-size: 20px;
