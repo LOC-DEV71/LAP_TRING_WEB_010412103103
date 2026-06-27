@@ -498,18 +498,7 @@
                         <label for="admin-password">Mật khẩu</label>
                     </div>
                     
-                    <!-- Anti-spam CAPTCHA -->
-                    <?php if (!empty($show_captcha)): ?>
-                    <div class="captcha-row">
-                        <div class="input-group" style="margin-bottom: 0; flex-grow: 1;">
-                            <input required type="text" name="captcha" id="admin-captcha" placeholder=" " autocomplete="off"/>
-                            <label for="admin-captcha">Mã xác thực</label>
-                        </div>
-                        <div class="captcha-image-wrapper" title="Nhấp vào để đổi mã xác thực">
-                            <img src="<?= asset('captcha.php') ?>" alt="CAPTCHA" class="captcha-img" onclick="this.src='<?= asset('captcha.php') ?>?'+Math.random()"/>
-                        </div>
-                    </div>
-                    <?php endif; ?>
+
                     
                     <div class="options">
                         <label><input type="checkbox" name="remember"/> Ghi nhớ đăng nhập</label>
@@ -551,13 +540,7 @@
                         return;
                     }
 
-                    const captchaInput = document.getElementById('admin-captcha');
-                    if (captchaInput && !captchaInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng nhập mã xác thực CAPTCHA!', 'error');
-                        captchaInput.focus();
-                        return;
-                    }
+
                 });
             }
 

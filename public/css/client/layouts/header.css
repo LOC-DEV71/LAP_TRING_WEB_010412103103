@@ -47,6 +47,7 @@
 .menu-btn::before, 
 .menu-btn::after {
   background-color: #fefefe; 
+  pointer-events: none;
 }
 
 .menu-btn::before {

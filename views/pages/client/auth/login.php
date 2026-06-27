@@ -77,21 +77,7 @@
                             <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['password']) ?></span>
                         <?php endif; ?>
                     </div>
-                    <!-- Anti-spam CAPTCHA -->
-                    <?php if (!empty($show_captcha)): ?>
-                    <div class="captcha-row">
-                        <div class="input-group" style="margin-bottom: 0; flex-grow: 1;">
-                            <input required type="text" name="captcha" id="login-captcha" placeholder=" " autocomplete="off"/>
-                            <label for="login-captcha">Mã xác thực</label>
-                            <?php if (!empty($errors['captcha']) && ($active_tab ?? 'login') === 'login'): ?>
-                                <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['captcha']) ?></span>
-                            <?php endif; ?>
-                        </div>
-                        <div class="captcha-image-wrapper" title="Nhấp vào để đổi mã xác thực">
-                            <img src="<?= asset('captcha.php') ?>" alt="CAPTCHA" class="captcha-img" onclick="this.src='<?= asset('captcha.php') ?>?'+Math.random()"/>
-                        </div>
-                    </div>
-                    <?php endif; ?>
+
                     <div class="options">
                         <label><input type="checkbox" name="remember"/> Nhớ mật khẩu</label>
                         <a href="<?= url('auth/forgotPassword') ?>" id="forgot-password">Quên mật khẩu?</a>
@@ -121,19 +107,7 @@
                             <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['password']) ?></span>
                         <?php endif; ?>
                     </div>
-                    <!-- Anti-spam CAPTCHA -->
-                    <div class="captcha-row">
-                        <div class="input-group" style="margin-bottom: 0; flex-grow: 1;">
-                            <input required type="text" name="captcha" id="register-captcha" placeholder=" " autocomplete="off"/>
-                            <label for="register-captcha">Mã xác thực</label>
-                            <?php if (!empty($errors['captcha']) && ($active_tab ?? 'login') === 'register'): ?>
-                                <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['captcha']) ?></span>
-                            <?php endif; ?>
-                        </div>
-                        <div class="captcha-image-wrapper" title="Nhấp vào để đổi mã xác thực">
-                            <img src="<?= asset('captcha.php') ?>" alt="CAPTCHA" class="captcha-img" onclick="this.src='<?= asset('captcha.php') ?>?'+Math.random()"/>
-                        </div>
-                    </div>
+
                     <div class="spacer"></div> <!-- Extra spacing before button -->
                     <button class="btn" type="submit">Đăng ký</button>
                 </form>
@@ -164,13 +138,7 @@
                         return;
                     }
 
-                    const captchaInput = document.getElementById('login-captcha');
-                    if (captchaInput && !captchaInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng nhập mã xác thực CAPTCHA!', 'error');
-                        captchaInput.focus();
-                        return;
-                    }
+
                 });
             }
 
@@ -203,13 +171,7 @@
                         return;
                     }
 
-                    const captchaInput = document.getElementById('register-captcha');
-                    if (!captchaInput.value.trim()) {
-                        e.preventDefault();
-                        showToast('Vui lòng nhập mã xác thực CAPTCHA!', 'error');
-                        captchaInput.focus();
-                        return;
-                    }
+                    
                 });
             }
 

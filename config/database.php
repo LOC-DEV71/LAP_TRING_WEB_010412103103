@@ -1,9 +1,9 @@
 <?php
-$host = env('DB_HOST', 'localhost');
-$port = env('DB_PORT', '3306');               
-$dbname = env('DB_NAME', 'GearX');            
-$username = env('DB_USER', 'root');           
-$password = env('DB_PASS', '');
+$host = env('DB_HOST');
+$port = env('DB_PORT');               
+$dbname = env('DB_NAME');            
+$username = env('DB_USER');           
+$password = env('DB_PASS');
 
 try {
     $conn = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8", $username, $password);

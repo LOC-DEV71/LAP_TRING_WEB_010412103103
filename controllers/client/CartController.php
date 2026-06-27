@@ -1,12 +1,43 @@
 <?php
 namespace Controllers\Client;
 
+use Models\ProductVariant;
+use Models\Product;
 use Core\Controller;
 
 class CartController {
     
     public function index() {
+        $cartData = [];
+        $totalPrice = 0;
 
+        //check item in cart
+        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            $variantModel = new ProductVariant();
+            $productModel = new Product();
+
+            foreach ($_SESSION['cart'] as $variantId => $quantity) {
+                $variant = $variantModel->getById($variantId);
+                if ($variant) {
+                    $product = $productModel->getById($variant['product_id']);
+                    if ($product) {
+                        $subtotal = $product['price'] * $quantity;
+                        $totalPrice += $subtotal;
+
+                        $cartData[] = [
+                            'variant_id' => $variantId,
+                            'title' => $product['title'],
+                            'color' => $variant['color'],
+                            'size' => $variant['size'],
+                            'price' => $product['price'],
+                            'thumbnail' => $product['thumbnail'],
+                            'quantity' => $quantity,
+                            'subtotal' => $subtotal
+                        ];
+                    }
+                }
+            }
+        }
         // 1. Header 
         if (file_exists('views/layouts/client/header.php')) {
             require_once 'views/layouts/client/header.php';
@@ -51,5 +82,40 @@ class CartController {
         die("Lỗi: Dữ liệu sản phẩm không hợp lệ.");
     }
     
+    // Hàm xử lý Xóa 1 sản phẩm khỏi giỏ
+    public function remove($variantId = null) {
+        // Kiểm tra xem mã sản phẩm có được gửi lên và có tồn tại trong giỏ không
+        if ($variantId && isset($_SESSION['cart'][$variantId])) {
+            // Rút sản phẩm đó khỏi bộ nhớ Session
+            unset($_SESSION['cart'][$variantId]);
+        }
+        
+        // Xóa xong thì điều hướng quay lại đúng trang Giỏ hàng
+        header('Location: /cart');
+        exit;
+    }
+
+    // Hàm xử lý Tăng số lượng
+    public function increase($variantId = null) {
+        if ($variantId && isset($_SESSION['cart'][$variantId])) {
+            $_SESSION['cart'][$variantId]++; // Cộng thêm 1
+        }
+        header('Location: /cart');
+        exit;
+    }
+
+    // Hàm xử lý Giảm số lượng
+    public function decrease($variantId = null) {
+        if ($variantId && isset($_SESSION['cart'][$variantId])) {
+            if ($_SESSION['cart'][$variantId] > 1) {
+                $_SESSION['cart'][$variantId]--; // Trừ đi 1
+            } else {
+                // Nếu số lượng đang là 1 mà khách bấm nút trừ, thì xóa luôn món đó
+                unset($_SESSION['cart'][$variantId]);
+            }
+        }
+        header('Location: /cart');
+        exit;
+    }
 }
 ?>

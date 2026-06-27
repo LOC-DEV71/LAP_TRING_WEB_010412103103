@@ -43,27 +43,20 @@ class AuthController extends Controller
                     header('Location: ' . url('admin/dashboard'));
                     exit;
                 } else {
-                    // Đăng nhập thất bại, tăng số lần nhập sai lên 1
-                    $_SESSION['admin_login_attempts'] = ($_SESSION['admin_login_attempts'] ?? 0) + 1;
                     $errors['auth'] = "Tài khoản hoặc mật khẩu Quản trị viên không chính xác.";
                 }
-            } else {
-                // Nếu form có lỗi nhập liệu (như thiếu captcha khi đã kích hoạt)
-                $_SESSION['admin_login_attempts'] = ($_SESSION['admin_login_attempts'] ?? 0) + 1;
             }
 
             return $this->view('pages/admin/auth/login', [
                 'title' => 'Đăng Nhập Quản Trị Viên',
                 'errors' => $errors,
-                'old_email' => $email,
-                'show_captcha' => ($_SESSION['admin_login_attempts'] ?? 0) >= 3
+                'old_email' => $email
             ]);
         }
 
         $this->view('pages/admin/auth/login', [
             'title' => 'Đăng Nhập Quản Trị Viên',
-            'errors' => [],
-            'show_captcha' => ($_SESSION['admin_login_attempts'] ?? 0) >= 3
+            'errors' => []
         ]);
     }
 

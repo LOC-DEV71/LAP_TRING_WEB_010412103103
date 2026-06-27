@@ -18,14 +18,6 @@ class AuthValidate
             $errors['password'] = "Mật khẩu không được để trống.";
         }
 
-        // Xác thực CAPTCHA chống spam (chỉ khi đăng nhập sai từ 3 lần trở lên)
-        if (($_SESSION['login_attempts'] ?? 0) >= 3) {
-            if (empty($data['captcha'])) {
-                $errors['captcha'] = "Mã xác thực không được để trống.";
-            } elseif (empty($_SESSION['captcha']) || strtolower($data['captcha']) !== $_SESSION['captcha']) {
-                $errors['captcha'] = "Mã xác thực CAPTCHA không chính xác.";
-            }
-        }
 
         return $errors;
     }
@@ -51,12 +43,6 @@ class AuthValidate
             $errors['password'] = "Mật khẩu phải từ 8-16 ký tự, có 1 chữ hoa và 1 ký tự đặc biệt (@#$%^&*).";
         }
 
-        // Xác thực CAPTCHA chống spam cho đăng ký
-        if (empty($data['captcha'])) {
-            $errors['captcha'] = "Mã xác thực không được để trống.";
-        } elseif (empty($_SESSION['captcha']) || strtolower($data['captcha']) !== $_SESSION['captcha']) {
-            $errors['captcha'] = "Mã xác thực CAPTCHA không chính xác.";
-        }
 
         return $errors;
     }
