@@ -89,10 +89,6 @@ if (!empty($token)) {
                                 <strong><?= htmlspecialchars($clientUser['fullname'] ?? 'Khách') ?></strong>
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a href="<?= url('user/profile') ?>" class="dropdown-item">
-                                <span class="material-symbols-outlined">account_circle</span>
-                                Trang cá nhân
-                            </a>
                             <a href="<?= url('auth/logout') ?>" class="dropdown-item logout">
                                 <span class="material-symbols-outlined">logout</span>
                                 Đăng xuất
