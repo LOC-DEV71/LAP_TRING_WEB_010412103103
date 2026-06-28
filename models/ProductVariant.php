@@ -27,4 +27,19 @@ class ProductVariant extends Model
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    // Lấy danh sách màu và size duy nhất của nhiều sản phẩm cùng lúc
+    public function getColorsAndSizesByProductIds($productIds)
+    {
+        if (empty($productIds)) return [];
+        $placeholders = implode(',', array_fill(0, count($productIds), '?'));
+        $sql = "SELECT product_id, GROUP_CONCAT(DISTINCT color) as colors, GROUP_CONCAT(DISTINCT size) as sizes 
+                FROM {$this->table} 
+                WHERE product_id IN ($placeholders) 
+                GROUP BY product_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($productIds);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
+

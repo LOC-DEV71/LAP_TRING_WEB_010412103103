@@ -28,6 +28,24 @@ class ProductsController extends Controller
             $products = $productModel->getAllActive();
         }
 
+        // Lấy danh sách biến thể màu/size cho từng sản phẩm
+        if (!empty($products)) {
+            $productIds = array_column($products, '_id');
+            $variantModel = new \Models\ProductVariant();
+            $variantsData = $variantModel->getColorsAndSizesByProductIds($productIds);
+            
+            // Map lại vào mảng products
+            $variantsMap = [];
+            foreach ($variantsData as $vd) {
+                $variantsMap[$vd['product_id']] = $vd;
+            }
+            
+            foreach ($products as &$product) {
+                $product['colors'] = $variantsMap[$product['_id']]['colors'] ?? '';
+                $product['sizes'] = $variantsMap[$product['_id']]['sizes'] ?? '';
+            }
+        }
+
         $categoryName = $categoryInfo ? mb_convert_case($categoryInfo['title'], MB_CASE_TITLE, 'UTF-8') : 'Tất cả sản phẩm';
         $bannerTitle = $categoryInfo ? mb_convert_case($categoryInfo['title'], MB_CASE_UPPER, 'UTF-8') : 'THỜI TRANG';
 
@@ -49,13 +67,46 @@ class ProductsController extends Controller
             }
         }
 
-        $this->view('pages/client/products/index', [
+        $this->view('client/pages/products/index', [
             'title' => $categoryName . ' - FASHION',
             'products' => $products,
             'categoryName' => $categoryName,
             'bannerTitle' => $bannerTitle,
             'bannerDesc' => 'Khám phá các thiết kế mới nhất',
             'likedProducts' => $likedProducts
+        ]);
+    }
+
+    // Chi tiết sản phẩm
+    public function detail($id = null)
+    {
+        if (!$id) {
+            header('Location: ' . url('products'));
+            exit;
+        }
+
+        $productModel = new Product();
+        $product = $productModel->getById($id);
+
+        if (!$product) {
+            $_SESSION['error'] = "Sản phẩm không tồn tại.";
+            header('Location: ' . url('products'));
+            exit;
+        }
+
+        // Lấy danh sách biến thể của sản phẩm
+        $variantModel = new \Models\ProductVariant();
+        $variants = $variantModel->getByProductId($product['_id']);
+
+        // Lấy danh sách ảnh phụ của sản phẩm
+        $imageModel = new \Models\ProductImage();
+        $productImages = $imageModel->getByProductId($product['_id']);
+
+        $this->view('client/pages/products/detail', [
+            'title' => $product['title'] . ' - FASHION',
+            'product' => $product,
+            'variants' => $variants,
+            'productImages' => $productImages
         ]);
     }
 

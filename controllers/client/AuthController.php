@@ -47,7 +47,7 @@ class AuthController extends Controller
                 }
             }
 
-            return $this->view('pages/client/auth/login', [
+            return $this->view('client/pages/auth/login', [
                 'title' => 'Đăng Nhập Khách Hàng',
                 'errors' => $errors,
                 'old_login_key' => $loginKey,
@@ -60,7 +60,7 @@ class AuthController extends Controller
             $activeTab = 'login';
         }
 
-        $this->view('pages/client/auth/login', [
+        $this->view('client/pages/auth/login', [
             'title' => $activeTab === 'register' ? 'Đăng Ký Khách Hàng' : 'Đăng Nhập Khách Hàng',
             'errors' => [],
             'active_tab' => $activeTab
@@ -115,7 +115,7 @@ class AuthController extends Controller
                 }
             }
 
-            return $this->view('pages/client/auth/login', [
+            return $this->view('client/pages/auth/login', [
                 'title' => 'Đăng Ký Khách Hàng',
                 'errors' => $errors,
                 'old_email' => $email,
@@ -197,14 +197,14 @@ class AuthController extends Controller
                 }
             }
 
-            return $this->view('pages/client/auth/forgot_password', [
+            return $this->view('client/pages/auth/forgot_password', [
                 'title' => 'Quên Mật Khẩu',
                 'errors' => $errors,
                 'old_email' => $email
             ]);
         }
 
-        return $this->view('pages/client/auth/forgot_password', [
+        return $this->view('client/pages/auth/forgot_password', [
             'title' => 'Quên Mật Khẩu',
             'errors' => []
         ]);
@@ -224,7 +224,7 @@ class AuthController extends Controller
 
         if (!$user || strtotime($user['reset_token_expires']) < time()) {
             // Token không hợp lệ hoặc đã hết hạn
-            return $this->view('pages/client/auth/forgot_password', [
+            return $this->view('client/pages/auth/forgot_password', [
                 'title' => 'Quên Mật Khẩu',
                 'errors' => ['auth' => 'Đường dẫn khôi phục mật khẩu không hợp lệ hoặc đã hết hạn. Vui lòng gửi yêu cầu mới.']
             ]);
@@ -256,14 +256,14 @@ class AuthController extends Controller
                 }
             }
 
-            return $this->view('pages/client/auth/reset_password', [
+            return $this->view('client/pages/auth/reset_password', [
                 'title' => 'Đặt Lại Mật Khẩu',
                 'token' => $token,
                 'errors' => $errors
             ]);
         }
 
-        return $this->view('pages/client/auth/reset_password', [
+        return $this->view('client/pages/auth/reset_password', [
             'title' => 'Đặt Lại Mật Khẩu',
             'token' => $token,
             'errors' => []

@@ -49,7 +49,7 @@ class UserController extends Controller
         }
 
         // 5. Hiển thị trang cá nhân cùng với dữ liệu người dùng, đơn hàng và sản phẩm yêu thích
-        $this->view('pages/client/user/profile', [
+        $this->view('client/pages/user/profile', [
             'title' => 'Trang cá nhân - ' . $user['fullname'],
             'user' => $user,
             'orders' => $orders,

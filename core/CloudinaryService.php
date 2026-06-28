@@ -32,6 +32,8 @@ class CloudinaryService
      * @param string $folder Thư mục lưu trên Cloudinary (mặc định: 'gearx')
      * @return string|false URL an toàn của ảnh sau khi upload hoặc false nếu lỗi
      */
+
+    
     public static function upload($filePath, $folder = 'gearx')
     {
         self::init();

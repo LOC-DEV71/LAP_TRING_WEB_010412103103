@@ -35,8 +35,8 @@ class HomeController extends Controller
             }
         }
 
-        // Gọi view 'pages/client/home/index.php' và truyền dữ liệu ra
-        $this->view('pages/client/home/index', [
+        // Gọi view 'client/pages/home/index.php' và truyền dữ liệu ra
+        $this->view('client/pages/home/index', [
             'title' => 'Trang chủ - FASHION',
             'products' => $featuredProducts,
             'categories' => $categories,

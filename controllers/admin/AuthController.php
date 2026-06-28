@@ -49,14 +49,14 @@ class AuthController extends Controller
                 }
             }
 
-            return $this->view('pages/admin/auth/login', [
+            return $this->view('admin/pages/auth/login', [
                 'title' => 'Đăng Nhập Quản Trị Viên',
                 'errors' => $errors,
                 'old_email' => $email
             ]);
         }
 
-        $this->view('pages/admin/auth/login', [
+        $this->view('admin/pages/auth/login', [
             'title' => 'Đăng Nhập Quản Trị Viên',
             'errors' => []
         ]);

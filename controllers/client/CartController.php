@@ -39,16 +39,16 @@ class CartController {
             }
         }
         // 1. Header 
-        if (file_exists('views/layouts/client/header.php')) {
-            require_once 'views/layouts/client/header.php';
+        if (file_exists('views/client/layouts/header/header.php')) {
+            require_once 'views/client/layouts/header/header.php';
         }
 
         // 2. Nội dung chính của Giỏ hàng
-        require_once 'views/pages/client/cart.php';
+        require_once 'views/client/pages/cart.php';
 
         // 3. Footer 
-        if (file_exists('views/layouts/client/footer.php')) {
-            require_once 'views/layouts/client/footer.php';
+        if (file_exists('views/client/layouts/footer.php')) {
+            require_once 'views/client/layouts/footer.php';
         }
     }
 
@@ -58,8 +58,21 @@ class CartController {
             // Nhận dữ liệu payload từ form gửi lên
             $variantId = $_POST['product_variant_id'] ?? null;
             $quantity = (int)($_POST['quantity'] ?? 1);
+            $buyNow = $_POST['buy_now'] ?? null;
 
             if ($variantId && $quantity > 0) {
+                // Kiểm tra sự tồn tại và tồn kho của biến thể
+                $variantModel = new \Models\ProductVariant();
+                $variant = $variantModel->getById($variantId);
+
+                if (!$variant) {
+                    die("Lỗi: Biến thể sản phẩm không tồn tại trên hệ thống.");
+                }
+
+                if ((int)$variant['stock'] < $quantity) {
+                    die("Lỗi: Số lượng yêu cầu (" . $quantity . ") vượt quá số lượng tồn kho hiện tại (" . $variant['stock'] . ").");
+                }
+
                 // Khởi tạo mảng giỏ hàng nếu khách chưa có
                 if (!isset($_SESSION['cart'])) {
                     $_SESSION['cart'] = [];
@@ -67,15 +80,24 @@ class CartController {
 
                 // Kiểm tra xem sản phẩm đã tồn tại trong giỏ chưa
                 if (isset($_SESSION['cart'][$variantId])) {
-                    // Nếu có rồi thì cộng dồn số lượng
-                    $_SESSION['cart'][$variantId] += $quantity;
+                    // Cộng dồn số lượng và giới hạn theo tồn kho
+                    $newQty = $_SESSION['cart'][$variantId] + $quantity;
+                    if ($newQty > (int)$variant['stock']) {
+                        $_SESSION['cart'][$variantId] = (int)$variant['stock'];
+                    } else {
+                        $_SESSION['cart'][$variantId] = $newQty;
+                    }
                 } else {
                     // Nếu chưa có thì thêm mới
                     $_SESSION['cart'][$variantId] = $quantity;
                 }
 
-                // Chuyển hướng người dùng về trang giỏ hàng để xem thành quả
-                header('Location: /cart');
+                // Chuyển hướng người dùng
+                if ($buyNow) {
+                    header('Location: ' . url('cart')); // Sau này có trang checkout thì đổi thành url('checkout')
+                } else {
+                    header('Location: ' . url('cart'));
+                }
                 exit;
             }
         }
