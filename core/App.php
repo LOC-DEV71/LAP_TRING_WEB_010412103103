@@ -17,6 +17,7 @@ class App
         if (isset($url[0]) && strtolower($url[0]) === 'admin') {
             $folder = 'admin';
             $this->namespace = 'Controllers\\Admin\\';
+            $this->controller = 'DashboardController'; // Mặc định của Admin là Dashboard
             unset($url[0]);
             $url = array_values($url); // Reset index lại cho admin
         }
@@ -27,8 +28,8 @@ class App
             if (file_exists('controllers/' . $folder . '/' . $controllerName . '.php')) {
                 $this->controller = $controllerName;
             } else {
-                // Nếu URL sai thì về Home mặc định
-                $this->controller = 'HomeController';
+                // Nếu URL sai thì về mặc định tương ứng của phân vùng
+                $this->controller = ($folder === 'admin') ? 'DashboardController' : 'HomeController';
             }
             unset($url[0]);
         }

@@ -4,6 +4,17 @@ loadEnv(__DIR__ . '/../.env');
 require_once __DIR__ . '/../config/database.php';
 
 try {
+    /*
+    Tác dụng của file db_update.php này:
+
+    Kiểm tra bảng users:
+        - Xem trong bảng đã có 2 cột này chưa:
+            - is_verified (Trạng thái đã xác thực hay chưa).
+            - verification_token (Mã token ngẫu nhiên gửi qua email).
+    Cập nhật cấu trúc (nếu thiếu):
+        Nếu chưa có, nó tự động chạy lệnh ALTER TABLE để thêm 2 cột này vào bảng users.
+    */
+        
     // Check if is_verified and verification_token exist
     $stmt = $conn->query("SHOW COLUMNS FROM users");
     $columns = $stmt->fetchAll(PDO::FETCH_COLUMN);

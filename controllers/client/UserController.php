@@ -44,7 +44,7 @@ class UserController extends Controller
         
         $likedProducts = [];
         if (!empty($likedProductIds)) {
-            $productModel = new \Models\Product();
+            $productModel = new \Models\Product\Product();
             $likedProducts = $productModel->getByIds($likedProductIds);
         }
 

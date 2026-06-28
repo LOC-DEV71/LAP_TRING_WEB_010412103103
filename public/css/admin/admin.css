@@ -1,0 +1,835 @@
+/* Google Fonts & Reset */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Sáng (Light Mode - Mặc định) */
+    --bg-overlay: rgba(255, 255, 255, 0.02); /* Overlay màu sáng cho Light Mode */
+    --bg-image: url('../../assets/bg_img/nina-aFECycgqgLI-unsplash.jpg');
+    --panel-bg: rgba(255, 255, 255, 0.72);
+    --panel-border: rgba(255, 255, 255, 0.5);
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --input-bg: rgba(255, 255, 255, 0.5);
+    --table-hover: rgba(255, 255, 255, 0.4);
+    --sidebar-profile-bg: rgba(255, 255, 255, 0.5);
+    --logo-color: #111827;
+}
+
+body.dark-mode {
+    /* Tối (Dark Mode) */
+    --bg-overlay: rgba(15, 23, 42, 0.85); /* Overlay màu tối cho Dark Mode */
+    --bg-image: url('../../assets/bg_img/aiva-apsite-QoIWe6Hl-SA-unsplash.jpg'); /* Ảnh nền tối cho Dark Mode */
+    --panel-bg: rgba(30, 41, 59, 0.75);    /* Kính tối (Dark Glass) */
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --input-bg: rgba(15, 23, 42, 0.4);
+    --table-hover: rgba(255, 255, 255, 0.05);
+    --sidebar-profile-bg: rgba(15, 23, 42, 0.5);
+    --logo-color: #f8fafc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Hanken Grotesk', sans-serif;
+}
+
+body {
+    background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
+                      var(--bg-image);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    font-weight: 500;
+    transition: color 0.3s ease, background-image 0.3s ease;
+}
+
+/* Layout */
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar (Kính mờ cao cấp) */
+.admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--panel-bg);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border-right: 1px solid var(--panel-border);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.admin-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+.admin-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.sidebar-logo {
+    padding: 32px 24px;
+}
+
+.sidebar-logo h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--logo-color);
+    letter-spacing: -0.5px;
+    transition: color 0.3s ease;
+}
+
+.sidebar-logo p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 700;
+    margin-top: 2px;
+    transition: color 0.3s ease;
+}
+
+.sidebar-menu {
+    padding: 0 16px 30px 16px;
+}
+
+.menu-group {
+    margin-bottom: 24px;
+}
+
+.menu-title {
+    padding: 0 16px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    opacity: 0.9;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    margin-bottom: 2px;
+}
+
+.menu-item:hover {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    transform: translateX(4px);
+}
+
+.menu-item.active {
+    background-color: var(--text-primary);
+    color: var(--panel-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item .material-symbols-outlined {
+    font-size: 20px;
+}
+
+/* User Profile in Sidebar */
+.sidebar-profile {
+    margin-top: auto;
+    padding: 20px;
+    border-top: 1px solid var(--panel-border);
+    background: transparent;
+    position: sticky;
+    bottom: 0;
+    transition: border-color 0.3s ease;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.profile-info img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.profile-details p {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.profile-details span {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.btn-logout:hover {
+    color: #ba1a1a;
+}
+
+/* Main Content Area */
+.admin-main {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    min-height: 100vh;
+    padding: 40px 60px;
+}
+
+.main-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Header Row (Kính mờ cao cấp) */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(24px) saturate(130%);
+    -webkit-backdrop-filter: blur(24px) saturate(130%);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 24px 32px;
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.04);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.header-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #000;
+}
+
+.header-title p {
+    font-size: 15px;
+    color: #5d5f5f;
+    margin-top: 4px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background-color: var(--text-primary);
+    color: var(--panel-bg);
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--panel-border);
+}
+
+.btn-outline:hover {
+    background-color: var(--input-bg);
+}
+
+.btn-danger {
+    background-color: #ffe8e8;
+    color: #ba1a1a;
+}
+
+.btn-danger:hover {
+    background-color: #ffd2d2;
+}
+
+/* Icon-only Square Buttons */
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    min-width: 36px;
+}
+
+/* Cards (Kính mờ cao cấp) */
+.flat-card {
+    background: var(--panel-bg);
+    backdrop-filter: blur(24px) saturate(130%);
+    -webkit-backdrop-filter: blur(24px) saturate(130%);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 56px; /* Tăng khoảng cách để đẩy bảng phía dưới xuống, tạo không gian thoáng đãng */
+}
+
+.stat-card {
+    background: var(--panel-bg);
+    backdrop-filter: blur(24px) saturate(130%);
+    -webkit-backdrop-filter: blur(24px) saturate(130%);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    height: 180px; /* Chiều cao cố định giúp 3 thẻ luôn bằng nhau tăm tắp */
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.06);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.stat-card.border-alert {
+    border-left: 1px solid #ba1a1a !important;
+}
+
+.stat-card.border-alert:hover {
+    border-color: rgba(186, 26, 26, 0.4) !important;
+    box-shadow: 0px 12px 40px rgba(186, 26, 26, 0.12);
+}
+
+.stat-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.stat-value-wrapper {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+    max-width: 180px;
+    word-break: break-word;
+}
+
+.meta-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 10px;
+    background-color: var(--input-bg);
+    border-radius: 6px;
+    color: var(--text-primary);
+    border: 1px solid var(--panel-border);
+}
+
+.meta-tag.danger {
+    background-color: #ffdad6;
+    color: #93000a;
+    border-color: rgba(255, 218, 214, 0.5);
+}
+
+.stat-icon-wrapper {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--input-bg);
+    border: 1px solid var(--panel-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+    color: var(--text-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-icon-wrapper span {
+    font-size: 26px;
+}
+
+.stat-card:hover .stat-icon-wrapper {
+    transform: scale(1.1) rotate(6deg);
+    background: var(--text-primary);
+    color: var(--panel-bg);
+}
+
+.stat-icon-wrapper.danger {
+    background: #ffdad6;
+    color: #ba1a1a;
+    border-color: rgba(255, 218, 214, 0.5);
+}
+
+.stat-card.border-alert:hover .stat-icon-wrapper.danger {
+    background: #ba1a1a;
+    color: #fff;
+}bols-outlined {
+    color: #ba1a1a;
+}
+
+/* Tables */
+.card-header {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--panel-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h4 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.card-header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.admin-table th {
+    background-color: var(--input-bg);
+    padding: 16px 32px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--panel-border);
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: 20px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--panel-border);
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+/* Cột tự động co giãn tối đa */
+.admin-table th.col-expand,
+.admin-table td.col-expand {
+    width: 100%;
+    white-space: normal !important;
+    min-width: 250px;
+}
+
+.admin-table tr:hover td {
+    background-color: var(--table-hover);
+}
+
+.product-cell {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.product-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--input-bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--panel-border);
+    flex-shrink: 0;
+}
+
+.product-name {
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--text-primary);
+    white-space: normal; /* Cho phép tên sản phẩm xuống dòng khi thu nhỏ */
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 9999px;
+}
+
+.badge-success {
+    background-color: var(--text-primary);
+    color: var(--panel-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.badge-secondary {
+    background-color: var(--input-bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--panel-border);
+}
+
+.badge-danger {
+    background-color: #ffdad6;
+    color: #93000a;
+    border: 1px solid rgba(255, 218, 214, 0.5);
+}
+
+/* Pagination */
+.card-footer {
+    padding: 20px 32px;
+    border-top: 1px solid var(--panel-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-info {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.pagination {
+    display: flex;
+    gap: 6px;
+}
+
+.page-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid var(--panel-border);
+    background: var(--input-bg);
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-primary);
+}
+
+.page-btn:hover:not(:disabled) {
+    background-color: var(--panel-bg);
+}
+
+.page-btn.active {
+    background-color: var(--text-primary);
+    color: var(--panel-bg);
+    border-color: var(--text-primary);
+}
+
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Forms & Modals */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    backdrop-filter: blur(4px);
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    background-color: var(--panel-bg);
+    border-color: var(--text-primary);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Modal (Kính mờ cao cấp) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-container {
+    background-color: var(--panel-bg) !important;
+    backdrop-filter: blur(30px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(140%) !important;
+    border: 1px solid var(--panel-border) !important;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.modal-overlay.open .modal-container {
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--panel-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.btn-close-modal {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--panel-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    background-color: var(--input-bg);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .admin-sidebar {
+        width: 80px;
+    }
+    .sidebar-logo h1, .sidebar-logo p, .menu-title, .menu-item span:not(.material-symbols-outlined), .sidebar-profile .profile-details, .btn-logout span {
+        display: none;
+    }
+    .admin-main {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+        padding: 30px;
+    }
+    .menu-item {
+        justify-content: center;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .header-actions {
+        width: 100%;
+    }
+    .header-actions .btn {
+        flex: 1;
+    }
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.toast {
+    background: #000;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateX(120%);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast-success {
+    background: #000;
+    border-left: 4px solid #fff;
+}
+
+.toast-error {
+    background: #ba1a1a;
+    color: #fff;
+}
+
+/* Validation Error Red Glow */
+.form-control.is-invalid {
+    border-color: #ba1a1a !important;
+    box-shadow: 0 0 0 3px rgba(186, 26, 26, 0.2) !important;
+}
+
+

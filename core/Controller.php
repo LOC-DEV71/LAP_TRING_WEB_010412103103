@@ -1,7 +1,7 @@
 <?php
 namespace Core;
 
-use Models\ProductCategory;
+use Models\Product\ProductCategory;
 
 class Controller
 {

@@ -30,9 +30,9 @@ logs/
 *.sqlite
 .env
 
+/scratch/
+composer-setup.php
 
 # Ready for import code to project
 /_ready_for_project/
 /_Stitch_Google/
-
-composer-setup.php

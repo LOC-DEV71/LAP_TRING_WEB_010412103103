@@ -1,8 +1,8 @@
 <?php
 namespace Controllers\Client;
 
-use Models\ProductVariant;
-use Models\Product;
+use Models\Product\ProductVariant;
+use Models\Product\Product;
 use Core\Controller;
 
 class CartController {
@@ -62,7 +62,7 @@ class CartController {
 
             if ($variantId && $quantity > 0) {
                 // Kiểm tra sự tồn tại và tồn kho của biến thể
-                $variantModel = new \Models\ProductVariant();
+                $variantModel = new ProductVariant();
                 $variant = $variantModel->getById($variantId);
 
                 if (!$variant) {
@@ -157,7 +157,7 @@ class CartController {
                 }
 
                 // Fallback: Lấy variant đầu tiên của sản phẩm
-                $variantModel = new \Models\ProductVariant();
+                $variantModel = new ProductVariant();
                 $variants = $variantModel->getByProductId($productId);
 
                 if (empty($variants)) {

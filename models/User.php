@@ -139,5 +139,38 @@ class User extends Model
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
-}
 
+    // Lấy toàn bộ danh sách khách hàng hoạt động cho Admin
+    public function getAllAdmin()
+    {
+        try {
+            $sql = "SELECT * FROM {$this->table} WHERE deleted = FALSE ORDER BY fullname ASC";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            error_log("Lỗi lấy danh sách khách hàng Admin: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    // Tắt/Mở xác thực khách hàng (Kích hoạt/Vô hiệu hóa nhanh)
+    public function toggleVerification($id, $status)
+    {
+        $sql = "UPDATE {$this->table} SET is_verified = :status WHERE _id = :id AND deleted = FALSE";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            ':id' => $id,
+            ':status' => (int)$status
+        ]);
+    }
+
+    // Xóa mềm tài khoản khách hàng
+    public function deleteUser($id)
+    {
+        $sql = "UPDATE {$this->table} SET deleted = TRUE WHERE _id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+}

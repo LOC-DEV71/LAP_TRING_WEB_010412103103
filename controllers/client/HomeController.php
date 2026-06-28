@@ -2,8 +2,8 @@
 namespace Controllers\Client;
 
 use Core\Controller;
-use Models\Product;
-use Models\ProductCategory;
+use Models\Product\Product;
+use Models\Product\ProductCategory;
 
 class HomeController extends Controller
 {

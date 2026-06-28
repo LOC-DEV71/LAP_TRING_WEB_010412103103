@@ -18,5 +18,9 @@ class Model
         }
     }
 
-    // Một số hàm tiện ích chung có thể thêm ở đây
+    // Lấy kết nối cơ sở dữ liệu PDO
+    public function getDbConnection()
+    {
+        return $this->db;
+    }
 }

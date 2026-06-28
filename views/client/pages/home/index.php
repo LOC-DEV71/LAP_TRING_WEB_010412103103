@@ -1,4 +1,7 @@
-<?php require_once __DIR__ . '/../../layouts/header/header.php'; ?>
+<?php 
+$extra_css = [asset('css/client/Home/home.css')];
+require_once __DIR__ . '/../../layouts/header/header.php'; 
+?>
     <!--hero-->
     <section class="hero">
         <div class="hero-left">
@@ -128,11 +131,13 @@
         </div>
 
     </section>
+
+    <!-- Form testing -->
     <div style="max-width: 1200px; margin: 40px auto; padding: 30px; border: 2px dashed #d70018; background-color: #fff; border-radius: 8px;">
         <h3 style="color: #d70018; margin-bottom: 15px;">🛠 KHU VỰC TEST LOGIC GIỎ HÀNG</h3>
         <p style="margin-bottom: 20px; color: #666;">Form này giả lập việc khách hàng bấm Mua sản phẩm từ trang Chi tiết.</p>
         
-        <form action="/cart/add" method="POST" style="display: flex; gap: 20px; align-items: center;">
+        <form action="<?= url('cart/add') ?>" method="POST" style="display: flex; gap: 20px; align-items: center;">
             <input type="hidden" name="product_variant_id" value="var_001">
             
             <div>
@@ -146,73 +151,13 @@
         </form>
     </div>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const wishlistButtons = document.querySelectorAll('.wishlist');
-    wishlistButtons.forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            const productId = btn.getAttribute('data-id');
-            const icon = btn.querySelector('.material-symbols-outlined');
-
-            try {
-                const apiUrl = '<?= url("products/toggleLike") ?>';
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ product_id: productId })
-                });
-
-                if (response.status === 401) {
-                    if (typeof showToast === 'function') showToast("Vui lòng đăng nhập để yêu thích sản phẩm.", 'error');
-                    setTimeout(() => { window.location.href = '<?= url("auth/login") ?>'; }, 1500);
-                    return;
-                }
-
-                const textResponse = await response.text();
-                let result;
-                try {
-                    result = JSON.parse(textResponse);
-                } catch (e) {
-                    console.error("Non-JSON response:", textResponse);
-                    if (typeof showToast === 'function') showToast("Vui lòng đăng nhập để thao tác.", 'error');
-                    setTimeout(() => { window.location.href = '<?= url("auth/login") ?>'; }, 1500);
-                    return;
-                }
-
-                if (result.success) {
-                    if (result.liked) {
-                        btn.classList.add('liked');
-                        icon.style.fontVariationSettings = "'FILL' 1";
-                    } else {
-                        btn.classList.remove('liked');
-                        icon.style.fontVariationSettings = "'FILL' 0";
-                    }
-                    if (typeof showToast === 'function') showToast(result.message, 'success');
-                } else {
-                    if (typeof showToast === 'function') showToast(result.message || "Đã có lỗi xảy ra", 'error');
-                }
-            } catch (err) {
-                console.error('Error toggling like:', err);
-                if (typeof showToast === 'function') showToast("Vui lòng đăng nhập để yêu thích sản phẩm.", 'error');
-                setTimeout(() => { window.location.href = '<?= url("auth/login") ?>'; }, 1500);
-            }
-        });
-    });
-
-    // Add to cart API Integration -> Now opens Modal
-    const addToCartButtons = document.querySelectorAll('.btn-add-cart');
-    addToCartButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const productId = btn.getAttribute('data-id');
-            if (typeof window.openCartModal === 'function') {
-                window.openCartModal(productId);
-            }
-        });
-    });
-
-});
+    // Định nghĩa các đường dẫn động từ PHP sang JS
+    const APP_CONFIG = {
+        toggleLikeUrl: '<?= url("products/toggleLike") ?>',
+        loginUrl: '<?= url("auth/login") ?>'
+    };
 </script>
+<script src="<?= asset('js/client/Home/home.js') ?>"></script>
 
 <?php require_once __DIR__ . '/../../layouts/cart_modal.php'; ?>
 

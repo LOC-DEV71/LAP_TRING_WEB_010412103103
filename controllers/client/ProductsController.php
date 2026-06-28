@@ -3,8 +3,10 @@ namespace Controllers\Client;
 
 use Core\Controller;
 use Core\JwtUtils;
-use Models\Product;
-use Models\ProductCategory;
+use Models\Product\Product;
+use Models\Product\ProductCategory;
+use Models\Product\ProductVariant;
+use Models\Product\ProductImage;
 use Models\Like;
 
 class ProductsController extends Controller
@@ -31,7 +33,7 @@ class ProductsController extends Controller
         // Lấy danh sách biến thể màu/size cho từng sản phẩm
         if (!empty($products)) {
             $productIds = array_column($products, '_id');
-            $variantModel = new \Models\ProductVariant();
+            $variantModel = new ProductVariant();
             $variantsData = $variantModel->getColorsAndSizesByProductIds($productIds);
             
             // Map lại vào mảng products
@@ -95,11 +97,11 @@ class ProductsController extends Controller
         }
 
         // Lấy danh sách biến thể của sản phẩm
-        $variantModel = new \Models\ProductVariant();
+        $variantModel = new ProductVariant();
         $variants = $variantModel->getByProductId($product['_id']);
 
         // Lấy danh sách ảnh phụ của sản phẩm
-        $imageModel = new \Models\ProductImage();
+        $imageModel = new ProductImage();
         $productImages = $imageModel->getByProductId($product['_id']);
 
         $this->view('client/pages/products/detail', [
@@ -200,7 +202,7 @@ class ProductsController extends Controller
             exit;
         }
 
-        $variantModel = new \Models\ProductVariant();
+        $variantModel = new ProductVariant();
         $variants = $variantModel->getByProductId($productId);
 
         echo json_encode([

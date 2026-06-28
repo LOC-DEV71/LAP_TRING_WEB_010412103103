@@ -83,4 +83,49 @@ class Order extends Model
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+
+    // Lấy tổng doanh thu thực tế (loại bỏ các đơn đã hủy)
+    public function getTotalSales()
+    {
+        try {
+            $sql = "SELECT SUM(total_price) FROM {$this->table} WHERE status != 'cancelled'";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            return (float)$stmt->fetchColumn();
+        } catch (\Exception $e) {
+            error_log("Lỗi tính doanh thu: " . $e->getMessage());
+            return 0.0;
+        }
+    }
+
+    // Lấy tổng số lượng đơn hàng (không tính đơn hủy nếu cần, ở đây đếm tất cả đơn hiện tại)
+    public function getTotalCount()
+    {
+        try {
+            $sql = "SELECT COUNT(*) FROM {$this->table}";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            return (int)$stmt->fetchColumn();
+        } catch (\Exception $e) {
+            error_log("Lỗi đếm tổng đơn hàng: " . $e->getMessage());
+            return 0;
+        }
+    }
+
+    // Lấy toàn bộ đơn hàng kèm thông tin khách hàng cho trang Admin
+    public function getAllAdmin()
+    {
+        try {
+            $sql = "SELECT o.*, u.fullname as customer_name, u.email as customer_email 
+                    FROM {$this->table} o 
+                    LEFT JOIN users u ON o.user_id = u._id 
+                    ORDER BY o.createdAt DESC";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            error_log("Lỗi lấy toàn bộ đơn hàng Admin: " . $e->getMessage());
+            return [];
+        }
+    }
 }
