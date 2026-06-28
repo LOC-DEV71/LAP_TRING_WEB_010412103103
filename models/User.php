@@ -110,4 +110,34 @@ class User extends Model
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+
+    // Cập nhật token xác thực tài khoản
+    public function updateVerificationToken($id, $token)
+    {
+        $sql = "UPDATE {$this->table} SET verification_token = :token WHERE _id = :id AND deleted = FALSE";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':token', $token);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
+    // Lấy thông tin tài khoản qua token xác thực
+    public function getByVerificationToken($token)
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE verification_token = :token AND deleted = FALSE";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':token', $token);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Xác thực tài khoản thành công
+    public function verifyUser($id)
+    {
+        $sql = "UPDATE {$this->table} SET is_verified = 1, verification_token = NULL WHERE _id = :id AND deleted = FALSE";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
 }
+

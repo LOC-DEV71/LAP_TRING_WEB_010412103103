@@ -13,9 +13,9 @@ class CloudinaryService
         if (!self::$initialized) {
             Configuration::instance([
                 'cloud' => [
-                    'cloud_name' => env('CLOUD_NAME', ''), 
-                    'api_key'    => env('CLOUD_KEY', ''), 
-                    'api_secret' => env('CLOUD_SECRET', '')
+                    'cloud_name' => env('CLOUD_NAME'), 
+                    'api_key'    => env('CLOUD_KEY'), 
+                    'api_secret' => env('CLOUD_SECRET')
                 ],
                 'url' => [
                     'secure' => true

@@ -77,10 +77,10 @@ $product = [
                 <h4>Màu sắc</h4>
 
                 <div class="colors">
-                    <span class="color black"></span>
-                    <span class="color white"></span>
-                    <span class="color beige"></span>
-                    <span class="color blue"></span>
+                    <span class="color black" data-color="black"></span>
+                    <span class="color white" data-color="white"></span>
+                    <span class="color beige" data-color="beige"></span>
+                    <span class="color blue" data-color="blue"></span>
                 </div>
             </div>
 
@@ -89,10 +89,10 @@ $product = [
                 <h4>Kích thước</h4>
 
                 <div class="sizes">
-                    <button type="button">S</button>
-                    <button type="button" class="active">M</button>
-                    <button type="button">L</button>
-                    <button type="button">XL</button>
+                    <button type="button" data-size="S">S</button>
+                    <button type="button" class="active" data-size="M">M</button>
+                    <button type="button" data-size="L">L</button>
+                    <button type="button" data-size="XL">XL</button>
                 </div>
             </div>
 
@@ -179,11 +179,24 @@ $product = [
         </div>
 
         <div class="tabs-content">
-            <p>
-                <?= $product['description'] ?>
-            </p>
+            <div class="tab-panel active">
+                <p>
+                    <?= $product['description'] ?>
+                </p>
+            </div>
+            <div class="tab-panel">
+                <p>Chi tiết thông số sản phẩm đang được cập nhật...</p>
+            </div>
+            <div class="tab-panel">
+                <p>Giặt máy nhẹ nhàng ở nhiệt độ thường. Không sử dụng hóa chất tẩy có chứa clo.</p>
+            </div>
+            <div class="tab-panel">
+                <p>Chưa có đánh giá nào cho sản phẩm này.</p>
+            </div>
         </div>
 
     </section>
 
 </div>
+
+<script src="/LAP_TRING_WEB_010412103103/public/js/client/Products/detail.js"></script>

@@ -12,16 +12,34 @@
     <!-- Main Container -->
     <main class="main-content">
 
+        <!-- Thông báo từ Session -->
+        <?php if (isset($_SESSION['profile_success'])): ?>
+            <div class="alert alert-success" style="background-color: rgba(76, 175, 80, 0.15); border: 1px solid #4caf50; color: #a3e635; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-weight: 500;">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span><?= htmlspecialchars($_SESSION['profile_success']) ?></span>
+            </div>
+            <?php unset($_SESSION['profile_success']); ?>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['profile_error'])): ?>
+            <div class="alert alert-danger" style="background-color: rgba(244, 67, 54, 0.15); border: 1px solid #f44336; color: #ef4444; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-weight: 500;">
+                <span class="material-symbols-outlined">error</span>
+                <span><?= htmlspecialchars($_SESSION['profile_error']) ?></span>
+            </div>
+            <?php unset($_SESSION['profile_error']); ?>
+        <?php endif; ?>
+
         <!-- Profile Header -->
         <section class="glass-panel profile-header-section">
             <div class="avatar-wrapper">
                 <div class="avatar-circle">
                     <span class="material-symbols-outlined">person</span>
                 </div>
-                <div class="badge-verified">
-                    <span class="material-symbols-outlined">verified</span>
-                </div>
-                <!-- Thêm tính năng xác thực của php mail -->
+                <?php if (!empty($user['is_verified'])): ?>
+                    <div class="badge-verified" title="Tài khoản đã xác thực">
+                        <span class="material-symbols-outlined">verified</span>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="profile-info">
                 <h1 class="profile-fullname">
@@ -30,12 +48,24 @@
                         <span class="material-symbols-outlined">edit</span>
                     </button>
                 </h1>
-                <div class="badge-container">
+                <div class="badge-container" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                     <span class="badge-membership">
                         <span class="material-symbols-outlined">workspace_premium</span>
                         Thành viên Bạc
+                        <!-- Thêm tính năng Rank của người dùng -->
                     </span>
 
+                    <?php if (empty($user['is_verified'])): ?>
+                        <a href="<?= url('user/sendVerification') ?>" class="btn-verify-email" style="display: inline-flex; align-items: center; gap: 6px; background-color: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 1px solid rgba(245, 158, 11, 0.5); box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);" onmouseover="this.style.backgroundColor='#d97706'" onmouseout="this.style.backgroundColor='#f59e0b'">
+                            <span class="material-symbols-outlined" style="font-size: 1.1rem;">mail</span>
+                            Xác thực thông tin
+                        </a>
+                    <?php else: ?>
+                        <span class="badge-verified-text" style="display: inline-flex; align-items: center; gap: 6px; background-color: #10b981; color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.5); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);">
+                            <span class="material-symbols-outlined" style="font-size: 1.1rem;">verified</span>
+                            Đã xác thực
+                        </span>
+                    <?php endif; ?>
                 </div>
                 <div class="profile-details-grid">
                     <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?></p>
@@ -44,6 +74,7 @@
                 </div>
             </div>
         </section>
+
 
         <!-- Dashboard Thống kê -->
         <section class="dashboard-stats">

@@ -110,9 +110,109 @@ class UserController extends Controller
         exit;
     }
 
+    // Gửi email xác thực tài khoản
+    public function sendVerification()
+    {
+        // 1. Kiểm tra JWT Token
+        $token = $_COOKIE['jwt_token'] ?? '';
+        $payload = null;
+        if (!empty($token)) {
+            $payload = JwtUtils::decode($token);
+        }
+
+        if (!$payload) {
+            $_SESSION['login_error'] = "Vui lòng đăng nhập.";
+            header('Location: ' . url('auth/login'));
+            exit;
+        }
+
+        $userModel = new User();
+        $user = $userModel->getById($payload['user_id']);
+
+        if (!$user) {
+            $_SESSION['profile_error'] = "Tài khoản không tồn tại.";
+            header('Location: ' . url('user/profile'));
+            exit;
+        }
+
+        if ($user['is_verified']) {
+            $_SESSION['profile_success'] = "Tài khoản của bạn đã được xác thực trước đó.";
+            header('Location: ' . url('user/profile'));
+            exit;
+        }
+
+        // Tạo token xác thực ngẫu nhiên
+        $verificationToken = bin2hex(random_bytes(32));
+        $userModel->updateVerificationToken($user['_id'], $verificationToken);
+
+        // Chuẩn bị nội dung email
+        $domain = $_SERVER['HTTP_HOST'];
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        
+        // Tạo link xác thực đầy đủ bao gồm base path
+        $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
+        $baseDir = str_replace('\\', '/', dirname($scriptName));
+        $baseDir = rtrim($baseDir, '/');
+        $verifyLink = $protocol . $domain . $baseDir . "/user/verify?token=" . $verificationToken;
+
+        $subject = "Xác thực tài khoản của bạn - Fashion Store";
+        $body = "
+            <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;'>
+                <h2 style='color: #333; text-align: center;'>Xác Thực Tài Khoản</h2>
+                <p>Xin chào <strong>" . htmlspecialchars($user['fullname']) . "</strong>,</p>
+                <p>Cảm ơn bạn đã đăng ký tài khoản tại cửa hàng của chúng tôi. Vui lòng bấm vào nút bên dưới để xác thực địa chỉ email của bạn:</p>
+                <div style='text-align: center; margin: 30px 0;'>
+                    <a href='{$verifyLink}' style='background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>Xác Thực Ngay</a>
+                </div>
+                <p style='color: #777; font-size: 12px;'>Nếu nút trên không hoạt động, bạn có thể sao chép và dán liên kết sau vào trình duyệt:</p>
+                <p style='color: #007bff; font-size: 12px; word-break: break-all;'>{$verifyLink}</p>
+                <hr style='border: 0; border-top: 1px solid #eee; margin: 20px 0;'>
+                <p style='color: #999; font-size: 12px; text-align: center;'>Đây là email tự động, vui lòng không phản hồi email này.</p>
+            </div>
+        ";
+
+        if (\Core\Email::send($user['email'], $subject, $body)) {
+            $_SESSION['profile_success'] = "Đã gửi email xác thực đến địa chỉ " . htmlspecialchars($user['email']) . ". Vui lòng kiểm tra hộp thư của bạn!";
+        } else {
+            $_SESSION['profile_error'] = "Không thể gửi email xác thực. Vui lòng thử lại sau.";
+        }
+
+        header('Location: ' . url('user/profile'));
+        exit;
+    }
+
+    // Xử lý xác thực tài khoản khi click vào link
+    public function verify()
+    {
+        $token = $_GET['token'] ?? '';
+
+        if (empty($token)) {
+            $_SESSION['profile_error'] = "Liên kết xác thực không hợp lệ.";
+            header('Location: ' . url('user/profile'));
+            exit;
+        }
+
+        $userModel = new User();
+        $user = $userModel->getByVerificationToken($token);
+
+        if (!$user) {
+            $_SESSION['profile_error'] = "Liên kết xác thực không hợp lệ hoặc đã hết hạn.";
+            header('Location: ' . url('user/profile'));
+            exit;
+        }
+
+        // Đánh dấu tài khoản đã xác thực
+        $userModel->verifyUser($user['_id']);
+
+        $_SESSION['profile_success'] = "Tài khoản của bạn đã được xác thực thành công!";
+        header('Location: ' . url('user/profile'));
+        exit;
+    }
+
     // Mặc định chuyển hướng về trang cá nhân
     public function index()
     {
+
         $this->profile();
     }
 }
