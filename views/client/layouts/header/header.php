@@ -18,13 +18,13 @@ if (!empty($token)) {
     <link rel="stylesheet" href="<?= asset('css/client/layouts/header.css') ?>">
     <?php if (isset($extra_css) && is_array($extra_css)): ?>
         <?php foreach ($extra_css as $css): ?>
-            <link rel="stylesheet" href="<?= $css ?>">
+            <link rel="stylesheet" href="<?= $css ?>?v=<?= time() ?>">
         <?php endforeach; ?>
     <?php endif; ?>
-    <link rel="stylesheet" href="<?= asset('css/client/layouts/toast.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/client/layouts/toast.css') ?>?v=<?= time() ?>">
     <link rel="stylesheet" href="<?= asset('css/client/layouts/footer.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/client/modal.css') ?>">
-    <script src="<?= asset('js/client/layouts/toast.js') ?>"></script>
+    <script src="<?= asset('js/client/layouts/toast.js') ?>?v=<?= time() ?>"></script>
     <script src="<?= asset('js/client/layouts/header.js') ?>"></script>
 </head>
 <body>

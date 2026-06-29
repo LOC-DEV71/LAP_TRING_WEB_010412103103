@@ -16,20 +16,20 @@ if (!empty($variants)) {
 }
 ?>
 
-<link rel="stylesheet" href="<?= asset('css/client/Products/detail.css') ?>">
+<link rel="stylesheet" href="<?= asset('css/client/Products/product.css') ?>?v=<?= time() ?>">
 
 <div class="product-detail-container">
 
     <!-- Breadcrumb -->
     <div class="breadcrumb">
-        <a href="/">Trang chủ</a>
+        <a href="<?= url('') ?>">Trang chủ</a>
         <span>/</span>
-        <a href="/products">Sản phẩm</a>
+        <a href="<?= url('products') ?>">Sản phẩm</a>
         <span>/</span>
         <span><?= htmlspecialchars($product['title'] ?? '') ?></span>
     </div>
 
-    <section class="product-detail">
+    <section class="product-detail glass-panel">
 
         <!-- Gallery -->
         <div class="product-gallery">
@@ -65,14 +65,22 @@ if (!empty($variants)) {
                 <span>| Đã bán 532</span>
             </div>
 
-            <div class="price">
-                <?= number_format($product['price'] ?? 0, 0, ',', '.') ?>đ
-            </div>
-
-            <div class="price-extra">
-                <span class="old-price"><?= number_format(($product['price'] ?? 0) * 1.25, 0, ',', '.') ?>đ</span>
-                <span class="discount">-25%</span>
-            </div>
+            <?php if (!empty($product['price_sale']) && $product['price_sale'] > 0): ?>
+                <div class="price">
+                    <?= number_format($product['price_sale'], 0, ',', '.') ?>đ
+                </div>
+                <div class="price-extra">
+                    <span class="old-price"><?= number_format($product['price'], 0, ',', '.') ?>đ</span>
+                    <?php 
+                        $discountPercent = round((($product['price'] - $product['price_sale']) / $product['price']) * 100);
+                    ?>
+                    <span class="discount">-<?= $discountPercent ?>%</span>
+                </div>
+            <?php else: ?>
+                <div class="price">
+                    <?= number_format($product['price'] ?? 0, 0, ',', '.') ?>đ
+                </div>
+            <?php endif; ?>
 
             <p class="description">
                 <?= htmlspecialchars($product['description'] ?? 'Không có mô tả cho sản phẩm này.') ?>
@@ -139,24 +147,24 @@ if (!empty($variants)) {
 
             <!-- Features -->
             <div class="product-features">
-                <div class="feature">
-                    <img src="/LAP_TRING_WEB_010412103103/public/assets/images/truck.png" alt="">
+                <div class="feature glass-panel">
+                    <img src="<?= asset('assets/images/truck.png') ?>" alt="">
                     <span>
                         Miễn phí vận chuyển<br>
                         cho đơn từ 499.000đ
                     </span>
                 </div>
 
-                <div class="feature">
-                    <img src="/LAP_TRING_WEB_010412103103/public/assets/images/return.png" alt="">
+                <div class="feature glass-panel">
+                    <img src="<?= asset('assets/images/return.png') ?>" alt="">
                     <span>
                         Đổi trả dễ dàng<br>
                         trong 7 ngày
                     </span>
                 </div>
 
-                <div class="feature">
-                    <img src="/LAP_TRING_WEB_010412103103/public/assets/images/shield.png" alt="">
+                <div class="feature glass-panel">
+                    <img src="<?= asset('assets/images/shield.png') ?>" alt="">
                     <span>
                         Sản phẩm chính hãng<br>
                         100%
@@ -168,7 +176,7 @@ if (!empty($variants)) {
     </section>
 
     <!-- Tabs -->
-    <section class="product-tabs">
+    <section class="product-tabs glass-panel">
         <div class="tabs-header">
             <button class="active">MÔ TẢ SẢN PHẨM</button>
             <button>CHI TIẾT</button>

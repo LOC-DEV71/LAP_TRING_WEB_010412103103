@@ -85,6 +85,10 @@ function isMenuCategoryActive($path) {
                 <span class="material-symbols-outlined">menu</span>
                 <span>Navbar</span>
             </a>
+            <a class="menu-item <?= isMenuCategoryActive('admin/homepage') ? 'active' : '' ?>" href="<?= url('admin/homepage') ?>">
+                <span class="material-symbols-outlined">settings_suggest</span>
+                <span>Home Page</span>
+            </a>
         </div>
     </div>
     

@@ -29,7 +29,11 @@ class ProductsController extends AdminBaseController
         $this->view('admin/pages/products/index', [
             'title' => 'Quản lý Sản phẩm - GearX Admin',
             'adminUser' => $_SESSION['admin_user'] ?? [],
-            'products' => $products
+            'products' => $products,
+            'csv_import_title' => 'Nhập Sản Phẩm Bằng CSV',
+            'csv_import_action' => url('admin/products/importCsv'),
+            'csv_import_template_url' => asset('templates/product_import_template.csv'),
+            'csv_import_desc' => 'Chọn hoặc kéo thả tệp CSV chứa danh sách sản phẩm để nhập dữ liệu hàng loạt.'
         ]);
     }
 
@@ -51,6 +55,12 @@ class ProductsController extends AdminBaseController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = $_POST['name'] ?? '';
             $price = $_POST['price'] ?? 0;
+            $price_sale = $_POST['price_sale'] ?? null;
+            if ($price_sale === '') {
+                $price_sale = null;
+            } else {
+                $price_sale = (float)$price_sale;
+            }
             $categoryId = $_POST['category_id'] ?? '';
             $description = $_POST['description'] ?? '';
             $status = $_POST['status'] ?? 'active';
@@ -69,8 +79,8 @@ class ProductsController extends AdminBaseController
             // 2. Thêm vào bảng products
             $productId = 'prod_' . bin2hex(random_bytes(6));
             
-            $sqlProduct = "INSERT INTO products (_id, title, product_category_id, description, price, thumbnail, status, featured, deleted) 
-                           VALUES (:id, :title, :category_id, :description, :price, :thumbnail, :status, :featured, 0)";
+            $sqlProduct = "INSERT INTO products (_id, title, product_category_id, description, price, price_sale, thumbnail, status, featured, deleted) 
+                           VALUES (:id, :title, :category_id, :description, :price, :price_sale, :thumbnail, :status, :featured, 0)";
             
             $stmt = $this->productModel->getDbConnection()->prepare($sqlProduct);
             $success = $stmt->execute([
@@ -79,6 +89,7 @@ class ProductsController extends AdminBaseController
                 ':category_id' => $categoryId,
                 ':description' => $description,
                 ':price' => $price,
+                ':price_sale' => $price_sale,
                 ':thumbnail' => $thumbnailUrl,
                 ':status' => $status,
                 ':featured' => $featured
@@ -148,6 +159,12 @@ class ProductsController extends AdminBaseController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = $_POST['name'] ?? '';
             $price = $_POST['price'] ?? 0;
+            $price_sale = $_POST['price_sale'] ?? null;
+            if ($price_sale === '') {
+                $price_sale = null;
+            } else {
+                $price_sale = (float)$price_sale;
+            }
             $categoryId = $_POST['category_id'] ?? '';
             $description = $_POST['description'] ?? '';
             $status = $_POST['status'] ?? 'active';
@@ -174,7 +191,7 @@ class ProductsController extends AdminBaseController
 
             // Cập nhật bảng products
             $sqlProduct = "UPDATE products SET title = :title, product_category_id = :category_id, description = :description, 
-                           price = :price, thumbnail = :thumbnail, status = :status, featured = :featured WHERE _id = :id";
+                           price = :price, price_sale = :price_sale, thumbnail = :thumbnail, status = :status, featured = :featured WHERE _id = :id";
             $stmt = $this->productModel->getDbConnection()->prepare($sqlProduct);
             $updateSuccess = $stmt->execute([
                 ':id' => $id,
@@ -182,6 +199,7 @@ class ProductsController extends AdminBaseController
                 ':category_id' => $categoryId,
                 ':description' => $description,
                 ':price' => $price,
+                ':price_sale' => $price_sale,
                 ':thumbnail' => $thumbnailUrl,
                 ':status' => $status,
                 ':featured' => $featured
@@ -261,5 +279,81 @@ class ProductsController extends AdminBaseController
             return $matches[1];
         }
         return null;
+    }
+    /**
+    * Xử lý nhập CSV cho sản phẩm mới
+    */
+    public function importCsv()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csv_file']) && $_FILES['csv_file']['error'] === UPLOAD_ERR_OK) {
+            $file = $_FILES['csv_file']['tmp_name'];
+
+            $db = $this->productModel->getDbConnection();
+            $db->beginTransaction();
+            $success = 0;
+            $failed = 0;
+            try {
+                $handle = fopen($file, 'r');
+                $headers = fgetcsv($handle);
+                $lowerHeaders = array_map('strtolower', $headers);
+                // Required columns for product import
+                $required = ['sku','title','price','category_id','status'];
+                if (array_diff($required, $lowerHeaders)) {
+                    $_SESSION['toast'] = [
+                        'type' => 'error',
+                        'message' => 'CSV missing required columns (sku, title, price, category_id, status).'
+                    ];
+                    fclose($handle);
+                    header('Location: ' . url('admin/products'));
+                    exit;
+                }
+                // Use all columns from the file as expected keys
+                $expected = $lowerHeaders;
+                while (($row = fgetcsv($handle)) !== false) {
+                    // Skip rows with mismatched column count
+                    if (count($row) !== count($expected)) {
+                        $failed++;
+                        continue;
+                    }
+                    $data = array_combine($expected, $row);
+                    // Kiểm tra danh mục, tạo nếu chưa có
+                    $catStmt = $db->prepare("SELECT _id FROM product_categories WHERE _id = :id");
+                    $catStmt->execute([':id' => $data['category_id']]);
+                    if (!$catStmt->fetch(PDO::FETCH_ASSOC)) {
+                        $catInsert = $db->prepare("INSERT INTO product_categories (_id, title, slug, description, thumbnail, position, status, deleted) VALUES (:id, :title, :slug, '', '', 0, 'active', 0)");
+                        $catInsert->execute([
+                            ':id' => $data['category_id'],
+                            ':title' => 'Category ' . $data['category_id'],
+                            ':slug' => strtolower(preg_replace('/\s+/', '-', 'Category ' . $data['category_id']))
+                        ]);
+                    }
+                    // Thêm sản phẩm
+                    $productId = 'prod_' . bin2hex(random_bytes(6));
+                    $prodInsert = $db->prepare("INSERT INTO products (_id, title, product_category_id, description, price, price_sale, thumbnail, status, featured, deleted) VALUES (:id, :title, :catId, :desc, :price, null, :thumb, :status, :featured, 0)");
+                    $prodInsert->execute([
+                        ':id' => $productId,
+                        ':title' => $data['title'],
+                        ':catId' => $data['category_id'],
+                        ':desc' => $data['description'] ?? '',
+                        ':price' => $data['price'] ?? 0,
+                        ':thumb' => $data['image_url'] ?? '',
+                        ':status' => $data['status'] ?? 'active',
+                        ':featured' => $data['featured'] ?? 'no'
+                    ]);
+                    $success++;
+                }
+                $db->commit();
+                $_SESSION['toast'] = ['type' => 'success', 'message' => "Đã nhập CSV: Thành công $success bản ghi" . ($failed > 0 ? ", Thất bại $failed" : "")];
+            } catch (\Exception $e) {
+                $db->rollBack();
+                $_SESSION['toast'] = ['type' => 'error', 'message' => 'Lỗi khi nhập CSV: ' . $e->getMessage()];
+            }
+            fclose($handle);
+        } else {
+            $_SESSION['toast'] = ['type' => 'error', 'message' => 'Không có tệp CSV hợp lệ'];
+        }
+        $referer = $_SERVER['HTTP_REFERER'] ?? url('admin/products');
+        header('Location: ' . $referer);
+        exit;
     }
 }

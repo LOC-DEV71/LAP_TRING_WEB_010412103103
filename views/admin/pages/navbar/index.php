@@ -58,10 +58,10 @@
                                         <?php endif; ?>
                                     </td>
                                     <td style="text-align: right;">
-                                        <button class="btn btn-outline" style="padding: 6px 12px;" onclick="openEditModal(<?= htmlspecialchars(json_encode($menu)) ?>)">
+                                        <button class="btn btn-outline btn-icon" onclick="openEditModal(<?= htmlspecialchars(json_encode($menu)) ?>)" title="Chỉnh sửa">
                                             <span class="material-symbols-outlined">edit</span>
                                         </button>
-                                        <a href="<?= url('admin/navbar/delete/' . $menu['_id']) ?>" class="btn btn-danger" style="padding: 6px 12px;" onclick="return confirm('Bạn chắc chắn muốn xóa menu này?')">
+                                        <a href="<?= url('admin/navbar/delete/' . $menu['_id']) ?>" class="btn btn-danger btn-icon" style="margin-left: 4px;" onclick="return confirm('Bạn chắc chắn muốn xóa menu này?')" title="Xóa">
                                             <span class="material-symbols-outlined">delete</span>
                                         </a>
                                     </td>

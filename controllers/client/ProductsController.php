@@ -69,13 +69,41 @@ class ProductsController extends Controller
             }
         }
 
+        // Lấy dữ liệu động cho bộ lọc Sidebar (MVC thực tế từ DB)
+        $db = $productModel->getDbConnection();
+
+        // 1. Lấy tất cả danh mục hoạt động
+        $dbCategories = $categoryModel->getAllActive();
+
+        // 2. Lấy tất cả các size duy nhất hiện có trong các biến thể sản phẩm
+        $stmtSizes = $db->prepare("SELECT DISTINCT size FROM product_variants WHERE size IS NOT NULL AND size != '' ORDER BY FIELD(size, 'S', 'M', 'L', 'XL', 'XXL')");
+        $stmtSizes->execute();
+        $dbSizes = $stmtSizes->fetchAll(\PDO::FETCH_COLUMN);
+
+        // 3. Lấy tất cả các màu duy nhất hiện có trong các biến thể sản phẩm
+        $stmtColors = $db->prepare("SELECT DISTINCT color FROM product_variants WHERE color IS NOT NULL AND color != '' ORDER BY color ASC");
+        $stmtColors->execute();
+        $dbColors = $stmtColors->fetchAll(\PDO::FETCH_COLUMN);
+
+        // 4. Lấy khoảng giá tối thiểu và tối đa từ các sản phẩm đang hiển thị
+        $stmtPrices = $db->prepare("SELECT MIN(price) as min_price, MAX(price) as max_price FROM products WHERE status = 'active' AND deleted = FALSE");
+        $stmtPrices->execute();
+        $priceRangeData = $stmtPrices->fetch(\PDO::FETCH_ASSOC);
+        $minPrice = (int)($priceRangeData['min_price'] ?? 199000);
+        $maxPrice = (int)($priceRangeData['max_price'] ?? 699000);
+
         $this->view('client/pages/products/index', [
             'title' => $categoryName . ' - FASHION',
             'products' => $products,
             'categoryName' => $categoryName,
             'bannerTitle' => $bannerTitle,
             'bannerDesc' => 'Khám phá các thiết kế mới nhất',
-            'likedProducts' => $likedProducts
+            'likedProducts' => $likedProducts,
+            'dbCategories' => $dbCategories,
+            'dbSizes' => $dbSizes,
+            'dbColors' => $dbColors,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice
         ]);
     }
 
@@ -205,12 +233,15 @@ class ProductsController extends Controller
         $variantModel = new ProductVariant();
         $variants = $variantModel->getByProductId($productId);
 
+        $actualPrice = (!empty($product['price_sale']) && $product['price_sale'] > 0) ? $product['price_sale'] : $product['price'];
         echo json_encode([
             'success' => true,
             'product' => [
                 '_id' => $product['_id'],
                 'title' => $product['title'],
-                'price' => $product['price'],
+                'price' => $actualPrice,
+                'price_original' => $product['price'],
+                'price_sale' => $product['price_sale'] ?? null,
                 'thumbnail' => $product['thumbnail']
             ],
             'variants' => $variants

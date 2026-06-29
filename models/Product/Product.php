@@ -24,6 +24,12 @@ class Product extends Model
                 createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )";
             $this->db->exec($sql);
+
+            // Tự động kiểm tra và thêm cột price_sale nếu chưa tồn tại
+            $checkColumn = $this->db->query("SHOW COLUMNS FROM {$this->table} LIKE 'price_sale'");
+            if ($checkColumn->rowCount() == 0) {
+                $this->db->exec("ALTER TABLE {$this->table} ADD COLUMN price_sale DECIMAL(15, 2) DEFAULT NULL AFTER price");
+            }
         } catch (\Exception $e) {
             error_log("Lỗi khởi tạo bảng products: " . $e->getMessage());
         }
@@ -33,7 +39,11 @@ class Product extends Model
     public function getAllActive()
     {
         try {
-            $sql = "SELECT * FROM {$this->table} WHERE status = 'active' AND deleted = FALSE ORDER BY createdAt DESC";
+            $sql = "SELECT p.*, c.slug as category_slug 
+                    FROM {$this->table} p 
+                    LEFT JOIN product_categories c ON p.product_category_id = c._id 
+                    WHERE p.status = 'active' AND p.deleted = FALSE 
+                    ORDER BY p.created_at DESC";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -93,7 +103,7 @@ class Product extends Model
     {
         try {
             // Join với bảng product_categories qua product_category_id
-            $sql = "SELECT p.* FROM {$this->table} p
+            $sql = "SELECT p.*, c.slug as category_slug FROM {$this->table} p
                     JOIN product_categories c ON p.product_category_id = c._id
                     WHERE c.slug = :slug AND p.status = 'active' AND p.deleted = FALSE";
             $stmt = $this->db->prepare($sql);
@@ -127,7 +137,7 @@ class Product extends Model
                     FROM {$this->table} p 
                     LEFT JOIN product_categories c ON p.product_category_id = c._id 
                     WHERE p.deleted = FALSE 
-                    ORDER BY p.createdAt DESC 
+                    ORDER BY p.created_at DESC 
                     LIMIT :limit";
             $stmt = $this->db->prepare($sql);
             $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
@@ -147,7 +157,7 @@ class Product extends Model
                     FROM {$this->table} p 
                     LEFT JOIN product_categories c ON p.product_category_id = c._id 
                     WHERE p.deleted = FALSE 
-                    ORDER BY p.createdAt DESC";
+                    ORDER BY p.created_at DESC";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

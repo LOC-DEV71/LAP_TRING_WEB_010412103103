@@ -6,10 +6,10 @@
     <title>Fashion Login &amp; Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Raleway:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-    <link href="<?= asset('css/client/pages/auth.css') ?>" rel="stylesheet"/>
-    <link rel="stylesheet" href="<?= asset('css/client/layouts/toast.css') ?>">
-    <script src="<?= asset('js/client/layouts/toast.js') ?>"></script>
-    <script src="<?= asset('js/client/pages/auth.js') ?>"></script>
+    <link href="<?= asset('css/client/pages/auth.css') ?>?v=<?= time() ?>" rel="stylesheet"/>
+    <link rel="stylesheet" href="<?= asset('css/client/layouts/toast.css') ?>?v=<?= time() ?>">
+    <script src="<?= asset('js/client/layouts/toast.js') ?>?v=<?= time() ?>"></script>
+    <script src="<?= asset('js/client/pages/auth.js') ?>?v=<?= time() ?>"></script>
 </head>
 <body>
     <div class="brand-corner-top">FASHION</div>
@@ -32,7 +32,7 @@
                         <input required type="text" name="login_key" id="login-key" placeholder=" " value="<?= htmlspecialchars($old_login_key ?? '') ?>"/>
                         <label for="login-key">Email, Số điện thoại hoặc Tên đăng nhập</label>
                         <?php if (!empty($errors['login_key']) && ($active_tab ?? 'login') === 'login'): ?>
-                            <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['login_key']) ?></span>
+                            <span class="error-message"><?= htmlspecialchars($errors['login_key']) ?></span>
                         <?php endif; ?>
                     </div>
                     <div class="input-group">
@@ -40,7 +40,7 @@
                         <label for="login-password">Mật khẩu</label>
                         <span class="material-symbols-outlined toggle-password-icon">visibility_off</span>
                         <?php if (!empty($errors['password']) && ($active_tab ?? 'login') === 'login'): ?>
-                            <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['password']) ?></span>
+                            <span class="error-message"><?= htmlspecialchars($errors['password']) ?></span>
                         <?php endif; ?>
                     </div>
 
@@ -59,14 +59,14 @@
                         <input required type="text" name="username" id="register-username" placeholder=" " value="<?= htmlspecialchars($old_username ?? '') ?>"/>
                         <label for="register-username">Tên người dùng</label>
                         <?php if (!empty($errors['username']) && ($active_tab ?? 'login') === 'register'): ?>
-                            <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['username']) ?></span>
+                            <span class="error-message"><?= htmlspecialchars($errors['username']) ?></span>
                         <?php endif; ?>
                     </div>
                     <div class="input-group">
                         <input required type="email" name="email" id="register-email" placeholder=" " value="<?= htmlspecialchars($old_email ?? '') ?>"/>
                         <label for="register-email">Email</label>
                         <?php if (!empty($errors['email']) && ($active_tab ?? 'login') === 'register'): ?>
-                            <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['email']) ?></span>
+                            <span class="error-message"><?= htmlspecialchars($errors['email']) ?></span>
                         <?php endif; ?>
                     </div>
                     <div class="input-group">
@@ -74,7 +74,7 @@
                         <label for="register-password">Mật khẩu</label>
                         <span class="material-symbols-outlined toggle-password-icon">visibility_off</span>
                         <?php if (!empty($errors['password']) && ($active_tab ?? 'login') === 'register'): ?>
-                            <span style="color: #ff7878; font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($errors['password']) ?></span>
+                            <span class="error-message"><?= htmlspecialchars($errors['password']) ?></span>
                         <?php endif; ?>
                     </div>
 

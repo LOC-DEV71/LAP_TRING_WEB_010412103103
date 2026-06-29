@@ -18,7 +18,8 @@ function showToast(message, type = 'success') {
     const icons = {
         success: 'check_circle',
         error: 'error',
-        warning: 'warning'
+        warning: 'warning',
+        waiting: 'sync'
     };
     
     toast.innerHTML = `

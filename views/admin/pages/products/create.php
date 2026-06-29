@@ -17,35 +17,48 @@
         </div>
 
         <!-- Form Container -->
-        <div class="flat-card" style="padding: 32px;">
+        <div class="flat-card p-32">
             <form action="<?= url('admin/products/store') ?>" method="POST" enctype="multipart/form-data" novalidate>
-                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px;">
+                <div class="admin-form-layout">
                     
                     <!-- Cột trái: Thông tin cơ bản & Biến thể -->
-                    <div style="display: flex; flex-direction: column; gap: 24px;">
+                    <div class="admin-form-column">
                         
                         <!-- Thông tin cơ bản -->
                         <div>
-                            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 8px;">Thông Tin Cơ Bản</h3>
+                            <div class="admin-form-section-header">
+                                <h3 class="admin-form-section-title">Thông Tin Cơ Bản</h3>
+                            </div>
                             
                             <div class="form-group">
                                 <label for="name">Tên sản phẩm</label>
                                 <input type="text" id="name" name="name" class="form-control" placeholder="Ví dụ: Áo khoác Bomber GearX" required>
                             </div>
 
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div class="admin-form-row-2col" style="grid-template-columns: 1fr 1fr 1fr;">
                                 <div class="form-group">
-                                    <label for="price">Giá bán (VNĐ)</label>
-                                    <input type="text" id="price" name="price" class="form-control" placeholder="Ví dụ: 350.000đ" required style="font-weight: 700;">
+                                    <label for="price">Giá bán gốc (VNĐ)</label>
+                                    <input type="text" id="price" name="price" class="form-control fw-bold" placeholder="Ví dụ: 350.000đ" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="price_sale">Giá sale (VNĐ)</label>
+                                    <input type="text" id="price_sale" name="price_sale" class="form-control fw-bold" placeholder="Ví dụ: 290.000đ (không bắt buộc)">
+                                </div>
+                                 <div class="form-group">
                                     <label for="category_id">Danh mục</label>
-                                    <select id="category_id" name="category_id" class="form-control" required>
-                                        <option value="">-- Chọn danh mục --</option>
-                                        <?php foreach ($categories as $cat): ?>
-                                            <option value="<?= htmlspecialchars($cat['_id']) ?>"><?= htmlspecialchars($cat['title']) ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <div class="admin-custom-dropdown" id="category-dropdown">
+                                        <button type="button" class="dropdown-trigger">
+                                            <span class="selected-value">-- Chọn danh mục --</span>
+                                            <span class="material-symbols-outlined arrow-icon">expand_more</span>
+                                        </button>
+                                        <ul class="dropdown-options">
+                                            <li data-value="">-- Chọn danh mục --</li>
+                                            <?php foreach ($categories as $cat): ?>
+                                                <li data-value="<?= htmlspecialchars($cat['_id']) ?>"><?= htmlspecialchars($cat['title']) ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                        <input type="hidden" id="category_id" name="category_id" value="" required>
+                                    </div>
                                 </div>
                             </div>
 
@@ -57,10 +70,10 @@
 
                         <!-- Cấu hình biến thể -->
                         <div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 8px;">
-                                <h3 style="font-size: 16px; font-weight: 700;">Biến Thể Sản Phẩm</h3>
-                                <button type="button" class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;" onclick="addVariantRow()">
-                                    <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle;">add</span> Thêm biến thể
+                            <div class="admin-form-section-header">
+                                <h3 class="admin-form-section-title">Biến Thể Sản Phẩm</h3>
+                                <button type="button" class="btn btn-outline" onclick="addVariantRow()">
+                                    <span class="material-symbols-outlined">add</span> Thêm biến thể
                                 </button>
                             </div>
 
@@ -68,31 +81,31 @@
                                 <table class="admin-table" id="variantsTable">
                                     <thead>
                                         <tr>
-                                            <th style="padding: 10px 16px;">Màu sắc</th>
-                                            <th style="padding: 10px 16px;">Kích thước</th>
-                                            <th style="padding: 10px 16px;">Mã SKU</th>
-                                            <th style="padding: 10px 16px;">Số lượng kho</th>
-                                            <th style="padding: 10px 16px; text-align: right;">Hành động</th>
+                                            <th class="p-10-16">Màu sắc</th>
+                                            <th class="p-10-16">Kích thước</th>
+                                            <th class="p-10-16">Mã SKU</th>
+                                            <th class="p-10-16">Số lượng kho</th>
+                                            <th class="p-10-16 text-right">Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody id="variantsBody">
                                         <!-- Hàng mặc định đầu tiên -->
                                         <tr>
-                                            <td style="padding: 12px 16px;">
+                                            <td class="p-12-16">
                                                 <input type="text" name="variants[0][color]" class="form-control" placeholder="Đen, Trắng..." required>
                                             </td>
-                                            <td style="padding: 12px 16px;">
+                                            <td class="p-12-16">
                                                 <input type="text" name="variants[0][size]" class="form-control" placeholder="S, M, L..." required>
                                             </td>
-                                            <td style="padding: 12px 16px;">
+                                            <td class="p-12-16">
                                                 <input type="text" name="variants[0][sku]" class="form-control" placeholder="Mã SKU định danh" required>
                                             </td>
-                                            <td style="padding: 12px 16px;">
+                                            <td class="p-12-16">
                                                 <input type="number" name="variants[0][stock]" class="form-control" placeholder="0" min="0" required>
                                             </td>
-                                            <td style="padding: 12px 16px; text-align: right;">
-                                                <button type="button" class="btn btn-danger" style="padding: 6px 10px;" onclick="removeVariantRow(this)">
-                                                    <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+                                            <td class="p-12-16 text-right">
+                                                <button type="button" class="btn btn-danger btn-icon" onclick="removeVariantRow(this)">
+                                                    <span class="material-symbols-outlined">delete</span>
                                                 </button>
                                             </td>
                                         </tr>
@@ -103,51 +116,61 @@
 
                     </div>
 
-                    <!-- Cột phải: Hình ảnh sản phẩm -->
-                    <div style="display: flex; flex-direction: column; gap: 24px;">
-                        <div>
-                            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 8px;">Hình Ảnh Đại Diện</h3>
+                    <!-- Cột phải: Hình ảnh & Trạng thái -->
+                        <!-- Trạng thái & Hình ảnh đại diện (Gộp chung 1 Card) -->
+                        <div class="flat-card p-24" style="overflow: visible;">
+                            <h4 class="mb-16">Thiết Lập & Hình Ảnh</h4>
                             
-                            <!-- Khung Upload & Preview -->
-                            <div style="border: 2px dashed rgba(0,0,0,0.1); border-radius: 12px; padding: 20px; text-align: center; background-color: #fafafa; cursor: pointer; position: relative;" onclick="document.getElementById('image').click()">
-                                <input type="file" id="image" name="image" style="display: none;" accept="image/*" onchange="previewImage(event)">
-                                <div id="uploadPlaceholder">
-                                    <span class="material-symbols-outlined" style="font-size: 48px; color: #848484; margin-bottom: 8px;">upload_file</span>
-                                    <p style="font-size: 13px; font-weight: 600; color: #5d5f5f;">Nhấp để tải ảnh lên</p>
-                                    <p style="font-size: 11px; color: #848484; margin-top: 4px;">Hỗ trợ định dạng JPG, PNG, WEBP</p>
+                            <div class="form-group">
+                                <label for="status">Hiển thị</label>
+                                <div class="admin-custom-dropdown" id="status-dropdown">
+                                    <button type="button" class="dropdown-trigger">
+                                        <span class="selected-value">Hiển thị công khai</span>
+                                        <span class="material-symbols-outlined arrow-icon">expand_more</span>
+                                    </button>
+                                    <ul class="dropdown-options">
+                                        <li data-value="active" class="active">Hiển thị công khai</li>
+                                        <li data-value="inactive">Tạm ẩn</li>
+                                    </ul>
+                                    <input type="hidden" id="status" name="status" value="active">
                                 </div>
-                                <img id="imagePreview" src="#" alt="Xem trước ảnh" style="max-width: 100%; max-height: 250px; border-radius: 8px; display: none; margin: 0 auto;">
-                            </div>
-                        </div>
-
-                        <!-- Trạng thái hiển thị -->
-                        <div>
-                            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 8px;">Thiết Lập</h3>
-                            
-                            <div class="form-group">
-                                <label for="status">Trạng thái hiển thị</label>
-                                <select id="status" name="status" class="form-control">
-                                    <option value="active">Hiển thị ngay (Active)</option>
-                                    <option value="inactive">Tạm ẩn (Inactive)</option>
-                                </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-24">
                                 <label for="featured">Sản phẩm nổi bật</label>
-                                <select id="featured" name="featured" class="form-control">
-                                    <option value="no">Không nổi bật</option>
-                                    <option value="yes">Nổi bật (Hiển thị trang chủ)</option>
-                                </select>
+                                <div class="admin-custom-dropdown" id="featured-dropdown">
+                                    <button type="button" class="dropdown-trigger">
+                                        <span class="selected-value">Không</span>
+                                        <span class="material-symbols-outlined arrow-icon">expand_more</span>
+                                    </button>
+                                    <ul class="dropdown-options">
+                                        <li data-value="no" class="active">Không</li>
+                                        <li data-value="yes">Có</li>
+                                    </ul>
+                                    <input type="hidden" id="featured" name="featured" value="no">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Hình ảnh đại diện</label>
+                                <div class="admin-upload-zone" onclick="document.getElementById('image').click()" style="cursor: pointer;">
+                                    <input type="file" id="image" name="image" style="display: none;" accept="image/*" onchange="previewImage(event)" required>
+                                    <div id="uploadPlaceholder">
+                                        <span class="material-symbols-outlined" style="font-size: 48px; color: var(--text-secondary); margin-bottom: 8px;">upload_file</span>
+                                        <p class="fw-bold" style="font-size: 13px; color: var(--text-secondary);">Nhấp để tải ảnh lên</p>
+                                        <p class="text-muted" style="font-size: 11px; margin-top: 4px;">Hỗ trợ định dạng JPG, PNG, WEBP</p>
+                                    </div>
+                                    <img id="imagePreview" src="#" alt="Xem trước ảnh" class="admin-image-preview" style="display: none;">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
                 </div>
 
                 <!-- Nút Submit cố định ở chân Form -->
-                <div style="margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 24px; display: flex; justify-content: flex-end; gap: 16px;">
-                    <a href="<?= url('admin/products') ?>" class="btn btn-outline" style="padding: 12px 24px;">Hủy bỏ</a>
-                    <button type="submit" class="btn btn-primary" style="padding: 12px 32px;">Lưu Sản Phẩm</button>
+                <div class="admin-form-actions">
+                    <button type="button" class="btn btn-outline btn-lg" onclick="window.history.back()">Hủy</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Tạo sản phẩm</button>
                 </div>
             </form>
         </div>
@@ -155,102 +178,128 @@
 </main>
 
 <script>
-let variantCount = 1;
+(function() {
+    // Tự động định dạng tiền tệ khi nhập 
+    const priceInput = document.getElementById('price');
+    const priceSaleInput = document.getElementById('price_sale');
 
-// Hàm thêm một hàng biến thể mới vào bảng
-function addVariantRow() {
-    const tbody = document.getElementById('variantsBody');
-    const newRow = document.createElement('tr');
-    
-    newRow.innerHTML = `
-        <td style="padding: 12px 16px;">
-            <input type="text" name="variants[${variantCount}][color]" class="form-control" placeholder="Đen, Trắng..." required>
-        </td>
-        <td style="padding: 12px 16px;">
-            <input type="text" name="variants[${variantCount}][size]" class="form-control" placeholder="S, M, L..." required>
-        </td>
-        <td style="padding: 12px 16px;">
-            <input type="text" name="variants[${variantCount}][sku]" class="form-control" placeholder="Mã SKU định danh" required>
-        </td>
-        <td style="padding: 12px 16px;">
-            <input type="number" name="variants[${variantCount}][stock]" class="form-control" placeholder="0" min="0" required>
-        </td>
-        <td style="padding: 12px 16px; text-align: right;">
-            <button type="button" class="btn btn-danger" style="padding: 6px 10px;" onclick="removeVariantRow(this)">
-                <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
-            </button>
-        </td>
-    `;
-    
-    tbody.appendChild(newRow);
-    variantCount++;
-}
-
-// Hàm xóa hàng biến thể
-function removeVariantRow(button) {
-    const row = button.closest('tr');
-    const tbody = document.getElementById('variantsBody');
-    if (tbody.rows.length > 1) {
-        row.remove();
-    } else {
-        showToast("Sản phẩm phải có ít nhất một biến thể!", "error");
-    }
-}
-
-// Hàm xem trước hình ảnh đại diện khi tải lên
-function previewImage(event) {
-    const input = event.target;
-    const preview = document.getElementById('imagePreview');
-    const placeholder = document.getElementById('uploadPlaceholder');
-    
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-            preview.style.display = 'block';
-            placeholder.style.display = 'none';
+    window.previewImage = function(event) {
+        const input = event.target;
+        const preview = document.getElementById('imagePreview');
+        const placeholder = document.getElementById('uploadPlaceholder');
+        
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                placeholder.style.display = 'none';
+            }
+            reader.readAsDataURL(input.files[0]);
         }
-        reader.readAsDataURL(input.files[0]);
     }
-}
 
-// Tự động định dạng tiền tệ khi nhập 
-const priceInput = document.getElementById('price');
-priceInput.addEventListener('input', function(e) {
-    let value = this.value.replace(/\D/g, '');
-    
-    // Nếu là hành động nhấn Backspace để xóa
-    if (e.inputType === 'deleteContentBackward') {
-        // Trình duyệt mới chỉ xóa ký tự 'đ' hoặc khoảng trắng, ta chủ động xóa đi chữ số cuối cùng
-        value = value.slice(0, -1);
+    function formatCurrencyInput(input, event) {
+        let value = input.value.replace(/\D/g, '');
+        if (event.inputType === 'deleteContentBackward') {
+            value = value.slice(0, -1);
+        }
+        if (value) {
+            input.value = parseInt(value).toLocaleString('vi-VN') + ' đ';
+        } else {
+            input.value = '';
+        }
     }
-    
-    if (value) {
-        this.value = parseInt(value).toLocaleString('vi-VN') + ' đ';
-    } else {
-        this.value = '';
-    }
-});
 
-// Loại bỏ các ký tự phi số trước khi submit form để gửi số nguyên thuần túy lên server
-document.querySelector('form').addEventListener('submit', function(e) {
+    if (priceInput) {
+        priceInput.addEventListener('input', function(e) {
+            formatCurrencyInput(this, e);
+        });
+    }
+
+    if (priceSaleInput) {
+        priceSaleInput.addEventListener('input', function(e) {
+            formatCurrencyInput(this, e);
+        });
+    }
+
+    // Nút thêm dòng variant
+    let variantIndex = 1;
+    window.addVariantRow = function() {
+        const tbody = document.getElementById('variantsBody');
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td class="p-12-16">
+                <input type="text" name="variants[${variantIndex}][color]" class="form-control" placeholder="Đen, Trắng..." required>
+            </td>
+            <td class="p-12-16">
+                <input type="text" name="variants[${variantIndex}][size]" class="form-control" placeholder="S, M, L..." required>
+            </td>
+            <td class="p-12-16">
+                <input type="text" name="variants[${variantIndex}][sku]" class="form-control" placeholder="Mã SKU định danh" required>
+            </td>
+            <td class="p-12-16">
+                <input type="number" name="variants[${variantIndex}][stock]" class="form-control" placeholder="0" min="0" required>
+            </td>
+            <td class="p-12-16 text-right">
+                <button type="button" class="btn btn-danger btn-icon" onclick="removeVariantRow(this)">
+                    <span class="material-symbols-outlined">delete</span>
+                </button>
+            </td>
+        `;
+        tbody.appendChild(newRow);
+        variantIndex++;
+    }
+
+    window.removeVariantRow = function(button) {
+        const tbody = document.getElementById('variantsBody');
+        const rows = tbody.querySelectorAll('tr');
+        
+        if (rows.length > 1) {
+            const row = button.closest('tr');
+            row.remove();
+        } else {
+            showToast("Sản phẩm phải có ít nhất một biến thể!", "error");
+        }
+    }
+
+    // Loại bỏ các ký tự phi số trước khi submit form để gửi số nguyên thuần túy lên server
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const nameInput = document.getElementById('name');
+        if (!nameInput.value.trim()) {
+            e.preventDefault();
+            showToast("Vui lòng nhập tên sản phẩm!", "error");
+            nameInput.classList.add('is-invalid');
+            nameInput.focus();
+            return;
+        }
+
+        const catInput = document.getElementById('category_id');
+        if (!catInput || !catInput.value) {
+            e.preventDefault();
+            showToast("Vui lòng chọn danh mục sản phẩm!", "error");
+            return;
+        }
+
+        if (priceInput) {
+            const rawPrice = priceInput.value.replace(/\D/g, '');
+            priceInput.value = rawPrice;
+        }
+        
+        if (priceSaleInput) {
+            const rawPriceSale = priceSaleInput.value.replace(/\D/g, '');
+            priceSaleInput.value = rawPriceSale;
+        }
+    });
+
+    // Xóa hiệu ứng viền đỏ khi người dùng bắt đầu nhập liệu
     const nameInput = document.getElementById('name');
-    if (!nameInput.value.trim()) {
-        e.preventDefault();
-        showToast("Vui lòng nhập tên sản phẩm!", "error");
-        nameInput.classList.add('is-invalid');
-        nameInput.focus();
-        return;
+    if (nameInput) {
+        nameInput.addEventListener('input', function() {
+            this.classList.remove('is-invalid');
+        });
     }
-
-    const rawPrice = priceInput.value.replace(/\D/g, '');
-    priceInput.value = rawPrice;
-});
-
-// Xóa hiệu ứng viền đỏ khi người dùng bắt đầu nhập liệu
-document.getElementById('name').addEventListener('input', function() {
-    this.classList.remove('is-invalid');
-});
+})();
 </script>
 
 <?php require_once __DIR__ . '/../../layouts/footer.php'; ?>

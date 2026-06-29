@@ -11,10 +11,13 @@ class DashboardController extends AdminBaseController
     {
         $productModel = new Product();
         $variantModel = new ProductVariant();
+        $orderModel = new Order();
         
         $totalProducts = $productModel->getTotalCount();
         $lowStockAlerts = $variantModel->getLowStockCount(10);
         $topCategory = 'Thời trang Nam'; // Mặc định hiển thị danh mục chính bán chạy
+        $totalSales = $orderModel->getTotalSales();
+        $totalOrders = $orderModel->getTotalCount();
 
         // Lấy danh sách sản phẩm mới nhất
         $recentProducts = $productModel->getRecentProducts(5);
@@ -25,7 +28,9 @@ class DashboardController extends AdminBaseController
             'totalProducts' => $totalProducts,
             'lowStockAlerts' => $lowStockAlerts,
             'topCategory' => $topCategory,
-            'recentProducts' => $recentProducts
+            'recentProducts' => $recentProducts,
+            'totalSales' => $totalSales,
+            'totalOrders' => $totalOrders
         ]);
     }
 }

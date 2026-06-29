@@ -21,7 +21,8 @@ class CartController {
                 if ($variant) {
                     $product = $productModel->getById($variant['product_id']);
                     if ($product) {
-                        $subtotal = $product['price'] * $quantity;
+                        $actualPrice = (!empty($product['price_sale']) && $product['price_sale'] > 0) ? $product['price_sale'] : $product['price'];
+                        $subtotal = $actualPrice * $quantity;
                         $totalPrice += $subtotal;
 
                         $cartData[] = [
@@ -29,7 +30,7 @@ class CartController {
                             'title' => $product['title'],
                             'color' => $variant['color'],
                             'size' => $variant['size'],
-                            'price' => $product['price'],
+                            'price' => $actualPrice,
                             'thumbnail' => $product['thumbnail'],
                             'quantity' => $quantity,
                             'subtotal' => $subtotal

@@ -93,3 +93,44 @@ if (!function_exists('slug')) {
         return $str;
     }
 }
+
+if (!function_exists('getProductCategorySlug')) {
+    function getProductCategorySlug($name) {
+        $nameLower = mb_strtolower($name, 'UTF-8');
+        if (strpos($nameLower, 'thun') !== false || strpos($nameLower, 'polo') !== false) return 'ao-thun';
+        if (strpos($nameLower, 'sơ mi') !== false) return 'ao-so-mi';
+        if (strpos($nameLower, 'khoác') !== false || strpos($nameLower, 'bomber') !== false) return 'ao-khoac';
+        if (strpos($nameLower, 'short') !== false) return 'quan-short';
+        if (strpos($nameLower, 'quần') !== false || strpos($nameLower, 'jeans') !== false || strpos($nameLower, 'kaki') !== false || strpos($nameLower, 'jogger') !== false) return 'quan';
+        return 'ao-thun'; // default
+    }
+}
+
+if (!function_exists('getProductSizes')) {
+    function getProductSizes($name) {
+        $nameLower = mb_strtolower($name, 'UTF-8');
+        if (strpos($nameLower, 'nam') !== false || strpos($nameLower, 'oversize') !== false) {
+            return 'M,L,XL,XXL';
+        }
+        return 'S,M,L,XL';
+    }
+}
+
+if (!function_exists('getProductColors')) {
+    function getProductColors($name) {
+        $nameLower = mb_strtolower($name, 'UTF-8');
+        $colors = [];
+        if (strpos($nameLower, 'basic') !== false) {
+            $colors = ['black', 'white', 'gray'];
+        } elseif (strpos($nameLower, 'sơ mi') !== false) {
+            $colors = ['white', 'blue', 'beige'];
+        } elseif (strpos($nameLower, 'khoác') !== false || strpos($nameLower, 'bomber') !== false) {
+            $colors = ['green', 'black', 'gray'];
+        } elseif (strpos($nameLower, 'quần') !== false) {
+            $colors = ['blue', 'black', 'beige', 'gray'];
+        } else {
+            $colors = ['black', 'white', 'blue'];
+        }
+        return implode(',', $colors);
+    }
+}

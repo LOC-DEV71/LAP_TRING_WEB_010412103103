@@ -1,0 +1,247 @@
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+)
+
+Token selected: 
+Payload: 
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+
+Cookies: Array
+(
+    [PHPSESSID] => 7iik3tbfg00ssld1mh3eck0l6q
+    [jwt_token] => eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+)
+
+Token selected: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidXNyXzhhYjMzMTI0MDZjYyIsImZ1bGxuYW1lIjoibmFtbTEiLCJyb2xlIjoidXNlciIsImV4cCI6MTc4MzM1NDk4NX0.DHw23TTWiIWwMzoXh0GAV3mAumLvGT1R3ON5DkiNQdY
+Payload: Array
+(
+    [user_id] => usr_8ab3312406cc
+    [fullname] => namm1
+    [role] => user
+    [exp] => 1783354985
+)
+

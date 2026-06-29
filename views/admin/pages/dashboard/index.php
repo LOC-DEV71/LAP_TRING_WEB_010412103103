@@ -9,7 +9,6 @@
         <?php 
         $page_title = 'Tổng Quan Hệ Thống';
         $page_subtitle = 'Số liệu thống kê chi tiết hoạt động kinh doanh cửa hàng.';
-        $show_import_csv = true;
         $create_button_url = url('admin/products/create');
         $create_button_text = 'Thêm Sản Phẩm';
         require __DIR__ . '/../../layouts/page_header.php';
@@ -17,7 +16,37 @@
         
         <!-- Product Statistics Row -->
         <div class="stats-grid">
-            <!-- Stat 1: Total Products -->
+            <!-- Stat 1: Total Sales -->
+            <div class="stat-card">
+                <div class="stat-details">
+                    <p class="stat-label">Tổng Doanh Thu</p>
+                    <div class="stat-value-wrapper">
+                        <h3 class="stat-value"><?= number_format($totalSales ?? 0, 0, ',', '.') ?>đ</h3>
+                    </div>
+                    <div>
+                        <span class="meta-tag success">Thực tế nhận</span>
+                    </div>
+                </div>
+                <div class="stat-icon-wrapper success" style="background: rgba(46, 204, 113, 0.15); color: #2ecc71;">
+                    <span class="material-symbols-outlined">payments</span>
+                </div>
+            </div>
+            <!-- Stat 2: Total Orders -->
+            <div class="stat-card">
+                <div class="stat-details">
+                    <p class="stat-label">Tổng Đơn Hàng</p>
+                    <div class="stat-value-wrapper">
+                        <h3 class="stat-value"><?= number_format($totalOrders ?? 0) ?></h3>
+                    </div>
+                    <div>
+                        <span class="meta-tag info">Đã phát sinh</span>
+                    </div>
+                </div>
+                <div class="stat-icon-wrapper info" style="background: rgba(52, 152, 219, 0.15); color: #3498db;">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                </div>
+            </div>
+            <!-- Stat 3: Total Products -->
             <div class="stat-card">
                 <div class="stat-details">
                     <p class="stat-label">Tổng Sản Phẩm</p>
@@ -32,22 +61,7 @@
                     <span class="material-symbols-outlined">inventory_2</span>
                 </div>
             </div>
-            <!-- Stat 2: Top Selling Category -->
-            <div class="stat-card">
-                <div class="stat-details">
-                    <p class="stat-label">Danh Mục Bán Chạy</p>
-                    <div class="stat-value-wrapper">
-                        <h3 class="stat-value" style="font-size: 20px; font-weight: 700;"><?= htmlspecialchars($topCategory ?? 'N/A') ?></h3>
-                    </div>
-                    <div>
-                        <span class="meta-tag">Doanh số tốt</span>
-                    </div>
-                </div>
-                <div class="stat-icon-wrapper">
-                    <span class="material-symbols-outlined">checkroom</span>
-                </div>
-            </div>
-            <!-- Stat 3: Low Stock Alerts -->
+            <!-- Stat 4: Low Stock Alerts -->
             <div class="stat-card border-alert">
                 <div class="stat-details">
                     <p class="stat-label">Cảnh Báo Hết Hàng</p>
@@ -120,8 +134,8 @@
                 </table>
             </div>
             <div class="card-footer" style="justify-content: flex-end;">
-                <a href="<?= url('admin/products') ?>" class="btn btn-outline" style="font-size: 12px; padding: 8px 16px;">
-                    Xem tất cả sản phẩm <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-left: 4px;">arrow_forward</span>
+                <a href="<?= url('admin/products') ?>" class="btn btn-primary btn-lg">
+                    Xem tất cả sản phẩm <span class="material-symbols-outlined" style="vertical-align: middle; margin-left: 4px;">arrow_forward</span>
                 </a>
             </div>
         </div>

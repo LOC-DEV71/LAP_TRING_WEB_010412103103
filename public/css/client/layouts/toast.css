@@ -1,6 +1,6 @@
 .toast-container {
     position: fixed;
-    top: 24px;
+    top: 150px; /* -------------- Cấu hình cho Trang đã được đăng nhập; Đẩy xuống dưới thanh header để không bị che khuất */
     right: 24px;
     z-index: 9999;
     display: flex;
@@ -14,38 +14,56 @@
     gap: 12px;
     padding: 16px 20px;
     border-radius: 16px;
-    color: #111111;
+    color: #1f2937;
     font-size: 14px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(25px); 
+    -webkit-backdrop-filter: blur(25px);
+    background: rgba(255, 255, 255, 0.25); 
+    border: 1px solid rgba(255, 255, 255, 0.35);
     animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 .toast-item.toast-error {
-    background: rgba(215, 0, 24, 0.1);
-    border: 1px solid rgba(215, 0, 24, 0.2);
-    color: #d70018;
+    background: rgba(254, 226, 226, 0.35); 
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #7f1d1d; 
+}
+.toast-item.toast-error .toast-icon {
+    color: #ef4444;
 }
 .toast-item.toast-success {
-    background: rgba(46, 204, 113, 0.1);
-    border: 1px solid rgba(46, 204, 113, 0.2);
-    color: #2e7d32;
+    background: rgba(204, 251, 241, 0.35); 
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: #0f766e; 
+}
+.toast-item.toast-success .toast-icon {
+    color: #10b981;
+}
+.toast-item.toast-waiting {
+    background: rgba(254, 243, 199, 0.35); 
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: #92400e; 
+}
+.toast-item.toast-waiting .toast-icon {
+    color: #f59e0b;
 }
 .toast-item .toast-icon {
     font-size: 20px;
+    flex-shrink: 0;
 }
 .toast-item .toast-close {
     margin-left: auto;
     cursor: pointer;
     font-size: 18px;
-    opacity: 0.8;
+    opacity: 0.5;
     background: none;
     border: none;
-    color: inherit;
+    color: #1f2937;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity 0.2s;
 }
 .toast-item .toast-close:hover {
     opacity: 1;
@@ -57,4 +75,11 @@
 @keyframes toastSlideOut {
     from { transform: translateX(0); opacity: 1; }
     to { transform: translateX(120%); opacity: 0; }
+}
+@keyframes toast-spin {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+.toast-item.toast-waiting .toast-icon {
+    animation: toast-spin 1.5s linear infinite;
 }

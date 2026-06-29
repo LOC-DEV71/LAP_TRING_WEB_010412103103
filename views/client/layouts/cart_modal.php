@@ -34,4 +34,4 @@
     </div>
 </div>
 
-<script src="<?= asset('js/cart_modal.js') ?>"></script>
+<script src="<?= asset('js/client/Products/cart_modal.js') ?>?v=<?= time() ?>"></script>

@@ -1,0 +1,6 @@
+sku,change_qty,type,reason
+BOMBER-BLU-M,25,import,Nhập kho lô hàng bổ sung đầu tuần
+BOMBER-BLU-S,-5,export,Nhập kho hàng mẫu trưng bày
+BOMBER-BLU-XL,25,import,Xuất kho trả hàng lỗi nhà cung cấp
+BOMBER-GRA-M,-5,export,Điều chỉnh tăng sau khi kiểm kho thực tế
+BOMBER-GRA-S,25,import,Xuất hàng làm quà tặng sự kiện

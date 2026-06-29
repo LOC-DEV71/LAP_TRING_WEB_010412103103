@@ -17,6 +17,31 @@ class HomeController extends Controller
         $featuredProducts = $productModel->getFeatured();
         $categories = $categoryModel->getAllActive();
 
+        // Lấy danh sách biến thể màu/size và category_slug cho sản phẩm nổi bật
+        if (!empty($featuredProducts)) {
+            $productIds = array_column($featuredProducts, '_id');
+            $variantModel = new \Models\Product\ProductVariant();
+            $variantsData = $variantModel->getColorsAndSizesByProductIds($productIds);
+            
+            $variantsMap = [];
+            foreach ($variantsData as $vd) {
+                $variantsMap[$vd['product_id']] = $vd;
+            }
+            
+            foreach ($featuredProducts as &$product) {
+                $product['colors'] = $variantsMap[$product['_id']]['colors'] ?? '';
+                $product['sizes'] = $variantsMap[$product['_id']]['sizes'] ?? '';
+                // Lấy thêm category_slug từ danh sách categories đã có
+                foreach ($categories as $cat) {
+                    if ($cat['_id'] === $product['product_category_id']) {
+                        $product['category_slug'] = $cat['slug'];
+                        break;
+                    }
+                }
+            }
+            unset($product);
+        }
+
         // Lấy danh sách sản phẩm đã Like của User (nếu đã đăng nhập)
         $likedProducts = [];
         $token = $_COOKIE['jwt_token'] ?? '';
@@ -35,12 +60,17 @@ class HomeController extends Controller
             }
         }
 
+        // Lấy cấu hình hệ thống/trang chủ
+        $settingModel = new \Models\Setting();
+        $settings = $settingModel->getAll();
+
         // Gọi view 'client/pages/home/index.php' và truyền dữ liệu ra
         $this->view('client/pages/home/index', [
             'title' => 'Trang chủ - FASHION',
             'products' => $featuredProducts,
             'categories' => $categories,
-            'likedProducts' => $likedProducts
+            'likedProducts' => $likedProducts,
+            'settings' => $settings
         ]);
     }
 }

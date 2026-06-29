@@ -100,10 +100,27 @@ class User extends Model
     }
 
     // Cập nhật thông tin cá nhân
-    public function updateProfile($id, $fullname, $phone, $address)
+    public function updateProfile($id, $fullname, $phone, $address, $avatar = null)
     {
-        $sql = "UPDATE {$this->table} SET fullname = :fullname, phone = :phone, address = :address WHERE _id = :id AND deleted = FALSE";
-        $stmt = $this->db->prepare($sql);
+        // Tự động thêm cột avatar vào bảng users nếu chưa tồn tại
+        try {
+            $this->db->exec("ALTER TABLE {$this->table} ADD COLUMN IF NOT EXISTS avatar VARCHAR(255) DEFAULT NULL");
+        } catch (\Exception $e) {
+            // Bỏ qua nếu cột đã tồn tại hoặc hệ quản trị CSDL không hỗ trợ IF NOT EXISTS trực tiếp
+            try {
+                $this->db->exec("ALTER TABLE {$this->table} ADD COLUMN avatar VARCHAR(255) DEFAULT NULL");
+            } catch (\Exception $ex) {}
+        }
+
+        if ($avatar !== null) {
+            $sql = "UPDATE {$this->table} SET fullname = :fullname, phone = :phone, address = :address, avatar = :avatar WHERE _id = :id AND deleted = FALSE";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':avatar', $avatar);
+        } else {
+            $sql = "UPDATE {$this->table} SET fullname = :fullname, phone = :phone, address = :address WHERE _id = :id AND deleted = FALSE";
+            $stmt = $this->db->prepare($sql);
+        }
+
         $stmt->bindParam(':fullname', $fullname);
         $stmt->bindParam(':phone', $phone);
         $stmt->bindParam(':address', $address);

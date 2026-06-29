@@ -6,10 +6,10 @@
     <title><?= htmlspecialchars($title ?? 'Đặt Lại Mật Khẩu') ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Raleway:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-    <link href="<?= asset('css/client/pages/auth.css') ?>" rel="stylesheet"/>
-    <link rel="stylesheet" href="<?= asset('css/client/layouts/toast.css') ?>">
-    <script src="<?= asset('js/client/layouts/toast.js') ?>"></script>
-    <script src="<?= asset('js/client/pages/auth.js') ?>"></script>
+    <link href="<?= asset('css/client/pages/auth.css') ?>?v=<?= time() ?>" rel="stylesheet"/>
+    <link rel="stylesheet" href="<?= asset('css/client/layouts/toast.css') ?>?v=<?= time() ?>">
+    <script src="<?= asset('js/client/layouts/toast.js') ?>?v=<?= time() ?>"></script>
+    <script src="<?= asset('js/client/pages/auth.js') ?>?v=<?= time() ?>"></script>
 </head>
 <body>
     <div class="brand-corner-top">FASHION</div>

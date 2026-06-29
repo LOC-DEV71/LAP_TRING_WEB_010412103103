@@ -6,7 +6,7 @@
 }
 
 body {
-  background: url("https://images.unsplash.com/photo-1705675451868-014a161e591b?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+  background: url("https://images.unsplash.com/photo-1604882767135-b41fac508fff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
     no-repeat center center/cover;
   min-height: 100vh;
   display: flex;
@@ -86,14 +86,15 @@ body::before {
     rgba(255, 255, 255, 0.15) 0%,
     rgba(255, 255, 255, 0.02) 100%
   );
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(50px); /* Giữ độ nhòe 50px để mờ mịn cực đẹp */
+  -webkit-backdrop-filter: blur(50px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-top-color: rgba(255, 255, 255, 0.4);
   border-left-color: rgba(255, 255, 255, 0.3);
   border-radius: 40px;
   box-shadow:
     0 30px 60px -15px rgba(0, 0, 0, 0.2),
+    0 0 35px rgba(255, 255, 255, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 0 20px rgba(255, 255, 255, 0.05);
   color: #ffffff;
@@ -230,23 +231,38 @@ input[type="radio"] {
 .input-group .toggle-password-icon {
   position: absolute;
   right: 12px;
-  top: 50%;
-  transform: translateY(-20%);
+  top: 26px; /* Định vị cố định theo chiều cao input để không bị thông báo lỗi đẩy xuống */
+  transform: translateY(-50%);
   cursor: pointer;
   color: #000000;
   font-size: 20px;
-  transition: color 0.3s, transform 0.2s;
+  transition:
+    color 0.3s,
+    transform 0.2s;
   z-index: 10;
   user-select: none;
 }
 
+/* Ẩn các icon mặc định của trình duyệt để tránh đè lên icon con mắt */
+.input-group input::-ms-reveal,
+.input-group input::-ms-clear {
+  display: none !important;
+}
+
+.input-group input::-webkit-credentials-auto-fill-button {
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  right: 0 !important;
+}
+
 .input-group .toggle-password-icon:hover {
   color: #333333;
-  transform: translateY(-20%) scale(1.1);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .input-group .toggle-password-icon:active {
-  transform: translateY(-20%) scale(0.9);
+  transform: translateY(-50%) scale(0.9);
 }
 
 .input-group input:focus {
@@ -599,4 +615,18 @@ input[type="radio"] {
   .header p {
     font-size: 0.8rem;
   }
+}
+
+/* Validation Error Messages */
+.error-message {
+  color: #ff7878;
+  font-size: 0.75rem;
+  display: block;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Đè vị trí Toast cho các trang Auth (không có header nên cho chạm trần) */
+.toast-container {
+  top: 24px !important;
 }

@@ -62,7 +62,7 @@ class ProductVariant extends Model
                 FROM {$this->table} pv 
                 JOIN products p ON pv.product_id = p._id 
                 WHERE p.deleted = FALSE 
-                ORDER BY p.createdAt DESC, pv.sku ASC";
+                ORDER BY p.created_at DESC, pv.sku ASC";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

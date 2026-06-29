@@ -13,7 +13,7 @@
         ?>
 
         <!-- Recent Products Table Area -->
-        <div class="flat-card">
+        <div class="flat-card" style="overflow: visible;">
             <div class="card-header">
                 <div>
                     <h4>Danh Sách Đơn Hàng</h4>
@@ -63,15 +63,29 @@
                                     </td>
                                     <td><?= date('d/m/Y H:i', strtotime($order['createdAt'])) ?></td>
                                     <td style="text-align: right;">
-                                        <form action="<?= url('admin/orders/updateStatus/' . $order['_id']) ?>" method="POST" style="display: inline-flex; gap: 6px; align-items: center;">
-                                            <select name="status" class="form-control" style="padding: 4px 8px; font-size: 12px; width: 130px;">
-                                                <option value="pending" <?= $order['status'] === 'pending' ? 'selected' : '' ?>>Chờ xử lý</option>
-                                                <option value="processing" <?= $order['status'] === 'processing' ? 'selected' : '' ?>>Đang xử lý</option>
-                                                <option value="shipped" <?= $order['status'] === 'shipped' ? 'selected' : '' ?>>Đang giao</option>
-                                                <option value="delivered" <?= $order['status'] === 'delivered' ? 'selected' : '' ?>>Đã giao</option>
-                                                <option value="cancelled" <?= $order['status'] === 'cancelled' ? 'selected' : '' ?>>Đã hủy</option>
-                                            </select>
-                                            <button type="submit" class="btn btn-primary" style="padding: 6px 12px; font-size: 11px;">Cập nhật</button>
+                                        <form action="<?= url('admin/orders/updateStatus/' . $order['_id']) ?>" method="POST" style="display: inline-flex; gap: 8px; align-items: center; text-align: left;">
+                                            <div class="admin-custom-dropdown" style="width: 140px;">
+                                                <button type="button" class="dropdown-trigger" style="height: 36px; padding: 0 10px; font-size: 12px; border-radius: 6px;">
+                                                    <?php
+                                                    $currText = 'Chờ xử lý';
+                                                    if ($order['status'] === 'processing') $currText = 'Đang xử lý';
+                                                    elseif ($order['status'] === 'shipped') $currText = 'Đang giao';
+                                                    elseif ($order['status'] === 'delivered') $currText = 'Đã giao';
+                                                    elseif ($order['status'] === 'cancelled') $currText = 'Đã hủy';
+                                                    ?>
+                                                    <span class="selected-value"><?= $currText ?></span>
+                                                    <span class="material-symbols-outlined arrow-icon" style="font-size: 16px;">expand_more</span>
+                                                </button>
+                                                <ul class="dropdown-options" style="font-size: 12px; padding: 4px; border-radius: 6px;">
+                                                    <li data-value="pending" class="<?= $order['status'] === 'pending' ? 'active' : '' ?>" style="padding: 6px 10px;">Chờ xử lý</li>
+                                                    <li data-value="processing" class="<?= $order['status'] === 'processing' ? 'active' : '' ?>" style="padding: 6px 10px;">Đang xử lý</li>
+                                                    <li data-value="shipped" class="<?= $order['status'] === 'shipped' ? 'active' : '' ?>" style="padding: 6px 10px;">Đang giao</li>
+                                                    <li data-value="delivered" class="<?= $order['status'] === 'delivered' ? 'active' : '' ?>" style="padding: 6px 10px;">Đã giao</li>
+                                                    <li data-value="cancelled" class="<?= $order['status'] === 'cancelled' ? 'active' : '' ?>" style="padding: 6px 10px;">Đã hủy</li>
+                                                </ul>
+                                                <input type="hidden" name="status" value="<?= htmlspecialchars($order['status']) ?>">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" style="padding: 0 12px; font-size: 11px; height: 36px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">Cập nhật</button>
                                         </form>
                                     </td>
                                 </tr>

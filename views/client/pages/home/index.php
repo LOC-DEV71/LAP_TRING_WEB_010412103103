@@ -1,31 +1,36 @@
 <?php 
-$extra_css = [asset('css/client/Home/home.css')];
+$extra_css = [
+    asset('css/client/Home/home.css'),
+    asset('css/client/Products/product.css')
+];
 require_once __DIR__ . '/../../layouts/header/header.php'; 
 ?>
     <!--hero-->
     <section class="hero">
         <div class="hero-left">
-            <span class="hero-subtitle">
-                BỘ SƯU TẬP MÙA HÈ 2026
+            <span>
+                <?= htmlspecialchars($settings['home_hero_subtitle'] ?? 'BỘ SƯU TẬP MÙA HÈ 2026') ?>
             </span>
 
             <h1>
-                NEW SEASON <br>
-                NEW STYLE
+                <?= nl2br(htmlspecialchars($settings['home_hero_title'] ?? "NEW SEASON\nNEW STYLE")) ?>
             </h1>
 
             <p>
-                Giảm đến <span class="sale-percent">50%</span> cho tất cả sản phẩm
+                <?= htmlspecialchars($settings['home_hero_sale'] ?? 'Giảm đến 50% cho tất cả sản phẩm') ?>
             </p>
 
-            <a href="#" class="btn">
-                MUA NGAY
+            <a href="<?= url($settings['home_hero_button_link'] ?? 'products') ?>" class="btn">
+                <?= htmlspecialchars($settings['home_hero_button_text'] ?? 'MUA NGAY') ?>
             </a>
 
         </div>
         <div class="hero-right">
-            <img src="<?= asset('assets/images/banner1.jpg') ?>" alt="Banner mùa hè">
-
+            <?php 
+            $heroImg = $settings['home_hero_image'] ?? '';
+            $heroImgSrc = (strpos($heroImg, 'http') === 0) ? $heroImg : asset($heroImg ?: 'assets/images/banner1.jpg');
+            ?>
+            <img src="<?= htmlspecialchars($heroImgSrc) ?>" alt="Banner mùa hè">
         </div>
 
     </section>
@@ -34,8 +39,12 @@ require_once __DIR__ . '/../../layouts/header/header.php';
     <section class="categories">
         <?php if (!empty($categories)): ?>
             <?php foreach ($categories as $category): ?>
+                <?php 
+                $catThumb = $category['thumbnail'] ?? '';
+                $catThumbSrc = (strpos($catThumb, 'http') === 0) ? $catThumb : asset($catThumb ?: 'assets/images/placeholder.jpg');
+                ?>
                 <a href="<?= url('products?category=' . $category['slug']) ?>" class="category-card" style="text-decoration: none; color: inherit;">
-                    <img src="<?= strpos($category['thumbnail'] ?? '', 'http') === 0 ? htmlspecialchars($category['thumbnail']) : asset(htmlspecialchars($category['thumbnail'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($category['title'] ?? '') ?>">
+                    <img src="<?= htmlspecialchars($catThumbSrc) ?>" alt="<?= htmlspecialchars($category['title'] ?? '') ?>">
                     <div>
                         <h3><?= mb_convert_case(htmlspecialchars($category['title'] ?? ''), MB_CASE_TITLE, 'UTF-8') ?></h3>
                         <span>Xem ngay</span>
@@ -47,8 +56,10 @@ require_once __DIR__ . '/../../layouts/header/header.php';
 
     <!--sale banner-->
     <section class="sale-banner">
-        <h2>SALE UP TO 70%</h2>
-        <button>MUA NGAY</button>
+        <h2><?= htmlspecialchars($settings['home_sale_banner_title'] ?? 'SALE UP TO 70%') ?></h2>
+        <a href="<?= url($settings['home_sale_banner_button_link'] ?? 'products') ?>" style="text-decoration: none;">
+            <button><?= htmlspecialchars($settings['home_sale_banner_button_text'] ?? 'MUA NGAY') ?></button>
+        </a>
     </section>
 
     <!--sản phẩm nổi bật-->
@@ -63,23 +74,7 @@ require_once __DIR__ . '/../../layouts/header/header.php';
         <div class="product-grid"> 
             <?php if (!empty($products)): ?>
                 <?php foreach ($products as $product): ?>
-                    <div class="product-card">
-                        <?php $isLiked = in_array($product['_id'], $likedProducts ?? []); ?>
-                        <button class="wishlist <?= $isLiked ? 'liked' : '' ?>" data-id="<?= $product['_id'] ?>">
-                            <span class="material-symbols-outlined" style="<?= $isLiked ? "font-variation-settings: 'FILL' 1;" : "" ?>">favorite</span>
-                        </button>
-                        <a href="<?= url('products/detail/' . $product['_id']) ?>" style="text-decoration: none; color: inherit; display: block;">
-                            <img src="<?= strpos($product['thumbnail'] ?? '', 'http') === 0 ? htmlspecialchars($product['thumbnail']) : asset(htmlspecialchars($product['thumbnail'] ?? 'assets/images/placeholder.jpg')) ?>" alt="<?= htmlspecialchars($product['title'] ?? '') ?>">
-                        </a>
-                        <a href="<?= url('products/detail/' . $product['_id']) ?>" style="text-decoration: none; color: inherit;">
-                            <h3><?= htmlspecialchars($product['title'] ?? '') ?></h3>
-                        </a>
-                        <p class="price"><?= number_format($product['price'] ?? 0, 0, ',', '.') ?>đ</p>
-                        <div class="product-actions">
-                            <button class="btn-buy-now" data-id="<?= $product['_id'] ?>">MUA NGAY</button>
-                            <button class="btn-add-cart" data-id="<?= $product['_id'] ?>"><span class="material-symbols-outlined">shopping_cart</span></button>
-                        </div>
-                    </div>
+                    <?php include __DIR__ . '/../products/product_card.php'; ?>
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
@@ -87,49 +82,62 @@ require_once __DIR__ . '/../../layouts/header/header.php';
     </section>
 
     <!--bộ sưu tập-->
+    <?php 
+    // Tìm các danh mục phục vụ cho phần Collection
+    $mainCollection = null;
+    $miniCollections = [];
+    
+    foreach ($categories as $cat) {
+        if ($cat['slug'] === 'bo-suu-tap') {
+            $mainCollection = $cat;
+        } elseif (in_array($cat['slug'], ['do-the-thao', 'cong-so', 'phu-kien'])) {
+            $miniCollections[$cat['slug']] = $cat;
+        }
+    }
+    
+    // Fallback dự phòng nếu không tìm thấy trong DB
+    $mainCollection = $mainCollection ?: [
+        'title' => 'COLLECTION 2026',
+        'description' => 'SUMMER',
+        'thumbnail' => 'https://images.unsplash.com/photo-1509319117193-57bab727e09d?w=800',
+        'slug' => 'bo-suu-tap'
+    ];
+    ?>
     <section class="collection">
         <div class="collection-left">
-            <img src="<?= asset('assets/images/summer-collection.jpg') ?>" alt="">
+            <img src="<?= htmlspecialchars($mainCollection['thumbnail']) ?>" alt="<?= htmlspecialchars($mainCollection['title']) ?>">
             <div class="collection-text">
-                <span>SUMMER</span>
+                <span><?= htmlspecialchars($mainCollection['description']) ?></span>
                 <h2>COLLECTION<br>2026</h2>
-                <p>Khám phá ngay</p>
+                <a href="<?= url('products?category=' . $mainCollection['slug']) ?>" style="text-decoration: none; color: inherit;">
+                    <p>Khám phá ngay</p>
+                </a>
             </div>
-
         </div>
 
         <div class="collection-right">
-            <div class="mini-card">
-                <div class="mini-content">
-                    <h3>NĂNG ĐỘNG</h3>
-                    <p class="mini-desc">Trẻ trung, cá tính</p>
-                    <span class="mini-link">Khám phá</span>
+            <?php 
+            $orderedSlugs = ['do-the-thao', 'cong-so', 'phu-kien'];
+            foreach ($orderedSlugs as $slug):
+                if (isset($miniCollections[$slug])):
+                    $mCol = $miniCollections[$slug];
+                    $isFullWidth = ($slug === 'phu-kien') ? 'full-width' : '';
+            ?>
+                <div class="mini-card <?= $isFullWidth ?>">
+                    <div class="mini-content">
+                        <h3><?= htmlspecialchars($mCol['title']) ?></h3>
+                        <p class="mini-desc"><?= htmlspecialchars($mCol['description']) ?></p>
+                        <a href="<?= url('products?category=' . $mCol['slug']) ?>" style="text-decoration: none; color: inherit;">
+                            <span class="mini-link">Khám phá</span>
+                        </a>
+                    </div>
+                    <img src="<?= htmlspecialchars($mCol['thumbnail']) ?>" alt="<?= htmlspecialchars($mCol['title']) ?>">
                 </div>
-                <img src="<?= asset('assets/images/nang-dong.jpg') ?>" alt="">
-
-            </div>
-            <div class="mini-card">
-                <div class="mini-content">
-                    <h3>PHONG CÁCH</h3>
-                    <p class="mini-desc">Lịch lãm, hiện đại</p>
-                    <span class="mini-link">Khám phá</span>
-                </div>
-                <img src="<?= asset('assets/images/phongcach.jpg') ?>" alt="">
-
-            </div>
-
-            <div class="mini-card full-width">
-                <div class="mini-content">
-                    <h3>PHỤ KIỆN</h3>
-                    <p class="mini-desc">Hoàn thiện phong cách</p>
-                    <span class="mini-link">Khám phá</span>
-                </div>
-                <img src="<?= asset('assets/images/phukien.jpg') ?>" alt="">
-
-            </div>
-
+            <?php 
+                endif;
+            endforeach; 
+            ?>
         </div>
-
     </section>
 
     <!-- Form testing -->

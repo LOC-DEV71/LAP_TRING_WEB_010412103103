@@ -39,7 +39,8 @@ class AuthController extends Controller
                     // Đăng nhập thành công, reset lại số lần nhập sai
                     unset($_SESSION['login_attempts']);
                     
-                    header('Location: ' . url(''));
+                    // Khi đăng nhập thành công thì sẽ chuyển hướng qua trang user/profile
+                    header('Location: ' . url('user/profile'));
                     exit;
                 } else {
                     // Chống Spam

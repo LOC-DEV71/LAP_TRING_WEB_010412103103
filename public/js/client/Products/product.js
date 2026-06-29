@@ -123,24 +123,30 @@ document.addEventListener("DOMContentLoaded", () => {
     productGrid.appendChild(noProductsMsg);
   }
 
-  // 1. Category Click Listeners
+  // 1. Category Click/Active State Handling via URL
   if (categoryFilter) {
-    categoryFilter.querySelectorAll("li").forEach((li) => {
-      li.addEventListener("click", () => {
-        const category = li.getAttribute("data-category");
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentCategory = urlParams.get('category');
 
-        // Toggle category
-        if (activeCategory === category) {
-          activeCategory = null;
-          li.classList.remove("active");
+    categoryFilter.querySelectorAll("li").forEach((li) => {
+      const category = li.getAttribute("data-category");
+
+      // Highlight active category based on URL parameter
+      if (currentCategory === category || (!currentCategory && category === "")) {
+        li.classList.add("active");
+        activeCategory = category; // Sync JS state
+      } else {
+        li.classList.remove("active");
+      }
+
+      li.addEventListener("click", () => {
+        if (category === "" || currentCategory === category) {
+          // Deselect or click "All": Go back to all products
+          window.location.href = APP_CONFIG.productsUrl;
         } else {
-          categoryFilter
-            .querySelectorAll("li")
-            .forEach((item) => item.classList.remove("active"));
-          activeCategory = category;
-          li.classList.add("active");
+          // Select: Redirect to category page
+          window.location.href = APP_CONFIG.productsUrl + "?category=" + category;
         }
-        applyFilters();
       });
     });
   }
@@ -321,4 +327,59 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // 9. Buy Now click listener -> also opens the Cart Modal to select variant
+  const buyNowButtons = document.querySelectorAll(".btn-buy-now");
+  buyNowButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const productId = btn.getAttribute("data-id");
+      if (typeof window.openCartModal === "function") {
+        window.openCartModal(productId);
+      }
+    });
+  });
+
+  // 10. Custom Dropdown (Sort Selector) Interaction
+  const sortDropdown = document.getElementById("sort-dropdown");
+  if (sortDropdown) {
+    const trigger = sortDropdown.querySelector(".dropdown-trigger");
+    const selectedValueText = sortDropdown.querySelector(".selected-value");
+    const optionsList = sortDropdown.querySelectorAll(".dropdown-options li");
+    const hiddenInput = document.getElementById("sort-selector");
+
+    // Toggle dropdown on trigger click
+    trigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      sortDropdown.classList.toggle("open");
+    });
+
+    // Option selection
+    optionsList.forEach((option) => {
+      option.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const value = option.getAttribute("data-value");
+        const text = option.textContent;
+
+        // Update active option
+        optionsList.forEach((opt) => opt.classList.remove("active"));
+        option.classList.add("active");
+
+        // Update trigger display and hidden input value
+        selectedValueText.textContent = text;
+        hiddenInput.value = value;
+
+        // Close dropdown
+        sortDropdown.classList.remove("open");
+
+        // Trigger sort function
+        sortProducts();
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", () => {
+      sortDropdown.classList.remove("open");
+    });
+  }
 });

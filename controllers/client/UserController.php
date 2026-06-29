@@ -49,7 +49,7 @@ class UserController extends Controller
         }
 
         // 5. Hiển thị trang cá nhân cùng với dữ liệu người dùng, đơn hàng và sản phẩm yêu thích
-        $this->view('client/pages/user/profile', [
+        $this->view('client/pages/user/index', [
             'title' => 'Trang cá nhân - ' . $user['fullname'],
             'user' => $user,
             'orders' => $orders,
@@ -97,8 +97,59 @@ class UserController extends Controller
             exit;
         }
 
+        // Xử lý upload ảnh đại diện (avatar)
+        $avatarPath = null;
+        if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+            $fileTmpPath = $_FILES['avatar']['tmp_name'];
+            $fileName = $_FILES['avatar']['name'];
+            $fileSize = $_FILES['avatar']['size'];
+            
+            $fileNameCmps = explode(".", $fileName);
+            $fileExtension = strtolower(end($fileNameCmps));
+            
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+            if (in_array($fileExtension, $allowedExtensions)) {
+                // Giới hạn 2MB
+                if ($fileSize <= 2 * 1024 * 1024) {
+                    $uploadFileDir = 'public/uploads/avatars/';
+                    
+                    if (!is_dir($uploadFileDir)) {
+                        mkdir($uploadFileDir, 0755, true);
+                    }
+                    
+                    $newFileName = $payload['user_id'] . '_' . time() . '.' . $fileExtension;
+                    $dest_path = $uploadFileDir . $newFileName;
+                    
+                    if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                        $avatarPath = 'uploads/avatars/' . $newFileName;
+                        
+                        // Xóa ảnh cũ nếu có
+                        $currentUser = $userModel->getById($payload['user_id']);
+                        if ($currentUser && !empty($currentUser['avatar'])) {
+                            $oldAvatarFile = 'public/' . $currentUser['avatar'];
+                            if (file_exists($oldAvatarFile)) {
+                                @unlink($oldAvatarFile);
+                            }
+                        }
+                    } else {
+                        $_SESSION['profile_error'] = "Lỗi khi lưu ảnh đại diện.";
+                        header('Location: ' . url('user/profile'));
+                        exit;
+                    }
+                } else {
+                    $_SESSION['profile_error'] = "Ảnh đại diện phải nhỏ hơn 2MB.";
+                    header('Location: ' . url('user/profile'));
+                    exit;
+                }
+            } else {
+                $_SESSION['profile_error'] = "Định dạng ảnh không hợp lệ (chỉ nhận JPG, JPEG, PNG, GIF, WEBP).";
+                header('Location: ' . url('user/profile'));
+                exit;
+            }
+        }
+
         // 4. Cập nhật vào DB
-        $success = $userModel->updateProfile($payload['user_id'], $fullname, $phone, $address);
+        $success = $userModel->updateProfile($payload['user_id'], $fullname, $phone, $address, $avatarPath);
 
         if ($success) {
             $_SESSION['profile_success'] = "Cập nhật thông tin cá nhân thành công.";
@@ -174,7 +225,7 @@ class UserController extends Controller
         if (\Core\Email::send($user['email'], $subject, $body)) {
             $_SESSION['profile_success'] = "Đã gửi email xác thực đến địa chỉ " . htmlspecialchars($user['email']) . ". Vui lòng kiểm tra hộp thư của bạn!";
         } else {
-            $_SESSION['profile_error'] = "Không thể gửi email xác thực. Vui lòng thử lại sau.";
+            $_SESSION['profile_error'] = "Địa chỉ email '" . htmlspecialchars($user['email']) . "' không tồn tại hoặc không thể nhận thư. Vui lòng cập nhật lại email chính xác!";
         }
 
         header('Location: ' . url('user/profile'));
@@ -206,6 +257,48 @@ class UserController extends Controller
 
         $_SESSION['profile_success'] = "Tài khoản của bạn đã được xác thực thành công!";
         header('Location: ' . url('user/profile'));
+        exit;
+    }
+
+    // API Lấy chi tiết đơn hàng cho Client (trả về JSON)
+    public function orderDetails()
+    {
+        header('Content-Type: application/json');
+
+        // 1. Kiểm tra JWT Token
+        $token = $_COOKIE['jwt_token'] ?? '';
+        $payload = null;
+        if (!empty($token)) {
+            $payload = JwtUtils::decode($token);
+        }
+
+        if (!$payload) {
+            echo json_encode(['success' => false, 'message' => 'Vui lòng đăng nhập lại.']);
+            exit;
+        }
+
+        $orderId = $_GET['id'] ?? '';
+        if (empty($orderId)) {
+            echo json_encode(['success' => false, 'message' => 'Mã đơn hàng không hợp lệ.']);
+            exit;
+        }
+
+        $orderModel = new Order();
+        $order = $orderModel->getById($orderId);
+
+        if (!$order || $order['user_id'] !== $payload['user_id']) {
+            echo json_encode(['success' => false, 'message' => 'Đơn hàng không tồn tại.']);
+            exit;
+        }
+
+        $orderItemModel = new \Models\OrderItem();
+        $items = $orderItemModel->getFullDetailsByOrderId($orderId);
+
+        echo json_encode([
+            'success' => true,
+            'order' => $order,
+            'items' => $items
+        ]);
         exit;
     }
 
