@@ -340,6 +340,19 @@ class ProductsController extends AdminBaseController
                         ':status' => $data['status'] ?? 'active',
                         ':featured' => $data['featured'] ?? 'no'
                     ]);
+
+                    $variantId = 'var_' . bin2hex(random_bytes(6));
+                    $varInsert = $db->prepare("INSERT INTO product_variants (_id, product_id, color, size, stock, sku) VALUES (:id, :product_id, :color, :size, :stock, :sku)");
+
+                    $varInsert->execute([
+                        ':id' => $variantId,
+                        ':product_id' => $productId,
+                        ':color' => $data['color'] ?? 'Default',
+                        ':size' => $data['size'] ?? 'Free',
+                        ':stock' => $data['stock'] ?? 0,
+                        ':sku' => $data['sku']
+                    ]);
+
                     $success++;
                 }
                 $db->commit();

@@ -165,7 +165,20 @@ function saveStockInline(variantId) {
     .then(data => {
         if (data.success) {
             showToast(data.message || "Cập nhật thành công!", "success");
-            // UI updated in background – no full page reload
+            // Refresh the inventory table via SPA fetch
+            fetch(window.location.href)
+                .then(res => res.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const newMain = doc.querySelector('.admin-main');
+                    const currentMain = document.querySelector('.admin-main');
+                    if (newMain && currentMain) {
+                        currentMain.innerHTML = newMain.innerHTML;
+                        if (window.initCustomDropdowns) window.initCustomDropdowns();
+                    }
+                })
+                .catch(err => console.error('Refresh error:', err));
         } else {
             showToast(data.message || "Cập nhật thất bại!", "error");
         }
