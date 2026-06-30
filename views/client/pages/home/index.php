@@ -105,9 +105,9 @@ require_once __DIR__ . '/../../layouts/header/header.php';
     ?>
     <section class="collection">
         <div class="collection-left">
-            <img src="<?= htmlspecialchars($mainCollection['thumbnail']) ?>" alt="<?= htmlspecialchars($mainCollection['title']) ?>">
+            <img src="<?= htmlspecialchars($mainCollection['thumbnail'] ?? '') ?>" alt="<?= htmlspecialchars($mainCollection['title'] ?? '') ?>">
             <div class="collection-text">
-                <span><?= htmlspecialchars($mainCollection['description']) ?></span>
+                <span><?= htmlspecialchars($mainCollection['description'] ?? '') ?></span>
                 <h2>COLLECTION<br>2026</h2>
                 <a href="<?= url('products?category=' . $mainCollection['slug']) ?>" style="text-decoration: none; color: inherit;">
                     <p>Khám phá ngay</p>
@@ -125,13 +125,13 @@ require_once __DIR__ . '/../../layouts/header/header.php';
             ?>
                 <div class="mini-card <?= $isFullWidth ?>">
                     <div class="mini-content">
-                        <h3><?= htmlspecialchars($mCol['title']) ?></h3>
-                        <p class="mini-desc"><?= htmlspecialchars($mCol['description']) ?></p>
+                        <h3><?= htmlspecialchars($mCol['title'] ?? '') ?></h3>
+                        <p class="mini-desc"><?= htmlspecialchars($mCol['description'] ?? '') ?></p>
                         <a href="<?= url('products?category=' . $mCol['slug']) ?>" style="text-decoration: none; color: inherit;">
                             <span class="mini-link">Khám phá</span>
                         </a>
                     </div>
-                    <img src="<?= htmlspecialchars($mCol['thumbnail']) ?>" alt="<?= htmlspecialchars($mCol['title']) ?>">
+                    <img src="<?= htmlspecialchars($mCol['thumbnail'] ?? '') ?>" alt="<?= htmlspecialchars($mCol['title'] ?? '') ?>">
                 </div>
             <?php 
                 endif;
