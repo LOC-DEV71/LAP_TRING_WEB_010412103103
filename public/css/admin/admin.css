@@ -2,37 +2,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap");
 
 :root {
-  /* Sáng (Light Mode - Mặc định) */
-  --bg-overlay: rgba(255, 255, 255, 0.02); /* Overlay màu sáng cho Light Mode */
-  --bg-image: url("../../assets/bg_img/nina-aFECycgqgLI-unsplash.jpg");
-  --panel-bg: rgba(255, 255, 255, 0.72);
-  --panel-border: rgba(255, 255, 255, 0.5);
+  /* Sáng (Light Mode) */
+  --bg-overlay: #f3f4f6;
+  --bg-image: none;
+  --panel-bg: #ffffff;
+  --panel-border: #e5e7eb;
   --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --input-bg: rgba(255, 255, 255, 0.5);
-  --table-hover: rgba(255, 255, 255, 0.4);
-  --sidebar-profile-bg: rgba(255, 255, 255, 0.5);
+  --text-secondary: #6b7280;
+  --input-bg: #f9fafb;
+  --table-hover: #f3f4f6;
+  --sidebar-profile-bg: #ffffff;
   --logo-color: #111827;
-  --btn-primary-bg: #111827;
+  --btn-primary-bg: #3b82f6;
   --btn-primary-text: #ffffff;
-  --primary-color: #111827;
+  --primary-color: #3b82f6;
 }
 
 body.dark-mode {
   /* Tối (Dark Mode) */
-  --bg-overlay: rgba(15, 23, 42, 0.85); /* Overlay màu tối cho Dark Mode */
-  --bg-image: url("../../assets/bg_img/aiva-apsite-QoIWe6Hl-SA-unsplash.jpg"); /* Ảnh nền tối cho Dark Mode */
-  --panel-bg: rgba(30, 41, 59, 0.75); /* Kính tối (Dark Glass) */
-  --panel-border: rgba(255, 255, 255, 0.08);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --input-bg: rgba(15, 23, 42, 0.4);
-  --table-hover: rgba(255, 255, 255, 0.05);
-  --sidebar-profile-bg: rgba(15, 23, 42, 0.5);
-  --logo-color: #f8fafc;
-  --btn-primary-bg: #cbd5e1; /* Màu trắng xám dịu mắt, tránh chói trong Dark Mode */
-  --btn-primary-text: #0f172a;
-  --primary-color: #cbd5e1;
+  --bg-overlay: #111827;
+  --bg-image: none;
+  --panel-bg: #1f2937;
+  --panel-border: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --input-bg: #374151;
+  --table-hover: #374151;
+  --sidebar-profile-bg: #1f2937;
+  --logo-color: #f9fafb;
+  --btn-primary-bg: #3b82f6;
+  --btn-primary-text: #ffffff;
+  --primary-color: #3b82f6;
 }
 
 * {
@@ -43,8 +43,7 @@ body.dark-mode {
 }
 
 body {
-  background-image:
-    linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--bg-image);
+  background-color: var(--bg-overlay);
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -70,8 +69,7 @@ body {
   width: 280px;
   height: 100vh;
   background: var(--panel-bg);
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
+
   border-right: 1px solid var(--panel-border);
   display: flex;
   flex-direction: column;
@@ -151,11 +149,7 @@ body {
   transform: translateX(4px);
 }
 
-.menu-item.active {
-  background-color: var(--text-primary);
-  color: var(--panel-bg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
+.menu-item.active { background-color: var(--btn-primary-bg); color: var(--btn-primary-text); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); }
 
 .menu-item .material-symbols-outlined {
   font-size: 20px;
@@ -241,8 +235,7 @@ body {
   align-items: center;
   margin-bottom: 40px;
   background: var(--panel-bg);
-  backdrop-filter: blur(24px) saturate(130%);
-  -webkit-backdrop-filter: blur(24px) saturate(130%);
+
   border: 1px solid var(--panel-border);
   border-radius: 16px;
   padding: 24px 32px;
@@ -342,8 +335,7 @@ body {
 /* Cards (Kính mờ cao cấp) */
 .flat-card {
   background: var(--panel-bg);
-  backdrop-filter: blur(24px) saturate(130%);
-  -webkit-backdrop-filter: blur(24px) saturate(130%);
+
   border: 1px solid var(--panel-border);
   border-radius: 16px;
   box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.04);
@@ -368,8 +360,7 @@ body {
 
 .stat-card {
   background: var(--panel-bg);
-  backdrop-filter: blur(24px) saturate(130%);
-  -webkit-backdrop-filter: blur(24px) saturate(130%);
+
   border: 1px solid var(--panel-border);
   border-radius: 16px;
   padding: 24px 28px;
@@ -696,7 +687,7 @@ bols-outlined {
   border: 1px solid var(--panel-border);
   border-radius: 8px;
   background-color: var(--input-bg);
-  backdrop-filter: blur(4px);
+
   color: var(--text-primary);
   font-weight: 500;
   transition: all 0.2s ease;
@@ -717,8 +708,7 @@ bols-outlined {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -735,8 +725,7 @@ bols-outlined {
 
 .modal-container {
   background-color: var(--panel-bg) !important;
-  backdrop-filter: blur(30px) saturate(140%) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(140%) !important;
+
   border: 1px solid var(--panel-border) !important;
   border-radius: 16px;
   width: 90%;
@@ -1158,3 +1147,4 @@ bols-outlined {
 .mt-24 {
   margin-top: 24px !important;
 }
+

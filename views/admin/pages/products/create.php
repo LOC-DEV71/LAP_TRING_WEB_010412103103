@@ -18,7 +18,7 @@
 
         <!-- Form Container -->
         <div class="flat-card p-32">
-            <form action="<?= url('admin/products/store') ?>" method="POST" enctype="multipart/form-data" novalidate>
+            <form action="<?= url('admin/products/create') ?>" method="POST" enctype="multipart/form-data" novalidate>
                 <div class="admin-form-layout">
                     
                     <!-- Cột trái: Thông tin cơ bản & Biến thể -->

@@ -31,10 +31,12 @@ function isMenuCategoryActive($path) {
 <!-- SideNavBar Component -->
 <aside class="admin-sidebar">
     <!-- Brand Logo -->
-    <div class="sidebar-logo" style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-            <h1>GearX Admin</h1>
-            <p>Catalog Control</p>
+    <div class="sidebar-logo" style="display: flex; justify-content: space-between; align-items: center; padding: 24px 24px 16px 24px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="background-color: var(--btn-primary-bg); color: #fff; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <span class="material-symbols-outlined" style="font-size: 20px;">grid_view</span>
+            </div>
+            <h1 style="font-size: 20px; margin: 0; color: var(--text-primary);">GearX Admin</h1>
         </div>
         <button id="theme-toggle" onclick="toggleTheme()" style="background: rgba(0,0,0,0.04); border: none; cursor: pointer; color: var(--text-primary); display: flex; align-items: center; justify-content: center; padding: 8px; border-radius: 50%; transition: all 0.2s; width: 36px; height: 36px;">
             <span class="material-symbols-outlined" id="theme-toggle-icon" style="font-size: 20px;">dark_mode</span>

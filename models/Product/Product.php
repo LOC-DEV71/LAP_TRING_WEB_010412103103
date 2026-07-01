@@ -42,8 +42,8 @@ class Product extends Model
             $sql = "SELECT p.*, c.slug as category_slug 
                     FROM {$this->table} p 
                     LEFT JOIN product_categories c ON p.product_category_id = c._id 
-                    WHERE p.status = 'active' AND p.deleted = FALSE 
-                    ORDER BY p.created_at DESC";
+                    WHERE p.status = 'active' AND p.deleted = 0 
+                    ORDER BY p.createdAt DESC";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -57,7 +57,7 @@ class Product extends Model
     public function getById($id)
     {
         try {
-            $sql = "SELECT * FROM {$this->table} WHERE _id = :id AND deleted = FALSE";
+            $sql = "SELECT * FROM {$this->table} WHERE _id = :id AND deleted = 0";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -65,6 +65,20 @@ class Product extends Model
         } catch (\Exception $e) {
             error_log("Lỗi lấy chi tiết sản phẩm {$id}: " . $e->getMessage());
             return false;
+        }
+    }
+
+    // Lấy chi tiết sản phẩm theo ID hoặc Slug
+    public function getByIdOrSlug($identifier)
+    {
+        try {
+            $sql = "SELECT * FROM {$this->table} WHERE (_id = :id OR slug = :slug) AND deleted = 0";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([':id' => $identifier, ':slug' => $identifier]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            // Fallback nếu cột slug chưa được tạo trong DB
+            return $this->getById($identifier);
         }
     }
 
@@ -136,8 +150,8 @@ class Product extends Model
             $sql = "SELECT p.*, c.title as category_name 
                     FROM {$this->table} p 
                     LEFT JOIN product_categories c ON p.product_category_id = c._id 
-                    WHERE p.deleted = FALSE 
-                    ORDER BY p.created_at DESC 
+                    WHERE p.deleted = 0 
+                    ORDER BY p.createdAt DESC 
                     LIMIT :limit";
             $stmt = $this->db->prepare($sql);
             $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
@@ -156,8 +170,8 @@ class Product extends Model
             $sql = "SELECT p.*, c.title as category_name 
                     FROM {$this->table} p 
                     LEFT JOIN product_categories c ON p.product_category_id = c._id 
-                    WHERE p.deleted = FALSE 
-                    ORDER BY p.created_at DESC";
+                    WHERE p.deleted = 0 
+                    ORDER BY p.createdAt DESC";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

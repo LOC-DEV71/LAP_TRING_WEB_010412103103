@@ -21,36 +21,161 @@ class ProductsController extends AdminBaseController
         $this->variantModel = new ProductVariant();
     }
 
-    // Hiển thị danh sách sản phẩm
+    // Hiển thị danh sách sản phẩm + Xử lý filter/search/sort + Pagination
     public function index()
     {
-        $products = $this->productModel->getAllAdmin();
+        require_once __DIR__ . '/../../views/utils/pagination.php';
 
-        $this->view('admin/pages/products/index', [
-            'title' => 'Quản lý Sản phẩm - GearX Admin',
-            'adminUser' => $_SESSION['admin_user'] ?? [],
-            'products' => $products,
-            'csv_import_title' => 'Nhập Sản Phẩm Bằng CSV',
-            'csv_import_action' => url('admin/products/importCsv'),
-            'csv_import_template_url' => asset('templates/product_import_template.csv'),
-            'csv_import_desc' => 'Chọn hoặc kéo thả tệp CSV chứa danh sách sản phẩm để nhập dữ liệu hàng loạt.'
-        ]);
-    }
+        $db = $this->productModel->getDbConnection();
 
-    // Hiển thị form thêm sản phẩm
-    public function create()
-    {
+        // --- Đọc params từ URL ---
+        $filterStatus   = $_GET['status']   ?? '';
+        $filterCategory = $_GET['category'] ?? '';
+        $filterSort     = $_GET['sort']     ?? 'newest';
+        $filterSearch   = trim($_GET['search'] ?? '');
+        $currentPage    = max(1, (int)($_GET['page'] ?? 1));
+        $perPage        = 10;
+
+        // --- Build WHERE clause động ---
+        $where = ['p.deleted = 0'];
+        $params = [];
+
+        if ($filterStatus === 'active')   { $where[] = "p.status = 'active'";   }
+        if ($filterStatus === 'inactive') { $where[] = "p.status = 'inactive'"; }
+        if ($filterStatus === 'featured') { $where[] = "p.featured = 'yes'";    }
+        if ($filterCategory !== '')       { $where[] = "p.product_category_id = :cat_id"; $params[':cat_id'] = $filterCategory; }
+        if ($filterSearch !== '')         { $where[] = "p.title LIKE :search";  $params[':search'] = '%' . $filterSearch . '%'; }
+
+        $whereClause = implode(' AND ', $where);
+
+        // --- ORDER BY ---
+        $orderMap = [
+            'newest'     => 'p.createdAt DESC',
+            'oldest'     => 'p.createdAt ASC',
+            'price_asc'  => 'p.price ASC',
+            'price_desc' => 'p.price DESC',
+        ];
+        $orderBy = $orderMap[$filterSort] ?? 'p.createdAt DESC';
+
+        // --- Đếm tổng để tính pagination ---
+        $countSql  = "SELECT COUNT(*) FROM products p WHERE $whereClause";
+        $countStmt = $db->prepare($countSql);
+        $countStmt->execute($params);
+        $totalFiltered = (int)$countStmt->fetchColumn();
+
+        // --- Tính pagination meta ---
+        $pagination = paginate_meta($totalFiltered, $perPage, $currentPage);
+
+        // --- Query chính với LIMIT/OFFSET ---
+        $sql = "SELECT p.*, c.title as category_name
+                FROM products p
+                LEFT JOIN product_categories c ON p.product_category_id = c._id
+                WHERE $whereClause
+                ORDER BY $orderBy
+                LIMIT :limit OFFSET :offset";
+
+        $stmt = $db->prepare($sql);
+        foreach ($params as $k => $v) { $stmt->bindValue($k, $v); }
+        $stmt->bindValue(':limit',  $perPage,               PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $pagination['offset'],  PDO::PARAM_INT);
+        $stmt->execute();
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // --- Gắn màu/size biến thể ---
+        if (!empty($products)) {
+            $productIds = array_column($products, '_id');
+            $variantsData = $this->variantModel->getColorsAndSizesByProductIds($productIds);
+            $variantsMap = [];
+            foreach ($variantsData as $vd) { $variantsMap[$vd['product_id']] = $vd; }
+            foreach ($products as &$p) {
+                $p['colors'] = $variantsMap[$p['_id']]['colors'] ?? '';
+                $p['sizes']  = $variantsMap[$p['_id']]['sizes']  ?? '';
+            }
+            unset($p);
+        }
+
+        // --- Đếm stats toàn bộ (không bị ảnh hưởng bởi filter) ---
+        $stmtCount = $db->query("SELECT status, featured FROM products WHERE deleted = 0");
+        $allRows   = $stmtCount->fetchAll(PDO::FETCH_ASSOC);
+        $countActive = $countInactive = $countFeatured = 0;
+        foreach ($allRows as $r) {
+            if ($r['status'] === 'active')   $countActive++;
+            if ($r['status'] === 'inactive') $countInactive++;
+            if ($r['featured'] === 'yes')    $countFeatured++;
+        }
+
+        // --- Lấy danh sách danh mục cho dropdown ---
         $categories = $this->categoryModel->getAllActive();
 
-        $this->view('admin/pages/products/create', [
-            'title' => 'Thêm sản phẩm mới - GearX Admin',
-            'adminUser' => $_SESSION['admin_user'] ?? [],
-            'categories' => $categories
+        $this->view('admin/pages/products/index', [
+            'title'          => 'Quản lý Sản phẩm - GearX Admin',
+            'adminUser'      => $_SESSION['admin_user'] ?? [],
+            'products'       => $products,
+            'pagination'     => $pagination,
+            'categories'     => $categories,
+            'countActive'    => $countActive,
+            'countInactive'  => $countInactive,
+            'countFeatured'  => $countFeatured,
+            'filterStatus'   => $filterStatus,
+            'filterCategory' => $filterCategory,
+            'filterSort'     => $filterSort,
+            'filterSearch'   => $filterSearch,
+            'csv_import_title'        => 'Nhập Sản Phẩm Bằng CSV',
+            'csv_import_action'       => url('admin/products/importCsv'),
+            'csv_import_template_url' => asset('templates/product_import_template.csv'),
+            'csv_import_desc'         => 'Chọn hoặc kéo thả tệp CSV chứa danh sách sản phẩm để nhập dữ liệu hàng loạt.'
         ]);
     }
 
-    // Xử lý lưu sản phẩm mới
-    public function store()
+
+    // API Bulk Action (xử lý hành động hàng loạt)
+    public function bulkAction()
+    {
+        header('Content-Type: application/json');
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(['success' => false, 'message' => 'Method not allowed']); exit;
+        }
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids    = $data['ids']    ?? [];
+        $action = $data['action'] ?? '';
+
+        if (empty($ids) || empty($action)) {
+            echo json_encode(['success' => false, 'message' => 'Thiếu dữ liệu']); exit;
+        }
+
+        $db = $this->productModel->getDbConnection();
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+
+        try {
+            switch ($action) {
+                case 'active':
+                    $db->prepare("UPDATE products SET status = 'active' WHERE _id IN ($placeholders)")->execute($ids);
+                    break;
+                case 'inactive':
+                    $db->prepare("UPDATE products SET status = 'inactive' WHERE _id IN ($placeholders)")->execute($ids);
+                    break;
+                case 'featured_yes':
+                    $db->prepare("UPDATE products SET featured = 'yes' WHERE _id IN ($placeholders)")->execute($ids);
+                    break;
+                case 'featured_no':
+                    $db->prepare("UPDATE products SET featured = 'no' WHERE _id IN ($placeholders)")->execute($ids);
+                    break;
+                case 'delete':
+                    $db->prepare("UPDATE products SET deleted = 1 WHERE _id IN ($placeholders)")->execute($ids);
+                    break;
+                default:
+                    echo json_encode(['success' => false, 'message' => 'Hành động không hợp lệ']); exit;
+            }
+            echo json_encode(['success' => true, 'message' => 'Đã thực hiện hành động thành công', 'count' => count($ids)]);
+        } catch (\Exception $e) {
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
+        exit;
+    }
+
+
+    // Hiển thị form thêm sản phẩm HOẶC xử lý thêm mới (API)
+    public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = $_POST['name'] ?? '';
@@ -126,36 +251,29 @@ class ProductsController extends AdminBaseController
                     'message' => 'Lỗi: Không thể lưu sản phẩm!'
                 ];
             }
+
+            header('Location: ' . url('admin/products'));
+            exit;
         }
 
-        header('Location: ' . url('admin/products'));
-        exit;
+        $categories = $this->categoryModel->getAllActive();
+
+        $this->view('admin/pages/products/create', [
+            'title' => 'Thêm sản phẩm mới - GearX Admin',
+            'adminUser' => $_SESSION['admin_user'] ?? [],
+            'categories' => $categories
+        ]);
     }
 
-    // Hiển thị form sửa sản phẩm
+    // Hiển thị form sửa sản phẩm HOẶC xử lý cập nhật (API)
     public function edit($id)
     {
-        $product = $this->productModel->getById($id);
+        $product = $this->productModel->getByIdOrSlug($id);
         if (!$product) {
             header('Location: ' . url('admin/products'));
             exit;
         }
 
-        $variants = $this->variantModel->getByProductId($id);
-        $categories = $this->categoryModel->getAllActive();
-
-        $this->view('admin/pages/products/edit', [
-            'title' => 'Chỉnh sửa sản phẩm - GearX Admin',
-            'adminUser' => $_SESSION['admin_user'] ?? [],
-            'product' => $product,
-            'variants' => $variants,
-            'categories' => $categories
-        ]);
-    }
-
-    // Xử lý cập nhật sản phẩm
-    public function update($id)
-    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = $_POST['name'] ?? '';
             $price = $_POST['price'] ?? 0;
@@ -170,9 +288,7 @@ class ProductsController extends AdminBaseController
             $status = $_POST['status'] ?? 'active';
             $featured = $_POST['featured'] ?? 'no';
 
-            // Lấy thông tin sản phẩm cũ để xử lý ảnh
-            $oldProduct = $this->productModel->getById($id);
-            $thumbnailUrl = $oldProduct['thumbnail'] ?? null;
+            $thumbnailUrl = $product['thumbnail'] ?? null;
 
             // Nếu có tải lên ảnh mới
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -180,8 +296,8 @@ class ProductsController extends AdminBaseController
                 if ($uploadedUrl) {
                     $thumbnailUrl = $uploadedUrl;
                     // Xóa ảnh cũ trên Cloudinary để dọn rác
-                    if (!empty($oldProduct['thumbnail'])) {
-                        $publicId = $this->getCloudinaryPublicId($oldProduct['thumbnail']);
+                    if (!empty($product['thumbnail'])) {
+                        $publicId = $this->getCloudinaryPublicId($product['thumbnail']);
                         if ($publicId) {
                             CloudinaryService::delete($publicId);
                         }
@@ -194,7 +310,7 @@ class ProductsController extends AdminBaseController
                            price = :price, price_sale = :price_sale, thumbnail = :thumbnail, status = :status, featured = :featured WHERE _id = :id";
             $stmt = $this->productModel->getDbConnection()->prepare($sqlProduct);
             $updateSuccess = $stmt->execute([
-                ':id' => $id,
+                ':id' => $product['_id'],
                 ':title' => $title,
                 ':category_id' => $categoryId,
                 ':description' => $description,
@@ -209,7 +325,7 @@ class ProductsController extends AdminBaseController
                 // Cập nhật biến thể (Xóa toàn bộ biến thể cũ và chèn mới để đơn giản & đồng bộ)
                 $sqlDeleteVariants = "DELETE FROM product_variants WHERE product_id = :product_id";
                 $stmtDelete = $this->productModel->getDbConnection()->prepare($sqlDeleteVariants);
-                $stmtDelete->execute([':product_id' => $id]);
+                $stmtDelete->execute([':product_id' => $product['_id']]);
 
                 $variants = $_POST['variants'] ?? [];
                 $sqlVariant = "INSERT INTO product_variants (_id, product_id, color, size, stock, sku) 
@@ -221,7 +337,7 @@ class ProductsController extends AdminBaseController
                         $variantId = $v['_id'] ?? ('var_' . bin2hex(random_bytes(6)));
                         $stmtVariant->execute([
                             ':id' => $variantId,
-                            ':product_id' => $id,
+                            ':product_id' => $product['_id'],
                             ':color' => $v['color'],
                             ':size' => $v['size'],
                             ':stock' => (int)($v['stock'] ?? 0),
@@ -240,10 +356,21 @@ class ProductsController extends AdminBaseController
                     'message' => 'Lỗi: Không thể cập nhật sản phẩm!'
                 ];
             }
+
+            header('Location: ' . url('admin/products'));
+            exit;
         }
 
-        header('Location: ' . url('admin/products'));
-        exit;
+        $variants = $this->variantModel->getByProductId($product['_id']);
+        $categories = $this->categoryModel->getAllActive();
+
+        $this->view('admin/pages/products/edit', [
+            'title' => 'Chỉnh sửa sản phẩm - GearX Admin',
+            'adminUser' => $_SESSION['admin_user'] ?? [],
+            'product' => $product,
+            'variants' => $variants,
+            'categories' => $categories
+        ]);
     }
 
     // Xử lý xóa mềm sản phẩm

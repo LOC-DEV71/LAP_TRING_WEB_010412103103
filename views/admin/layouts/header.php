@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?= asset('css/admin/admin.css') ?>?v=<?= time() ?>"/>
     <!-- Toast Notifications Styles -->
     <link rel="stylesheet" href="<?= asset('css/admin/toast.css') ?>?v=<?= time() ?>"/>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <!-- Container Toast Thông báo -->
